@@ -1,0 +1,13 @@
+{
+  "name": "Mikey Harms - Chicago Singer-Songwriter",
+  "short_name": "Mikey Harms",
+  "description": "Official website of Mikey Harms - Chicago-based alternative folk and rock artist",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#100c0c",
+  "theme_color": "#edd360",
+  "icons": [
+    { "src": "img/favicon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "img/favicon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
