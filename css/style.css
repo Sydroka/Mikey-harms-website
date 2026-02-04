@@ -125,10 +125,6 @@
 }
 
 /* STICKY NAVIGATION */
-.sticky main {
-  margin-top: 9.6rem;
-}
-
 .sticky .header {
   position: fixed;
   top: 0;
@@ -140,8 +136,19 @@
   z-index: 999;
 }
 
-.sticky .section-hero {
+.sticky main {
   margin-top: 9.6rem;
+}
+
+/* LOGO BAR (ABOVE CAROUSEL) */
+.logo-bar {
+  background-color: #ffffff;
+  padding: 2.4rem 0;
+  text-align: center;
+}
+
+.simple-logo {
+  height: 6rem;
 }
 
 /**************************/
@@ -152,8 +159,8 @@
   background-color: #100c0c;
   position: relative;
   padding: 0;
-  height: 100vh;
-  min-height: 60rem;
+  height: 70vh;
+  min-height: 50rem;
 }
 
 .carousel-container {
@@ -267,10 +274,16 @@
 }
 
 .section-music-socials .social-links {
+  list-style: none;
   display: flex;
   justify-content: center;
   gap: 4.8rem;
-  margin-top: 3.2rem;
+  margin-top: 4.2rem;
+}
+
+.section-music-socials .social-links li {
+  display: block;
+  margin-bottom: 4.2rem;
 }
 
 .section-music-socials .social-links .footer-link {
@@ -278,18 +291,32 @@
   align-items: center;
   gap: 1.2rem;
   font-size: 2rem;
+  text-decoration: none;
+  color: #000;
+  transition: all 0.3s;
 }
 
-.section-music-socials .social-links .social-icon,
+.section-music-socials .social-links .footer-link:hover {
+  color: #ef2c2c;
+}
+
+.section-music-socials .social-links .social-icon {
+  width: 3.2rem;
+  height: 3.2rem;
+  font-size: 3.2rem;
+}
+
 .section-music-socials .social-links .fab {
   width: 3.2rem;
   height: 3.2rem;
+  font-size: 3.2rem;
 }
 
 .video-container {
   max-width: 80rem;
   margin: 4.8rem auto;
   margin-top: -8.8rem;
+  margin-bottom: 0;
 }
 
 .video-container video {

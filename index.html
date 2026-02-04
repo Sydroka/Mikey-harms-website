@@ -47,17 +47,67 @@
     />
   </head>
   <body>
+    <!-- Loading Screen -->
     <div id="loader">
       <div class="loader-content">
-        <img class="loader-logo" src="img/mikeylogo.png" alt="Mikey Harms logo"
+        <img class="loader-logo" alt="Mikey Harms Logo" src="img/mikeylogo.png" />
         <div class="loader-image">
           <img src="img/mainMikey.jpg" alt="Mikey Harms" />
         </div>
       </div>
     </div>
+
+    <!-- LOGO BAR (ABOVE CAROUSEL) -->
+    <div class="logo-bar">
+      <img src="img/MHlogo.png" alt="Logo" class="simple-logo" />
+    </div>
+
+    <!-- HERO SECTION - IMAGE CAROUSEL -->
+    <section class="section-hero">
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div class="carousel-slide active">
+            <img src="img/scroll/Mheadshot1.jpg" alt="Mikey Harms 1" />
+          </div>
+          <div class="carousel-slide">
+            <img src="img/scroll/Mhs3.jpg" alt="Mikey Harms 2" />
+          </div>
+          <div class="carousel-slide">
+            <img src="img/scroll/Mhs4.jpg" alt="Mikey Harms 3" />
+          </div>
+          <div class="carousel-slide">
+            <img src="img/scroll/promis.png" alt="Mikey Harms 4" />
+          </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button
+          class="carousel-arrow carousel-arrow-left"
+          aria-label="Previous image"
+        >
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+        <button
+          class="carousel-arrow carousel-arrow-right"
+          aria-label="Next image"
+        >
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+
+        <!-- Dots Indicators -->
+        <div class="carousel-dots">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+          <span class="dot" data-slide="3"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEADER (NOW BELOW CAROUSEL) -->
     <header class="header">
       <a href="#">
-        <img class="logo" alt="Mikey Harms logo" src="img/logo.jpg" />
+        <img class="logo" alt="Mikey Harms logo" src="img/logoBLK.jpg" />
       </a>
 
       <nav class="main-nav">
@@ -79,48 +129,131 @@
     </header>
 
     <main>
-      <!-- HERO SECTION - IMAGE CAROUSEL-->
-      <section class="section-hero">
-  <div class="carousel-container">
-    <div class="carousel-wrapper">
-      <div class="carousel-slide active">
-        <img src="img/scroll/Mheadshot1.jpg" alt="Mikey Harms 1" />
-      </div>
-      <div class="carousel-slide">
-        <img src="img/scroll/Mhs3.jpg" alt="Mikey Harms 2" />
-      </div>
-      <div class="carousel-slide">
-        <img src="img/scroll/Mhs4.jpg" alt="Mikey Harms 3" />
-      </div>
-      <div class="carousel-slide">
-        <img src="img/scroll/promis.png" alt="Mikey Harms 4" />
-      </div>
-    </div>
+      <!-- RELEASED TRACKS SECTION -->
+      <section class="section-tracks" id="music">
+        <div class="container">
+          <span class="subheading">Released Tracks</span>
 
-    <!-- Navigation Arrows -->
-    <button class="carousel-arrow carousel-arrow-left" aria-label="Previous image">
-      <ion-icon name="chevron-back-outline"></ion-icon>
-    </button>
-    <button class="carousel-arrow carousel-arrow-right" aria-label="Next image">
-      <ion-icon name="chevron-forward-outline"></ion-icon>
-    </button>
+          <div class="tracks-grid">
+            <!-- Track 1 - Rusty -->
+            <div class="track-item" data-audio="audio/rusty.mp3">
+              <img src="img/logoBLK.jpg" alt="Rusty Metal Box" />
+              <div class="play-overlay">
+                <ion-icon name="play-circle-outline"></ion-icon>
+              </div>
+              <div class="track-title">Rusty Metal Box</div>
+            </div>
 
-    <!-- Dots Indicators -->
-    <div class="carousel-dots">
-      <span class="dot active" data-slide="0"></span>
-      <span class="dot" data-slide="1"></span>
-      <span class="dot" data-slide="2"></span>
-      <span class="dot" data-slide="3"></span>
-    </div>
-  </div>
-</section>
+            <!-- Track 2 - Third -->
+            <div class="track-item" data-audio="audio/third.mp3">
+              <img src="img/logoBLK.jpg" alt="Third Time Today" />
+              <div class="play-overlay">
+                <ion-icon name="play-circle-outline"></ion-icon>
+              </div>
+              <div class="track-title">Third Time Today</div>
+            </div>
+
+            <!-- Track 3 - Promises -->
+            <div class="track-item" data-audio="audio/promis.mp3">
+              <img src="img/scroll/promis.png" alt="Promises" />
+              <div class="play-overlay">
+                <ion-icon name="play-circle-outline"></ion-icon>
+              </div>
+              <div class="track-title white">Promises</div>
+            </div>
+          </div>
+
+          <!-- Audio Player -->
+          <div class="audio-player" id="audioPlayer" style="display: none">
+            <div class="player-info">
+              <img
+                id="playerAlbumArt"
+                src=""
+                alt="Album Art"
+                class="player-album-art"
+              />
+              <div class="player-track-info">
+                <div id="playerTrackName" class="player-track-name">
+                  Select a track
+                </div>
+              </div>
+            </div>
+
+            <div class="player-controls">
+              <button id="playPauseBtn" class="control-btn">
+                <ion-icon name="play"></ion-icon>
+              </button>
+
+              <div class="progress-container">
+                <span id="currentTime" class="time">0:00</span>
+                <div class="progress-bar">
+                  <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <span id="duration" class="time">0:00</span>
+              </div>
+
+              <button id="volumeBtn" class="control-btn">
+                <ion-icon name="volume-high"></ion-icon>
+              </button>
+
+              <input
+                type="range"
+                id="volumeSlider"
+                class="volume-slider"
+                min="0"
+                max="100"
+                value="100"
+              />
+            </div>
+
+            <audio id="musicPlayer">
+              <source src="" type="audio/mpeg" />
+            </audio>
+          </div>
+        </div>
+      </section>
 
       <!-- MUSIC & SOCIALS SECTION -->
-      <section class="section-music-socials" id="music">
+      <section class="section-music-socials" id="socials">
         <div class="container">
-          <span class="subheading">Music & Socials</span>
-          <h2 class="heading-secondary">
-            <span class="mikey-harms-text">Mikey Harms</span> Band - Sunday, February 1st 2026
+          <span class="subheading">Socials</span>
+
+          <ul class="social-links">
+  <li>
+    <a class="footer-link" href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ" target="_blank">
+      <i class="fab fa-spotify"></i>
+      <span>Spotify</span>
+    </a>
+  </li>
+  <li>
+    <a class="footer-link" href="https://music.apple.com/us/artist/mikey-harms/1573931931" target="_blank">
+      <ion-icon class="social-icon" name="logo-apple"></ion-icon>
+      <span>Apple Music</span>
+    </a>
+  </li>
+  <li>
+    <a class="footer-link" href="https://www.youtube.com/@mikey_harms_" target="_blank">
+      <ion-icon class="social-icon" name="logo-youtube"></ion-icon>
+      <span>YouTube</span>
+    </a>
+  </li>
+  <li>
+    <a class="footer-link" href="https://www.instagram.com/mikeyharmsmusic/" target="_blank">
+      <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
+      <span>Instagram</span>
+    </a>
+  </li>
+  <li>
+    <a class="footer-link" href="https://www.tiktok.com/@mikey_harms_" target="_blank">
+      <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
+      <span>TikTok</span>
+    </a>
+  </li>
+</ul>
+        </div>
+        <h2 class="heading-secondary">
+            <span class="mikey-harms-text">MIKEY HARMS</span> Band - Sunday,
+            February 1st 2026
           </h2>
           <div class="video-container">
             <video controls>
@@ -128,127 +261,15 @@
               Your browser does not support the video tag.
             </video>
           </div>
-
-          <ul class="social-links">
-            <li>
-              <a
-                class="footer-link"
-                href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ"
-                target="_blank"
-              >
-                <i class="fab fa-spotify"></i>
-                <span><strong>Spotify</strong></span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://music.apple.com/us/artist/mikey-harms/1573931931"
-                target="_blank"
-              >
-                <ion-icon class="social-icon" name="logo-apple"></ion-icon>
-                <span><strong>Apple Music</strong></span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.instagram.com/mikeyharmsmusic/"
-                target="_blank"
-              >
-                <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
-                <span><strong>Instagram</strong></span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.tiktok.com/@mikey_harms_"
-                target="_blank"
-              >
-                <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
-                <span><strong>TikTok</strong></span>
-              </a>
-            </li>
-          </ul>
-        </div>
       </section>
-
-      <!-- RELEASED TRACKS SECTION -->
-<section class="section-tracks">
-  <div class="container">
-    <span class="subheading">Released Tracks</span>
-
-    <div class="tracks-grid">
-      <!-- Track 1 - Rusty -->
-      <div class="track-item" data-audio="audio/rusty.mp3">
-        <img src="img/logoBLK.jpg" alt="Rusty Metal Box" />
-        <div class="play-overlay">
-          <ion-icon name="play-circle-outline"></ion-icon>
-        </div>
-        <div class="track-title">Rusty Metal Box</div>
-      </div>
-
-      <!-- Track 2 - Third -->
-      <div class="track-item" data-audio="audio/third.mp3">
-        <img src="img/logoBLK.jpg" alt="Third Time Today" />
-        <div class="play-overlay">
-          <ion-icon name="play-circle-outline"></ion-icon>
-        </div>
-        <div class="track-title">Third Time Today</div>
-      </div>
-
-      <!-- Track 3 - Promos -->
-      <div class="track-item" data-audio="audio/promis.mp3">
-        <img src="img/scroll/promis.png" alt="Promises" />
-        <div class="play-overlay">
-          <ion-icon name="play-circle-outline"></ion-icon>
-        </div>
-        <div class="track-title white">Promises</div>
-      </div>
-    </div>
-
-    <!-- Audio Player -->
-    <div class="audio-player" id="audioPlayer" style="display: none;">
-      <div class="player-info">
-        <img id="playerAlbumArt" src="" alt="Album Art" class="player-album-art">
-        <div class="player-track-info">
-          <div id="playerTrackName" class="player-track-name">Select a track</div>
-        </div>
-      </div>
-      
-      <div class="player-controls">
-        <button id="playPauseBtn" class="control-btn">
-          <ion-icon name="play"></ion-icon>
-        </button>
-        
-        <div class="progress-container">
-          <span id="currentTime" class="time">0:00</span>
-          <div class="progress-bar">
-            <div id="progressFill" class="progress-fill"></div>
-          </div>
-          <span id="duration" class="time">0:00</span>
-        </div>
-        
-        <button id="volumeBtn" class="control-btn">
-          <ion-icon name="volume-high"></ion-icon>
-        </button>
-        
-        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="100">
-      </div>
-      
-      <audio id="musicPlayer">
-        <source src="" type="audio/mpeg" />
-      </audio>
-    </div>
-  </div>
-</section>
 
       <!-- LIVE SHOWS SECTION -->
       <section class="section-shows" id="shows">
         <div class="container center-text">
           <span class="subheading">Live</span>
-          <h2 class="heading-secondary">See <span class="mikey-harms-text">Mikey Harms</span> live!</h2>
+          <h2 class="heading-secondary">
+            See <span class="mikey-harms-text">Mikey Harms</span> live!
+          </h2>
         </div>
 
         <div class="container grid grid--3-cols margin-bottom-md">
@@ -351,67 +372,76 @@
       </section>
 
       <!-- MERCH SECTION -->
-       <section class="section-merch" id="merch">
-  <div class="container">
-    <span class="subheading">Merch</span>
-    <h2 class="heading-secondary">Official Merchandise</h2>
-    
-    <div class="merch-grid">
-      <!-- Merch Item 1 -->
-<div class="merch-item">
-  <div class="merch-img-box">
-    <img src="img/merch/mikeytp.png" alt="Mikey Harms Merchandise" />
-  </div>
-  <div class="merch-info">
-    <h3 class="merch-name">Official Tour Toilet Paper</h3>
-    <p class="merch-price">$15.00</p>
-    <a href="#" class="btn merch-btn">Order Now</a>
-  </div>
-</div>
+      <section class="section-merch" id="merch">
+        <div class="container">
+          <span class="subheading">Merch</span>
+          <h2 class="heading-secondary">Official Merchandise</h2>
 
-<!-- Merch Item 2 -->
-<div class="merch-item">
-  <div class="merch-img-box">
-    <img src="img/merch/mikeylube.jpg" alt="Mikey Harms Merchandise" />
-  </div>
-  <div class="merch-info">
-    <h3 class="merch-name">Limited Edition Lube</h3>
-    <p class="merch-price">$30.00</p>
-    <a href="#" class="btn merch-btn">Order Now</a>
-  </div>
-</div>
+          <div class="merch-grid">
+            <!-- Merch Item 1 -->
+            <div class="merch-item">
+              <div class="merch-img-box">
+                <img
+                  src="img/merch/mikeytp.png"
+                  alt="Mikey Harms Merchandise"
+                />
+              </div>
+              <div class="merch-info">
+                <h3 class="merch-name">Official Tour Toilet Paper</h3>
+                <p class="merch-price">$15.00</p>
+                <a href="#" class="btn merch-btn">Order Now</a>
+              </div>
+            </div>
 
-<!-- Merch Item 3 -->
-<div class="merch-item">
-  <div class="merch-img-box">
-    <img src="img/merch/mikeylego.jpg" alt="Mikey Harms Merchandise" />
-  </div>
-  <div class="merch-info">
-    <h3 class="merch-name">Exclusive Lego Set</h3>
-    <p class="merch-price">$50.00</p>
-    <a href="#" class="btn merch-btn">Order Now</a>
-  </div>
-</div>
-</div>  
-  </div>
-</section>
+            <!-- Merch Item 2 -->
+            <div class="merch-item">
+              <div class="merch-img-box">
+                <img
+                  src="img/merch/mikeylube.jpg"
+                  alt="Mikey Harms Merchandise"
+                />
+              </div>
+              <div class="merch-info">
+                <h3 class="merch-name">Limited Edition Lube</h3>
+                <p class="merch-price">$30.00</p>
+                <a href="#" class="btn merch-btn">Order Now</a>
+              </div>
+            </div>
 
-     <!-- BIO SECTION -->
+            <!-- Merch Item 3 -->
+            <div class="merch-item">
+              <div class="merch-img-box">
+                <img
+                  src="img/merch/mikeylego.jpg"
+                  alt="Mikey Harms Merchandise"
+                />
+              </div>
+              <div class="merch-info">
+                <h3 class="merch-name">Exclusive Lego Set</h3>
+                <p class="merch-price">$50.00</p>
+                <a href="#" class="btn merch-btn">Order Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BIO SECTION -->
 <section class="section-bio" id="bio">
   <div class="container">
     <span class="subheading">About</span>
-    
-    <!-- Toggle Button -->
-    <div class="bio-toggle">
-      <button id="bioToggleBtn" class="bio-toggle-btn">BAND</button>
-    </div>
 
     <!-- Mikey Bio (default view) -->
     <div id="mikeyBio" class="bio-content">
-      <h2 class="heading-secondary">About Mikey</h2>
+      <h2 class="heading-secondary"> <span class="mikey-harms-text">MIKEY HARMS</span></h2>
       <p class="bio-text">
-        Mikey Harms is a Chicago-based singer-songwriter known for his heartfelt lyrics and captivating performances. With a passion for music that spans various genres, Mikey brings authenticity and emotion to every song he creates. His journey in music has been marked by dedication to his craft and a deep connection with his audience.
+    <span class="mikey-harms-text">MIKEY HARMS</span> is a Chicago-based singer-songwriter known for his heartfelt lyrics and captivating performances. With a passion for music that spans various genres, Mikey brings authenticity and emotion to every song he creates. His journey in music has been marked by dedication to his craft and a deep connection with his audience.
       </p>
+      
+      <!-- Toggle Button (moved here) -->
+      <div class="bio-toggle">
+        <button id="bioToggleBtn" class="bio-toggle-btn">BAND BIO</button>
+      </div>
     </div>
 
     <!-- Band Bio (hidden by default) -->
@@ -419,11 +449,16 @@
       <h2 class="heading-secondary">The Band</h2>
       <div class="band-info">
         <p class="bio-text">
-          <span class="mikey-harms-text">Mikey Harms</span> current line up is Antony on bass, Stevie on drums, Matt on guitar, and Josh on keys.
+          <span class="mikey-harms-text">MIKEY HARMS</span> current line up is Antony on bass, Stevie on drums, Matt on guitar, and Josh on keys.
         </p>
         <div class="band-img-box">
           <img src="img/bio/band.jpg" alt="The Band" class="band-img" />
         </div>
+      </div>
+      
+      <!-- Toggle Button for Band view -->
+      <div class="bio-toggle">
+        <button id="bioToggleBtn2" class="bio-toggle-btn">ABOUT MIKEY</button>
       </div>
     </div>
   </div>
@@ -457,7 +492,7 @@
                   <input
                     id="email"
                     type="email"
-                    placeholder="fakename@fakemane.com"
+                    placeholder="definitelynotantony@halal.com"
                     name="email"
                     required
                   />
@@ -487,112 +522,83 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container grid grid--footer">
-        <div class="logo-col">
-          <a href="#" class="footer-logo">
-            <h6 class="heading-secondary">Mikey Harms</h6>
+    <!-- FOOTER SECTION -->
+<footer class="footer">
+  <div class="container grid grid--footer">
+    <div class="logo-col">
+      <a href="#" class="footer-logo">
+        <h6 class="heading-secondary"><span class="mikey-harms-text">MIKEY HARMS</span></h6>
+      </a>
+      <ul class="social-links">
+        <li>
+          <a class="footer-link" href="https://www.instagram.com/mikeyharmsmusic" target="_blank" rel="noopener noreferrer">
+            <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
           </a>
-
-          <ul class="social-links">
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.instagram.com/mikeyharmsmusic"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.tiktok.com/@mikey_harms_"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
-              </a>
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i class="fab fa-spotify social-icon"></i>
-              </a>
-            </li>
-          </ul>
-
-          <p class="copyright">
-            Copyright &copy; <span class="year">2026</span> by Sydroka
-          </p>
-        </div>
-
-        <div class="address-col">
-          <p class="footer-heading">Contact Mikey Harms</p>
-          <address class="contacts">
-            <p class="address">Chicago, Illinois</p>
-            <p>
-              ><br />
-              <a class="footer-link" href="mailto:mikeyharms99@gmail.com"
-                >mikeyharms99@gmail.com</a
-              >
-            </p>
-          </address>
-        </div>
-
-        <nav class="nav-col">
-          <p class="footer-heading">Quick Links</p>
-          <ul class="footer-nav">
-            <li><a class="footer-link" href="#music">Music</a></li>
-            <li><a class="footer-link" href="#shows">Live Shows</a></li>
-            <li><a class="footer-link" href="#merch">Merch</a></li>
-            <li><a class="footer-link" href="#bio">Bio</a></li>
-          </ul>
-        </nav>
-
-        <nav class="nav-col">
-          <p class="footer-heading">Follow</p>
-          <ul class="footer-nav">
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.instagram.com/mikeyharmsmusic"
-                target="_blank"
-                >Instagram</a
-              >
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://www.tiktok.com/@mikey_harms_"
-                target="_blank"
-                >TikTok</a
-              >
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ"
-                target="_blank"
-                >Spotify</a
-              >
-            </li>
-            <li>
-              <a
-                class="footer-link"
-                href="https://music.apple.com/us/artist/mikey-harms/1573931931"
-                target="_blank"
-                >Apple Music</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </footer>
+        </li>
+        <li>
+          <a class="footer-link" href="https://www.tiktok.com/@mikey_harms_" target="_blank" rel="noopener noreferrer">
+            <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-spotify social-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://music.apple.com/us/artist/mikey-harms/1573931931" target="_blank" rel="noopener noreferrer">
+            <ion-icon class="social-icon" name="logo-apple"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://www.youtube.com/@mikey_harms_" target="_blank" rel="noopener noreferrer">
+            <ion-icon class="social-icon" name="logo-youtube"></ion-icon>
+          </a>
+        </li>
+      </ul>
+      <p class="copyright">
+        Copyright &copy; <span class="year">2026</span> by Sydroka
+      </p>
+    </div>
+    <div class="address-col">
+      <p class="footer-heading">Contact</p>
+      <address class="contacts">
+        <p class="address">Chicago, Illinois</p>
+        <p>
+          <a class="footer-link" href="mailto:mikeyharms99@gmail.com">mikeyharms99@gmail.com</a>
+        </p>
+      </address>
+    </div>
+    <nav class="nav-col">
+      <p class="footer-heading">Quick Links</p>
+      <ul class="footer-nav">
+        <li><a class="footer-link" href="#music">Music</a></li>
+        <li><a class="footer-link" href="#shows">Live Shows</a></li>
+        <li><a class="footer-link" href="#merch">Merch</a></li>
+        <li><a class="footer-link" href="#bio">Bio</a></li>
+      </ul>
+    </nav>
+    <nav class="nav-col">
+      <p class="footer-heading">Follow</p>
+      <ul class="footer-nav">
+        <li>
+          <a class="footer-link" href="https://www.instagram.com/mikeyharmsmusic" target="_blank">Instagram</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://www.tiktok.com/@mikey_harms_" target="_blank">TikTok</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ" target="_blank">Spotify</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://music.apple.com/us/artist/mikey-harms/1573931931" target="_blank">Apple Music</a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://www.youtube.com/@mikey_harms_" target="_blank">YouTube</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>
   </body>
 </html>

@@ -291,26 +291,28 @@ musicPlayer.addEventListener("ended", () => {
 ///////////////////////////////////////////////////////////
 
 const bioToggleBtn = document.getElementById("bioToggleBtn");
+const bioToggleBtn2 = document.getElementById("bioToggleBtn2");
 const mikeyBio = document.getElementById("mikeyBio");
 const bandBio = document.getElementById("bandBio");
 
 let showingBand = false;
 
-bioToggleBtn.addEventListener("click", () => {
+function toggleBio() {
   if (showingBand) {
     // Switch back to Mikey bio
     mikeyBio.style.display = "block";
     bandBio.style.display = "none";
-    bioToggleBtn.textContent = "BAND";
     showingBand = false;
   } else {
     // Switch to Band bio
     mikeyBio.style.display = "none";
     bandBio.style.display = "block";
-    bioToggleBtn.textContent = "ABOUT MIKEY";
     showingBand = true;
   }
-});
+}
+
+bioToggleBtn.addEventListener("click", toggleBio);
+bioToggleBtn2.addEventListener("click", toggleBio);
 
 ///////////////////////////////////////////////////////////
 // FLEXBOX GAP FIX FOR SAFARI
