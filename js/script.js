@@ -1,3 +1,26 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  push,
+  onDisconnect,
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+  authDomain: "mikey-harms-website.firebaseapp.com",
+  databaseURL: "https://mikey-harms-website-default-rtdb.firebaseio.com",
+  projectId: "mikey-harms-website",
+  storageBucket: "mikey-harms-website.firebasestorage.app",
+  messagingSenderId: "359019811623",
+  appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 ///////////////////////////////////////////////////////////
 // PAGE LOADER
 ///////////////////////////////////////////////////////////
@@ -378,3 +401,54 @@ function checkFlexGap() {
   if (!isSupported) document.body.classList.add("no-flexbox-gap");
 }
 checkFlexGap();
+
+///////////////////////////////////////////////////////////
+// LIVE SECTION
+///////////////////////////////////////////////////////////
+
+onValue(ref(db, "liveStatus"), (snapshot) => {
+  const data = snapshot.val() || {};
+  const isLive = data.isLive || false;
+
+  const offlineDiv = document.getElementById("liveOffline");
+  const activeDiv = document.getElementById("liveActive");
+
+  if (!offlineDiv || !activeDiv) return;
+
+  if (isLive) {
+    offlineDiv.style.display = "none";
+    activeDiv.style.display = "block";
+
+    if (data.youtubeUrl) {
+      const embedBox = document.getElementById("liveEmbedBox");
+      const iframe = document.getElementById("youtubeEmbed");
+      const videoId = extractYouTubeId(data.youtubeUrl);
+      if (videoId) {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        embedBox.style.display = "block";
+      }
+    }
+
+    const tiktokLink = document.getElementById("tiktokLiveLink");
+    if (tiktokLink) tiktokLink.style.display = data.tiktok ? "flex" : "none";
+
+    const instagramLink = document.getElementById("instagramLiveLink");
+    if (instagramLink)
+      instagramLink.style.display = data.instagram ? "flex" : "none";
+  } else {
+    offlineDiv.style.display = "block";
+    activeDiv.style.display = "none";
+  }
+});
+
+// Track visitor presence
+const visitorRef = push(ref(db, "visitors"));
+set(visitorRef, { active: true, timestamp: Date.now() });
+onDisconnect(visitorRef).remove();
+
+function extractYouTubeId(url) {
+  const regExp =
+    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return match && match[7].length === 11 ? match[7] : null;
+}

@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mikey Harms Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alata&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: "Alata", sans-serif;
+        background: #0a0a0a;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .admin-container {
+        width: 100%;
+        max-width: 60rem;
+        padding: 2.4rem;
+      }
+
+      .admin-logo {
+        text-align: center;
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: #f02e2e;
+        margin-bottom: 4rem;
+        letter-spacing: 2px;
+      }
+
+      .login-box {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 4rem;
+        text-align: center;
+      }
+
+      .login-box h2 {
+        font-size: 2.4rem;
+        margin-bottom: 3.2rem;
+        color: #fff;
+      }
+
+      .login-input {
+        width: 100%;
+        padding: 1.6rem 2rem;
+        font-size: 1.8rem;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background: #111;
+        color: #fff;
+        margin-bottom: 1.6rem;
+        font-family: inherit;
+      }
+
+      .login-input:focus {
+        outline: none;
+        border-color: #f02e2e;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 1.6rem;
+        background: #f02e2e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.3s;
+      }
+
+      .login-btn:hover {
+        background: #c02020;
+      }
+
+      .login-error {
+        color: #f02e2e;
+        font-size: 1.4rem;
+        margin-top: 1.2rem;
+        display: none;
+      }
+
+      .dashboard {
+        display: none;
+      }
+
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3.2rem;
+      }
+
+      .dashboard-header h2 {
+        font-size: 2.4rem;
+      }
+
+      .logout-btn {
+        padding: 0.8rem 1.6rem;
+        background: transparent;
+        color: #888;
+        border: 1px solid #333;
+        border-radius: 6px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+
+      .logout-btn:hover {
+        color: #fff;
+        border-color: #666;
+      }
+
+      .visitor-card {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 3.2rem;
+        margin-bottom: 2.4rem;
+        display: flex;
+        align-items: center;
+        gap: 2.4rem;
+      }
+
+      .visitor-icon {
+        font-size: 4rem;
+      }
+
+      .visitor-info h3 {
+        font-size: 1.4rem;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.8rem;
+      }
+
+      .visitor-count {
+        font-size: 4.8rem;
+        font-weight: 700;
+        color: #f02e2e;
+      }
+
+      .visitor-label {
+        font-size: 1.4rem;
+        color: #666;
+        margin-top: 0.4rem;
+      }
+
+      .live-card {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 3.2rem;
+        margin-bottom: 2.4rem;
+      }
+
+      .live-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2.4rem;
+        color: #fff;
+      }
+
+      .platform-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6rem 0;
+        border-bottom: 1px solid #222;
+      }
+
+      .platform-row:last-of-type {
+        border-bottom: none;
+      }
+
+      .platform-info {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+      }
+
+      .platform-icon {
+        font-size: 2.8rem;
+      }
+
+      .platform-name {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      .toggle-switch {
+        position: relative;
+        width: 6rem;
+        height: 3.2rem;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #333;
+        border-radius: 3.2rem;
+        transition: 0.3s;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 2.4rem;
+        width: 2.4rem;
+        left: 0.4rem;
+        bottom: 0.4rem;
+        background: #fff;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+
+      input:checked + .toggle-slider {
+        background: #f02e2e;
+      }
+
+      input:checked + .toggle-slider:before {
+        transform: translateX(2.8rem);
+      }
+
+      .youtube-card {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 3.2rem;
+        margin-bottom: 2.4rem;
+      }
+
+      .youtube-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .youtube-card p {
+        font-size: 1.4rem;
+        color: #888;
+        margin-bottom: 2rem;
+      }
+
+      .youtube-input {
+        width: 100%;
+        padding: 1.4rem 1.6rem;
+        font-size: 1.6rem;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background: #111;
+        color: #fff;
+        margin-bottom: 1.2rem;
+        font-family: inherit;
+      }
+
+      .youtube-input:focus {
+        outline: none;
+        border-color: #f02e2e;
+      }
+
+      .save-btn {
+        padding: 1.2rem 2.4rem;
+        background: #f02e2e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.3s;
+      }
+
+      .save-btn:hover {
+        background: #c02020;
+      }
+
+      .save-success {
+        color: #44ff88;
+        font-size: 1.4rem;
+        margin-left: 1.2rem;
+        display: none;
+      }
+
+      .go-live-card {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 3.2rem;
+        text-align: center;
+      }
+
+      .go-live-btn {
+        width: 100%;
+        padding: 2rem;
+        background: #f02e2e;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-size: 2.4rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+        letter-spacing: 2px;
+      }
+
+      .go-live-btn:hover {
+        background: #c02020;
+        transform: scale(1.02);
+      }
+
+      .go-live-btn.live {
+        background: #222;
+        color: #f02e2e;
+        border: 2px solid #f02e2e;
+      }
+
+      .go-live-btn.live:hover {
+        background: #1a0000;
+      }
+
+      .live-status-text {
+        margin-top: 1.6rem;
+        font-size: 1.4rem;
+        color: #888;
+      }
+
+      .live-dot {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: #44ff88;
+        margin-right: 0.6rem;
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-container">
+      <div class="admin-logo">MIKEY HARMS</div>
+
+      <!-- LOGIN SCREEN -->
+      <div class="login-box" id="loginBox">
+        <h2>Admin Login</h2>
+        <input
+          type="password"
+          class="login-input"
+          id="passwordInput"
+          placeholder="Enter password"
+        />
+        <button class="login-btn" onclick="login()">Login</button>
+        <p class="login-error" id="loginError">
+          Incorrect password. Try again.
+        </p>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="dashboard" id="dashboard">
+        <div class="dashboard-header">
+          <h2>Live Dashboard</h2>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+        <!-- VISITOR COUNT -->
+        <div class="visitor-card">
+          <div class="visitor-icon">👥</div>
+          <div class="visitor-info">
+            <h3>Currently on website</h3>
+            <div class="visitor-count" id="visitorCount">—</div>
+            <div class="visitor-label">active visitors right now</div>
+          </div>
+        </div>
+
+        <!-- PLATFORM TOGGLES -->
+        <div class="live-card">
+          <h3>Platforms</h3>
+          <div class="platform-row">
+            <div class="platform-info">
+              <span class="platform-icon">🎵</span>
+              <span class="platform-name">TikTok</span>
+            </div>
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                id="tiktokToggle"
+                onchange="updatePlatform('tiktok', this.checked)"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="platform-row">
+            <div class="platform-info">
+              <span class="platform-icon">📸</span>
+              <span class="platform-name">Instagram</span>
+            </div>
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                id="instagramToggle"
+                onchange="updatePlatform('instagram', this.checked)"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="platform-row">
+            <div class="platform-info">
+              <span class="platform-icon">▶️</span>
+              <span class="platform-name">YouTube</span>
+            </div>
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                id="youtubeToggle"
+                onchange="updatePlatform('youtube', this.checked)"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- YOUTUBE URL -->
+        <div class="youtube-card">
+          <h3>YouTube Live URL</h3>
+          <p>
+            Paste your StreamYard/YouTube live stream URL here so fans can watch
+            on the website
+          </p>
+          <input
+            type="text"
+            class="youtube-input"
+            id="youtubeUrl"
+            placeholder="https://www.youtube.com/watch?v=..."
+          />
+          <button class="save-btn" onclick="saveYoutubeUrl()">Save URL</button>
+          <span class="save-success" id="saveSuccess">✓ Saved!</span>
+        </div>
+
+        <!-- GO LIVE BUTTON -->
+        <div class="go-live-card">
+          <button class="go-live-btn" id="goLiveBtn" onclick="toggleLive()">
+            GO LIVE
+          </button>
+          <p class="live-status-text" id="liveStatusText">
+            You are currently offline
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+        push,
+        onDisconnect,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+        authDomain: "mikey-harms-website.firebaseapp.com",
+        databaseURL: "https://mikey-harms-website-default-rtdb.firebaseio.com",
+        projectId: "mikey-harms-website",
+        storageBucket: "mikey-harms-website.firebasestorage.app",
+        messagingSenderId: "359019811623",
+        appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      const ADMIN_PASSWORD = "mikeyharmsadmin2026";
+
+      window.login = function () {
+        const input = document.getElementById("passwordInput").value;
+        if (input === ADMIN_PASSWORD) {
+          document.getElementById("loginBox").style.display = "none";
+          document.getElementById("dashboard").style.display = "block";
+          loadDashboard();
+        } else {
+          document.getElementById("loginError").style.display = "block";
+        }
+      };
+
+      document
+        .getElementById("passwordInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") window.login();
+        });
+
+      window.logout = function () {
+        document.getElementById("loginBox").style.display = "block";
+        document.getElementById("dashboard").style.display = "none";
+        document.getElementById("passwordInput").value = "";
+      };
+
+      function loadDashboard() {
+        onValue(ref(db, "liveStatus"), (snapshot) => {
+          const data = snapshot.val() || {};
+
+          document.getElementById("tiktokToggle").checked =
+            data.tiktok || false;
+          document.getElementById("instagramToggle").checked =
+            data.instagram || false;
+          document.getElementById("youtubeToggle").checked =
+            data.youtube || false;
+
+          if (data.youtubeUrl) {
+            document.getElementById("youtubeUrl").value = data.youtubeUrl;
+          }
+
+          const isLive = data.isLive || false;
+          const btn = document.getElementById("goLiveBtn");
+          const statusText = document.getElementById("liveStatusText");
+
+          if (isLive) {
+            btn.textContent = "END STREAM";
+            btn.classList.add("live");
+            statusText.innerHTML =
+              '<span class="live-dot"></span> You are currently LIVE';
+          } else {
+            btn.textContent = "GO LIVE";
+            btn.classList.remove("live");
+            statusText.textContent = "You are currently offline";
+          }
+        });
+
+        onValue(ref(db, "visitors"), (snapshot) => {
+          const data = snapshot.val() || {};
+          const count = Object.keys(data).length;
+          document.getElementById("visitorCount").textContent = count;
+        });
+      }
+
+      window.updatePlatform = function (platform, value) {
+        set(ref(db, `liveStatus/${platform}`), value);
+      };
+
+      window.saveYoutubeUrl = function () {
+        const url = document.getElementById("youtubeUrl").value;
+        set(ref(db, "liveStatus/youtubeUrl"), url);
+        const success = document.getElementById("saveSuccess");
+        success.style.display = "inline";
+        setTimeout(() => {
+          success.style.display = "none";
+        }, 2000);
+      };
+
+      window.toggleLive = function () {
+        const btn = document.getElementById("goLiveBtn");
+        const isCurrentlyLive = btn.classList.contains("live");
+        set(ref(db, "liveStatus/isLive"), !isCurrentlyLive);
+      };
+
+      // Track visitor
+      const visitorRef = push(ref(db, "visitors"));
+      set(visitorRef, { active: true, timestamp: Date.now() });
+      onDisconnect(visitorRef).remove();
+    </script>
+  </body>
+</html>

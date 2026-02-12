@@ -13,17 +13,13 @@
       href="https://fonts.googleapis.com/css2?family=Alata&display=swap"
       rel="stylesheet"
     />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="icon" href="img/favicon.png" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
-
     <link rel="stylesheet" href="css/general.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/queries.css" />
-
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
@@ -32,15 +28,12 @@
       nomodule=""
       src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
     ></script>
-
     <script
       defer
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
     ></script>
-    <script defer src="js/script.js"></script>
-
+    <script type="module" src="js/script.js"></script>
     <title>Mikey Harms &mdash; This Is What I Do</title>
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -83,8 +76,6 @@
             <img src="img/scroll/promis.png" alt="Mikey Harms 4" />
           </div>
         </div>
-
-        <!-- Navigation Arrows -->
         <button
           class="carousel-arrow carousel-arrow-left"
           aria-label="Previous image"
@@ -97,8 +88,6 @@
         >
           <ion-icon name="chevron-forward-outline"></ion-icon>
         </button>
-
-        <!-- Dots Indicators -->
         <div class="carousel-dots">
           <span class="dot active" data-slide="0"></span>
           <span class="dot" data-slide="1"></span>
@@ -108,24 +97,23 @@
       </div>
     </section>
 
-    <!-- HEADER (NOW BELOW CAROUSEL) -->
+    <!-- HEADER -->
     <header class="header">
       <a href="#">
         <img class="logo" alt="Mikey Harms logo" src="img/logo.jpg" />
       </a>
-
       <nav class="main-nav">
         <ul class="main-nav-list">
-          <li><a class="main-nav-link" href="#music">Music & Socials</a></li>
-          <li><a class="main-nav-link" href="#shows">Live</a></li>
+          <li><a class="main-nav-link" href="#music">Music</a></li>
+          <li><a class="main-nav-link" href="#shows">Shows</a></li>
           <li><a class="main-nav-link" href="#merch">Merch</a></li>
           <li><a class="main-nav-link" href="#bio">Bio</a></li>
+          <li><a class="main-nav-link" href="#live">Streaming</a></li>
           <li>
             <a class="main-nav-link nav-cta" href="#contact">Reach Out!</a>
           </li>
         </ul>
       </nav>
-
       <button class="btn-mobile-nav">
         <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
         <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
@@ -139,7 +127,6 @@
           <span class="subheading">Released Tracks</span>
 
           <div class="tracks-grid">
-            <!-- Track 1 - Rusty -->
             <div class="track-item" data-audio="audio/rusty.mp3">
               <img src="img/logoBLK.jpg" alt="Rusty Metal Box" />
               <div class="play-overlay">
@@ -147,8 +134,6 @@
               </div>
               <div class="track-title">Rusty Metal Box</div>
             </div>
-
-            <!-- Track 2 - Third -->
             <div class="track-item" data-audio="audio/third.mp3">
               <img src="img/logoBLK.jpg" alt="Third Time Today" />
               <div class="play-overlay">
@@ -156,8 +141,6 @@
               </div>
               <div class="track-title">Third Time Today</div>
             </div>
-
-            <!-- Track 3 - Promises -->
             <div class="track-item" data-audio="audio/promis.mp3">
               <img src="img/scroll/promis.png" alt="Promises" />
               <div class="play-overlay">
@@ -182,12 +165,10 @@
                 </div>
               </div>
             </div>
-
             <div class="player-controls">
               <button id="playPauseBtn" class="control-btn">
                 <ion-icon name="play"></ion-icon>
               </button>
-
               <div class="progress-container">
                 <span id="currentTime" class="time">0:00</span>
                 <div class="progress-bar">
@@ -195,11 +176,9 @@
                 </div>
                 <span id="duration" class="time">0:00</span>
               </div>
-
               <button id="volumeBtn" class="control-btn">
                 <ion-icon name="volume-high"></ion-icon>
               </button>
-
               <input
                 type="range"
                 id="volumeSlider"
@@ -209,10 +188,21 @@
                 value="100"
               />
             </div>
-
             <audio id="musicPlayer">
               <source src="" type="audio/mpeg" />
             </audio>
+          </div>
+
+          <!-- VIDEO -->
+          <h2 class="heading-secondary" style="margin-top: 6.4rem">
+            <span class="mikey-harms-text">MIKEY HARMS</span> Band - Sunday,
+            February 1st 2026
+          </h2>
+          <div class="video-container">
+            <video controls>
+              <source src="img/MHpractice1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </section>
@@ -221,7 +211,6 @@
       <section class="section-music-socials" id="socials">
         <div class="container">
           <span class="subheading">Socials</span>
-
           <ul class="social-links">
             <li>
               <a
@@ -274,16 +263,6 @@
               </a>
             </li>
           </ul>
-        </div>
-        <h2 class="heading-secondary">
-          <span class="mikey-harms-text">MIKEY HARMS</span> Band - Sunday,
-          February 1st 2026
-        </h2>
-        <div class="video-container">
-          <video controls>
-            <source src="img/MHpractice1.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
         </div>
       </section>
 
@@ -653,6 +632,100 @@
         </div>
       </section>
     </main>
+
+    <!-- LIVE SECTION -->
+    <section class="section-live" id="live">
+      <div class="container">
+        <span class="subheading">Streaming</span>
+        <h2 class="heading-secondary">Watch Live</h2>
+
+        <!-- OFFLINE STATE -->
+        <div class="live-offline" id="liveOffline">
+          <div class="offline-icon">
+            <img
+              src="img/mikeylogo.png"
+              alt="Mikey Harms"
+              class="offline-logo-img"
+            />
+          </div>
+          <h3 class="offline-title">Not Live Right Now</h3>
+          <p class="offline-text">
+            Follow Mikey on social media to get notified when he goes live!
+          </p>
+          <div class="offline-links">
+            <a
+              href="https://www.tiktok.com/@mikey_harms_"
+              target="_blank"
+              class="offline-link tiktok-link"
+            >
+              <ion-icon name="logo-tiktok"></ion-icon> TikTok
+            </a>
+            <a
+              href="https://www.instagram.com/mikeyharmsmusic"
+              target="_blank"
+              class="offline-link instagram-link"
+            >
+              <ion-icon name="logo-instagram"></ion-icon> Instagram
+            </a>
+            <a
+              href="https://www.youtube.com/@mikey_harms_"
+              target="_blank"
+              class="offline-link youtube-link"
+            >
+              <ion-icon name="logo-youtube"></ion-icon> YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- LIVE STATE -->
+        <div class="live-active" id="liveActive" style="display: none">
+          <div class="live-badge">
+            <span class="live-dot-red"></span> LIVE NOW
+          </div>
+          <div class="live-embed-box" id="liveEmbedBox" style="display: none">
+            <iframe
+              id="youtubeEmbed"
+              src=""
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="live-platforms" id="livePlatforms">
+            <p class="live-platforms-text">Watch on:</p>
+            <div class="live-platform-links">
+              <a
+                href="https://www.tiktok.com/@mikey_harms_"
+                target="_blank"
+                class="live-platform-btn tiktok-btn"
+                id="tiktokLiveLink"
+                style="display: none"
+              >
+                <ion-icon name="logo-tiktok"></ion-icon>
+                Watch on TikTok
+              </a>
+              <a
+                href="https://www.instagram.com/mikeyharmsmusic"
+                target="_blank"
+                class="live-platform-btn instagram-btn"
+                id="instagramLiveLink"
+                style="display: none"
+              >
+                <ion-icon name="logo-instagram"></ion-icon>
+                Watch on Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- FOOTER SECTION -->
     <footer class="footer">
