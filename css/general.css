@@ -16,22 +16,16 @@
 }
 
 html {
-  /* font-size: 10px; */
-  /* 10px / 16px = 0.625 = 62.5% */
-  /* Percentage of user's browser font-size setting */
   font-size: 62.5%;
   overflow-x: hidden;
-  /* Does NOT work on Safari */
-  /* scroll-behavior: smooth; */
 }
 
 body {
   font-family: "Alata", sans-serif;
   line-height: 1;
   font-weight: 400;
-  color: #333; /* Changed from #ffffff to dark gray for default text */
+  color: #333;
   background-color: #fff;
-  /* Only works if there is nothing absolutely positioned in relation to body */
   overflow-x: hidden;
 }
 
@@ -40,7 +34,6 @@ body {
 /**************************/
 
 .container {
-  /* 1140px */
   max-width: 120rem;
   padding: 0 3.2rem;
   margin: 0 auto;
@@ -103,7 +96,7 @@ body {
   font-size: 4.4rem;
   line-height: 1.2;
   margin-bottom: 9.6rem;
-  margin-left: 0; /* Remove the left margin */
+  margin-left: 0;
 }
 
 .heading-tertiary {
@@ -217,7 +210,6 @@ body {
 }
 
 /* HELPER/SETTINGS CLASSES */
-
 .margin-right-sm {
   margin-right: 1.6rem !important;
 }
@@ -232,4 +224,179 @@ body {
 
 strong {
   font-weight: 500;
+}
+
+/**************************/
+/* FOOTER */
+/**************************/
+
+.footer {
+  padding: 12.8rem 0;
+  border-top: 1px solid #eee;
+}
+
+.grid--footer {
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr;
+}
+
+.logo-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  display: block;
+  margin-bottom: 3.2rem;
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 2.4rem;
+}
+
+.social-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.copyright {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #767676;
+  margin-top: auto;
+}
+
+.footer-heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+}
+
+.contacts {
+  font-style: normal;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.address {
+  margin-bottom: 2.4rem;
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.footer-link:link,
+.footer-link:visited {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #090802;
+  transition: all 0.3s;
+}
+
+.footer-link:hover,
+.footer-link:active {
+  color: #f02e2e;
+}
+
+/**************************/
+/* BIO CAROUSELS */
+/**************************/
+
+.bio-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 4.8rem;
+  align-items: center;
+  margin-bottom: 4.8rem;
+}
+
+.bio-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.bio-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.bio-carousel-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+
+.bio-carousel-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 1;
+}
+
+.bio-carousel-img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.bio-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 3.6rem;
+  height: 3.6rem;
+  font-size: 2.4rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.bio-carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.bio-carousel-arrow-left {
+  left: 0.8rem;
+}
+
+.bio-carousel-arrow-right {
+  right: 0.8rem;
+}
+
+.bio-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.bio-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #ccc;
+  transition: background 0.3s;
+}
+
+.bio-dot.active {
+  background: #f02e2e;
 }

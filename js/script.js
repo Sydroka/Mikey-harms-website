@@ -2,15 +2,14 @@
 // PAGE LOADER
 ///////////////////////////////////////////////////////////
 
-// Hide loader when page is fully loaded
 window.addEventListener("load", function () {
   const loader = document.getElementById("loader");
-  loader.classList.add("fade-out");
-
-  // Remove loader from DOM after fade out
-  setTimeout(function () {
-    loader.style.display = "none";
-  }, 500);
+  if (loader) {
+    loader.classList.add("fade-out");
+    setTimeout(function () {
+      loader.style.display = "none";
+    }, 500);
+  }
 });
 
 console.log("Mikey Harms Website Loaded!");
@@ -19,10 +18,11 @@ console.log("Mikey Harms Website Loaded!");
 // CURRENT YEAR
 ///////////////////////////////////////////////////////////
 
-// Set current year in footer
 const yearEl = document.querySelector(".year");
-const currentYear = new Date().getFullYear();
-yearEl.textContent = currentYear;
+if (yearEl) {
+  const currentYear = new Date().getFullYear();
+  yearEl.textContent = currentYear;
+}
 
 ///////////////////////////////////////////////////////////
 // MOBILE NAVIGATION
@@ -31,9 +31,11 @@ yearEl.textContent = currentYear;
 const btnNavEl = document.querySelector(".btn-mobile-nav");
 const headerEl = document.querySelector(".header");
 
-btnNavEl.addEventListener("click", function () {
-  headerEl.classList.toggle("nav-open");
-});
+if (btnNavEl) {
+  btnNavEl.addEventListener("click", function () {
+    headerEl.classList.toggle("nav-open");
+  });
+}
 
 ///////////////////////////////////////////////////////////
 // SMOOTH SCROLLING
@@ -45,32 +47,27 @@ allLinks.forEach(function (link) {
   link.addEventListener("click", function (e) {
     const href = link.getAttribute("href");
 
-    // Skip merch buttons - they're disabled for now
     if (link.classList.contains("merch-btn")) {
       e.preventDefault();
       return;
     }
 
-    // Let external links (http/https) work normally
     if (href && (href.startsWith("http://") || href.startsWith("https://")))
       return;
 
     e.preventDefault();
 
-    // Scroll back to top
     if (href === "#")
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
 
-    // Scroll to other links
     if (href !== "#" && href.startsWith("#")) {
       const sectionEl = document.querySelector(href);
-      sectionEl.scrollIntoView({ behavior: "smooth" });
+      if (sectionEl) sectionEl.scrollIntoView({ behavior: "smooth" });
     }
 
-    // Close mobile navigation
     if (link.classList.contains("main-nav-link"))
       headerEl.classList.toggle("nav-open");
   });
@@ -89,11 +86,8 @@ let currentSlide = 0;
 let autoSlideInterval;
 
 function showSlide(index) {
-  // Remove active class from all slides and dots
   slides.forEach((slide) => slide.classList.remove("active"));
   dots.forEach((dot) => dot.classList.remove("active"));
-
-  // Add active class to current slide and dot
   slides[index].classList.add("active");
   dots[index].classList.add("active");
 }
@@ -108,7 +102,6 @@ function prevSlide() {
   showSlide(currentSlide);
 }
 
-// Auto-scroll every 4 seconds
 function startAutoSlide() {
   autoSlideInterval = setInterval(nextSlide, 4000);
 }
@@ -118,18 +111,20 @@ function resetAutoSlide() {
   startAutoSlide();
 }
 
-// Arrow button events
-arrowRight.addEventListener("click", () => {
-  nextSlide();
-  resetAutoSlide();
-});
+if (arrowRight) {
+  arrowRight.addEventListener("click", () => {
+    nextSlide();
+    resetAutoSlide();
+  });
+}
 
-arrowLeft.addEventListener("click", () => {
-  prevSlide();
-  resetAutoSlide();
-});
+if (arrowLeft) {
+  arrowLeft.addEventListener("click", () => {
+    prevSlide();
+    resetAutoSlide();
+  });
+}
 
-// Dot navigation
 dots.forEach((dot, index) => {
   dot.addEventListener("click", () => {
     currentSlide = index;
@@ -138,8 +133,7 @@ dots.forEach((dot, index) => {
   });
 });
 
-// Start auto-sliding when page loads
-startAutoSlide();
+if (slides.length > 0) startAutoSlide();
 
 ///////////////////////////////////////////////////////////
 // STICKY NAVIGATION
@@ -147,25 +141,25 @@ startAutoSlide();
 
 const sectionHeroEl = document.querySelector(".section-hero");
 
-const obs = new IntersectionObserver(
-  function (entries) {
-    const ent = entries[0];
-
-    if (ent.isIntersecting === false) {
-      document.body.classList.add("sticky");
-    }
-
-    if (ent.isIntersecting === true) {
-      document.body.classList.remove("sticky");
-    }
-  },
-  {
-    root: null,
-    threshold: 0,
-    rootMargin: "-80px",
-  },
-);
-obs.observe(sectionHeroEl);
+if (sectionHeroEl) {
+  const obs = new IntersectionObserver(
+    function (entries) {
+      const ent = entries[0];
+      if (ent.isIntersecting === false) {
+        document.body.classList.add("sticky");
+      }
+      if (ent.isIntersecting === true) {
+        document.body.classList.remove("sticky");
+      }
+    },
+    {
+      root: null,
+      threshold: 0,
+      rootMargin: "-80px",
+    },
+  );
+  obs.observe(sectionHeroEl);
+}
 
 ///////////////////////////////////////////////////////////
 // CUSTOM AUDIO PLAYER
@@ -186,105 +180,101 @@ const trackItems = document.querySelectorAll(".track-item");
 
 let currentTrack = null;
 
-// Format time helper (converts seconds to MM:SS)
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs.toString().padStart(2, "0")}`;
 }
 
-// Track item click - Load and play selected song
-trackItems.forEach((item) => {
-  item.addEventListener("click", function () {
-    const audioSrc = this.getAttribute("data-audio");
-    const imgSrc = this.querySelector("img").src;
-    const trackName = this.querySelector("img").alt;
+if (trackItems.length > 0) {
+  trackItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const audioSrc = this.getAttribute("data-audio");
+      const imgSrc = this.querySelector("img").src;
+      const trackName = this.querySelector("img").alt;
 
-    // Remove playing class from all items
-    trackItems.forEach((t) => t.classList.remove("playing"));
+      trackItems.forEach((t) => t.classList.remove("playing"));
+      this.classList.add("playing");
 
-    // Add playing class to clicked item
-    this.classList.add("playing");
+      musicPlayer.src = audioSrc;
+      playerAlbumArt.src = imgSrc;
+      playerTrackName.textContent = trackName;
 
-    // Load and play track
-    musicPlayer.src = audioSrc;
-    playerAlbumArt.src = imgSrc;
-    playerTrackName.textContent = trackName;
+      audioPlayer.style.display = "block";
+      musicPlayer.play();
+      currentTrack = this;
 
-    audioPlayer.style.display = "block";
-    musicPlayer.play();
-    currentTrack = this;
-
-    // Update play button icon
-    playPauseBtn.querySelector("ion-icon").setAttribute("name", "pause");
+      playPauseBtn.querySelector("ion-icon").setAttribute("name", "pause");
+    });
   });
-});
+}
 
-// Play/Pause button functionality
-playPauseBtn.addEventListener("click", () => {
-  if (musicPlayer.paused) {
-    musicPlayer.play();
-    playPauseBtn.querySelector("ion-icon").setAttribute("name", "pause");
-  } else {
-    musicPlayer.pause();
+if (playPauseBtn) {
+  playPauseBtn.addEventListener("click", () => {
+    if (musicPlayer.paused) {
+      musicPlayer.play();
+      playPauseBtn.querySelector("ion-icon").setAttribute("name", "pause");
+    } else {
+      musicPlayer.pause();
+      playPauseBtn.querySelector("ion-icon").setAttribute("name", "play");
+    }
+  });
+}
+
+if (musicPlayer) {
+  musicPlayer.addEventListener("timeupdate", () => {
+    const progress = (musicPlayer.currentTime / musicPlayer.duration) * 100;
+    progressFill.style.width = `${progress}%`;
+    currentTimeEl.textContent = formatTime(musicPlayer.currentTime);
+  });
+
+  musicPlayer.addEventListener("loadedmetadata", () => {
+    durationEl.textContent = formatTime(musicPlayer.duration);
+  });
+
+  musicPlayer.addEventListener("ended", () => {
     playPauseBtn.querySelector("ion-icon").setAttribute("name", "play");
-  }
-});
+    if (currentTrack) {
+      currentTrack.classList.remove("playing");
+    }
+  });
+}
 
-// Update progress bar as song plays
-musicPlayer.addEventListener("timeupdate", () => {
-  const progress = (musicPlayer.currentTime / musicPlayer.duration) * 100;
-  progressFill.style.width = `${progress}%`;
-  currentTimeEl.textContent = formatTime(musicPlayer.currentTime);
-});
+if (progressBar) {
+  progressBar.addEventListener("click", (e) => {
+    const rect = progressBar.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    musicPlayer.currentTime = percent * musicPlayer.duration;
+  });
+}
 
-// Update duration display when song loads
-musicPlayer.addEventListener("loadedmetadata", () => {
-  durationEl.textContent = formatTime(musicPlayer.duration);
-});
+if (volumeSlider) {
+  volumeSlider.addEventListener("input", (e) => {
+    musicPlayer.volume = e.target.value / 100;
+    const volumeIcon = volumeBtn.querySelector("ion-icon");
+    if (e.target.value == 0) {
+      volumeIcon.setAttribute("name", "volume-mute");
+    } else if (e.target.value < 50) {
+      volumeIcon.setAttribute("name", "volume-low");
+    } else {
+      volumeIcon.setAttribute("name", "volume-high");
+    }
+  });
+}
 
-// Click on progress bar to seek to different time
-progressBar.addEventListener("click", (e) => {
-  const rect = progressBar.getBoundingClientRect();
-  const percent = (e.clientX - rect.left) / rect.width;
-  musicPlayer.currentTime = percent * musicPlayer.duration;
-});
-
-// Volume slider control
-volumeSlider.addEventListener("input", (e) => {
-  musicPlayer.volume = e.target.value / 100;
-
-  // Update volume icon based on volume level
-  const volumeIcon = volumeBtn.querySelector("ion-icon");
-  if (e.target.value == 0) {
-    volumeIcon.setAttribute("name", "volume-mute");
-  } else if (e.target.value < 50) {
-    volumeIcon.setAttribute("name", "volume-low");
-  } else {
-    volumeIcon.setAttribute("name", "volume-high");
-  }
-});
-
-// Volume button mute/unmute toggle
-volumeBtn.addEventListener("click", () => {
-  if (musicPlayer.volume > 0) {
-    musicPlayer.volume = 0;
-    volumeSlider.value = 0;
-    volumeBtn.querySelector("ion-icon").setAttribute("name", "volume-mute");
-  } else {
-    musicPlayer.volume = 1;
-    volumeSlider.value = 100;
-    volumeBtn.querySelector("ion-icon").setAttribute("name", "volume-high");
-  }
-});
-
-// When track ends, reset play button and remove playing class
-musicPlayer.addEventListener("ended", () => {
-  playPauseBtn.querySelector("ion-icon").setAttribute("name", "play");
-  if (currentTrack) {
-    currentTrack.classList.remove("playing");
-  }
-});
+if (volumeBtn) {
+  volumeBtn.addEventListener("click", () => {
+    if (musicPlayer.volume > 0) {
+      musicPlayer.volume = 0;
+      volumeSlider.value = 0;
+      volumeBtn.querySelector("ion-icon").setAttribute("name", "volume-mute");
+    } else {
+      musicPlayer.volume = 1;
+      volumeSlider.value = 100;
+      volumeBtn.querySelector("ion-icon").setAttribute("name", "volume-high");
+    }
+  });
+}
 
 ///////////////////////////////////////////////////////////
 // BIO TOGGLE (MIKEY / BAND)
@@ -299,26 +289,79 @@ let showingBand = false;
 
 function toggleBio() {
   if (showingBand) {
-    // Switch back to Mikey bio
     mikeyBio.style.display = "block";
     bandBio.style.display = "none";
     showingBand = false;
   } else {
-    // Switch to Band bio
     mikeyBio.style.display = "none";
     bandBio.style.display = "block";
     showingBand = true;
   }
 }
 
-bioToggleBtn.addEventListener("click", toggleBio);
-bioToggleBtn2.addEventListener("click", toggleBio);
+if (bioToggleBtn) bioToggleBtn.addEventListener("click", toggleBio);
+if (bioToggleBtn2) bioToggleBtn2.addEventListener("click", toggleBio);
+
+///////////////////////////////////////////////////////////
+// BIO CAROUSELS
+///////////////////////////////////////////////////////////
+
+function moveCarousel(carouselId, direction) {
+  const carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+  const imgs = carousel.querySelectorAll(".bio-carousel-img");
+  const allDots = carousel.querySelectorAll(".bio-dot");
+
+  let current = [...imgs].findIndex((img) => img.classList.contains("active"));
+  if (current === -1) return;
+
+  let next = (current + direction + imgs.length) % imgs.length;
+
+  // Reset all z-indexes first
+  imgs.forEach((img, i) => {
+    img.style.zIndex = "1";
+    img.style.opacity = "0";
+    img.classList.remove("active");
+  });
+  allDots.forEach((dot) => dot.classList.remove("active"));
+
+  // Keep current visible underneath while next fades in
+  imgs[current].style.zIndex = "2";
+  imgs[current].style.opacity = "1";
+
+  // Fade next in on top
+  imgs[next].style.zIndex = "3";
+  imgs[next].style.opacity = "0";
+  imgs[next].classList.add("active");
+
+  // Small delay to ensure browser registers the opacity 0 before transitioning
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      imgs[next].style.opacity = "1";
+      allDots[next].classList.add("active");
+    });
+  });
+
+  // Clean up current after transition completes
+  setTimeout(() => {
+    imgs[current].style.opacity = "0";
+    imgs[current].style.zIndex = "1";
+  }, 1100);
+}
+
+function autoAdvance(carouselId) {
+  const carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+  setInterval(() => moveCarousel(carouselId, 1), 5000);
+}
+
+autoAdvance("carouselLeft");
+autoAdvance("carouselRight");
 
 ///////////////////////////////////////////////////////////
 // FLEXBOX GAP FIX FOR SAFARI
 ///////////////////////////////////////////////////////////
 
-// Fixing flexbox gap property missing in some Safari versions
 function checkFlexGap() {
   var flex = document.createElement("div");
   flex.style.display = "flex";

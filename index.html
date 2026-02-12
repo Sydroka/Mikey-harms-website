@@ -427,13 +427,13 @@
             <div class="merch-item">
               <div class="merch-img-box">
                 <img
-                  src="img/merch/mikeytp.png"
+                  src="img/merch/MHsticker.png"
                   alt="Mikey Harms Merchandise"
                 />
               </div>
               <div class="merch-info">
-                <h3 class="merch-name">Official Tour Toilet Paper</h3>
-                <p class="merch-price">$15.00</p>
+                <h3 class="merch-name">Official Mikey Harms Sticker</h3>
+                <p class="merch-price">$1.00 (Or free with T-Shirt Purchase)</p>
                 <a href="#" class="btn merch-btn">Order Now</a>
               </div>
             </div>
@@ -481,18 +481,96 @@
             <h2 class="heading-secondary">
               <span class="mikey-harms-text">MIKEY HARMS</span>
             </h2>
-            <p class="bio-text">
-              <span class="mikey-harms-text">MIKEY HARMS</span> is a
-              Chicago-based singer-songwriter known for his heartfelt lyrics and
-              captivating performances. With a passion for music that spans
-              various genres, Mikey brings authenticity and emotion to every
-              song he creates. His journey in music has been marked by
-              dedication to his craft and a deep connection with his audience.
-            </p>
 
-            <!-- Toggle Button (moved here) -->
-            <div class="bio-toggle">
-              <button id="bioToggleBtn" class="bio-toggle-btn">BAND BIO</button>
+            <!-- Bio layout with carousels -->
+            <div class="bio-layout">
+              <!-- LEFT CAROUSEL (bio1, bio2) -->
+              <div class="bio-carousel" id="carouselLeft">
+                <button
+                  class="bio-carousel-arrow bio-carousel-arrow-left"
+                  onclick="moveCarousel('carouselLeft', -1)"
+                >
+                  &#8249;
+                </button>
+                <div class="bio-carousel-track">
+                  <img
+                    src="img/bio/bio1.png"
+                    alt="Mikey Harms"
+                    class="bio-carousel-img active"
+                  />
+                  <img
+                    src="img/bio/bio2.jpg"
+                    alt="Mikey Harms"
+                    class="bio-carousel-img"
+                  />
+                </div>
+                <button
+                  class="bio-carousel-arrow bio-carousel-arrow-right"
+                  onclick="moveCarousel('carouselLeft', 1)"
+                >
+                  &#8250;
+                </button>
+                <div class="bio-carousel-dots" id="dotsLeft">
+                  <span class="bio-dot active"></span>
+                  <span class="bio-dot"></span>
+                </div>
+              </div>
+
+              <!-- BIO TEXT CENTER -->
+              <div class="bio-text-col">
+                <p class="bio-text">
+                  <span class="mikey-harms-text">MIKEY HARMS</span> is a
+                  Chicago-based singer-songwriter known for his heartfelt lyrics
+                  and captivating performances. With a passion for music that
+                  spans various genres, Mikey brings authenticity and emotion to
+                  every song he creates. His journey in music has been marked by
+                  dedication to his craft and a deep connection with his
+                  audience.
+                </p>
+                <div class="bio-toggle">
+                  <button id="bioToggleBtn" class="bio-toggle-btn">
+                    BAND BIO
+                  </button>
+                </div>
+              </div>
+
+              <!-- RIGHT CAROUSEL (bio3, bio4, bio5) -->
+              <div class="bio-carousel" id="carouselRight">
+                <button
+                  class="bio-carousel-arrow bio-carousel-arrow-left"
+                  onclick="moveCarousel('carouselRight', -1)"
+                >
+                  &#8249;
+                </button>
+                <div class="bio-carousel-track">
+                  <img
+                    src="img/bio/bio3.jpeg"
+                    alt="Mikey Harms"
+                    class="bio-carousel-img active"
+                  />
+                  <img
+                    src="img/bio/bio4.jpg"
+                    alt="Mikey Harms"
+                    class="bio-carousel-img"
+                  />
+                  <img
+                    src="img/bio/bio5.jpg"
+                    alt="Mikey Harms"
+                    class="bio-carousel-img"
+                  />
+                </div>
+                <button
+                  class="bio-carousel-arrow bio-carousel-arrow-right"
+                  onclick="moveCarousel('carouselRight', 1)"
+                >
+                  &#8250;
+                </button>
+                <div class="bio-carousel-dots" id="dotsRight">
+                  <span class="bio-dot active"></span>
+                  <span class="bio-dot"></span>
+                  <span class="bio-dot"></span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -509,8 +587,6 @@
                 <img src="img/bio/band.jpg" alt="The Band" class="band-img" />
               </div>
             </div>
-
-            <!-- Toggle Button for Band view -->
             <div class="bio-toggle">
               <button id="bioToggleBtn2" class="bio-toggle-btn">
                 ABOUT MIKEY
