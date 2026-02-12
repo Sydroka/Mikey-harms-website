@@ -281,6 +281,13 @@
     height: 32rem;
     grid-row: 1;
   }
+  .bio-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bio-carousel {
+    display: none;
+  }
 }
 
 /**************************/
