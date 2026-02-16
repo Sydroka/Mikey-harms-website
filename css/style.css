@@ -199,6 +199,10 @@
   object-position: center;
 }
 
+.carousel-slide:nth-child(3) img {
+  object-position: center top;
+}
+
 /* Navigation Arrows */
 .carousel-arrow {
   position: absolute;
@@ -692,9 +696,10 @@
   height: 40rem;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: #fff;
+  margin-top: -1.2rem;
 }
 
 .merch-img-box img {
@@ -747,7 +752,6 @@
 /**************************/
 /* BIO SECTION */
 /**************************/
-
 .section-bio {
   padding: 9.6rem 0;
 }

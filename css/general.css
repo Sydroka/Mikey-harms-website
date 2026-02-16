@@ -306,7 +306,6 @@ strong {
 /**************************/
 /* BIO CAROUSELS */
 /**************************/
-
 .bio-layout {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
@@ -322,7 +321,6 @@ strong {
 }
 
 .bio-carousel {
-  position: relative;
   width: 100%;
   border-radius: 12px;
 }
@@ -351,10 +349,15 @@ strong {
   z-index: 2;
 }
 
+.bio-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
 .bio-carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
@@ -363,7 +366,6 @@ strong {
   height: 3.6rem;
   font-size: 2.4rem;
   cursor: pointer;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -374,19 +376,10 @@ strong {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.bio-carousel-arrow-left {
-  left: 0.8rem;
-}
-
-.bio-carousel-arrow-right {
-  right: 0.8rem;
-}
-
 .bio-carousel-dots {
   display: flex;
   justify-content: center;
   gap: 0.8rem;
-  margin-top: 1.2rem;
 }
 
 .bio-dot {

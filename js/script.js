@@ -340,24 +340,20 @@ function moveCarousel(carouselId, direction) {
 
   let next = (current + direction + imgs.length) % imgs.length;
 
-  // Reset all z-indexes first
-  imgs.forEach((img, i) => {
+  imgs.forEach((img) => {
     img.style.zIndex = "1";
     img.style.opacity = "0";
     img.classList.remove("active");
   });
   allDots.forEach((dot) => dot.classList.remove("active"));
 
-  // Keep current visible underneath while next fades in
   imgs[current].style.zIndex = "2";
   imgs[current].style.opacity = "1";
 
-  // Fade next in on top
   imgs[next].style.zIndex = "3";
   imgs[next].style.opacity = "0";
   imgs[next].classList.add("active");
 
-  // Small delay to ensure browser registers the opacity 0 before transitioning
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       imgs[next].style.opacity = "1";
@@ -365,12 +361,13 @@ function moveCarousel(carouselId, direction) {
     });
   });
 
-  // Clean up current after transition completes
   setTimeout(() => {
     imgs[current].style.opacity = "0";
     imgs[current].style.zIndex = "1";
   }, 1100);
 }
+
+window.moveCarousel = moveCarousel;
 
 function autoAdvance(carouselId) {
   const carousel = document.getElementById(carouselId);
