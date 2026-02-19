@@ -13,7 +13,6 @@
       href="https://fonts.googleapis.com/css2?family=Alata&display=swap"
       rel="stylesheet"
     />
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="img/favicon.png" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
@@ -62,21 +61,21 @@
 
     <!-- HERO SECTION - IMAGE CAROUSEL -->
     <section class="section-hero">
-      <div class="carousel-container">
-        <div class="carousel-wrapper">
-          <div class="carousel-slide active">
-            <img src="img/scroll/Mheadshot1.jpg" alt="Mikey Harms 1" />
-          </div>
-          <div class="carousel-slide">
-            <img src="img/scroll/Mhs3.jpg" alt="Mikey Harms 2" />
-          </div>
-          <div class="carousel-slide">
-            <img src="img/scroll/Mhs4.jpg" alt="Mikey Harms 3" />
-          </div>
-          <div class="carousel-slide">
-            <img src="img/scroll/promis.png" alt="Mikey Harms 4" />
-          </div>
-        </div>
+     <div class="carousel-container">
+  <div class="carousel-wrapper">
+    <div class="carousel-slide active">
+      <img src="img/scroll/mhcar2.JPG" alt="Mikey Harms 2" />
+    </div>
+    <div class="carousel-slide">
+      <img src="img/scroll/Mheadshot1.jpg" alt="Mikey Harms 1" />
+    </div>
+    <div class="carousel-slide">
+      <img src="img/scroll/mhcar3.JPG" alt="Mikey Harms 3" />
+    </div>
+    <div class="carousel-slide">
+      <img src="img/scroll/promis.png" alt="Mikey Harms 4" />
+    </div>
+  </div>
         <button
           class="carousel-arrow carousel-arrow-left"
           aria-label="Previous image"
@@ -101,7 +100,13 @@
     <!-- HEADER -->
     <header class="header">
       <a href="#">
-        <img class="logo" alt="Mikey Harms logo" src="img/logo.jpg" />
+        <div class="logo-crop">
+          <img
+            class="logo"
+            alt="Mikey Harms logo"
+            src="img/MANLOGOFULL (1).svg"
+          />
+        </div>
       </a>
       <nav class="main-nav">
         <ul class="main-nav-list">
@@ -194,7 +199,9 @@
             </audio>
           </div>
 
-          <!-- VIDEO -->
+
+
+          <!-- VIDEO (add the dash dash greaterthan back here)
           <h2 class="heading-secondary" style="margin-top: 6.4rem">
             <span class="mikey-harms-text">MIKEY HARMS</span> Band - Sunday,
             February 1st 2026
@@ -207,6 +214,8 @@
           </div>
         </div>
       </section>
+
+      -->
 
       <!-- MUSIC & SOCIALS SECTION -->
       <section class="section-music-socials" id="socials">
@@ -268,133 +277,161 @@
       </section>
 
       <!-- LIVE SHOWS SECTION -->
-      <section class="section-shows" id="shows">
-        <div class="container center-text">
-          <span class="subheading">Live</span>
-          <h2 class="heading-secondary">
-            See <span class="mikey-harms-text">MIKEY HARMS</span> live!
-          </h2>
+<section class="section-shows" id="shows">
+  <div class="container center-text">
+    <span class="subheading">Live</span>
+    <h2 class="heading-secondary">
+      See <span class="mikey-harms-text">MIKEY HARMS</span> live!
+    </h2>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="container shows-search-container">
+    <div class="shows-search-wrapper">
+      <ion-icon class="shows-search-icon" name="search-outline"></ion-icon>
+      <input
+        type="text"
+        id="shows-search"
+        class="shows-search-input"
+        placeholder="Search by venue, date, or month..."
+      />
+    </div>
+  </div>
+
+  <!-- Shows Grid -->
+  <div class="container">
+    <div class="grid grid--3-cols margin-bottom-md" id="shows-grid">
+      <!-- Shows load here from Firebase -->
+    </div>
+
+    <!-- No results message -->
+    <p class="shows-no-results" id="shows-no-results" style="display:none;">No shows found. Try a different search!</p>
+
+    <!-- Pagination -->
+    <div class="shows-pagination" id="shows-pagination" style="display:none;">
+      <button class="shows-arrow" id="shows-prev" aria-label="Previous shows">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <span class="shows-page-indicator" id="shows-page-indicator">1 / 1</span>
+      <button class="shows-arrow" id="shows-next" aria-label="Next shows">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+    authDomain: "mikey-harms-website.firebaseapp.com",
+    databaseURL: "https://mikey-harms-website-default-rtdb.firebaseio.com",
+    projectId: "mikey-harms-website",
+    storageBucket: "mikey-harms-website.firebasestorage.app",
+    messagingSenderId: "359019811623",
+    appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const showsPerPage = 3;
+  let currentPage = 1;
+  let filteredShows = [];
+  let allShowsData = [];
+
+  const grid = document.getElementById("shows-grid");
+  const searchInput = document.getElementById("shows-search");
+  const prevBtn = document.getElementById("shows-prev");
+  const nextBtn = document.getElementById("shows-next");
+  const pageIndicator = document.getElementById("shows-page-indicator");
+  const noResults = document.getElementById("shows-no-results");
+  const pagination = document.getElementById("shows-pagination");
+
+  function renderShows() {
+    const totalPages = Math.max(1, Math.ceil(filteredShows.length / showsPerPage));
+    const start = (currentPage - 1) * showsPerPage;
+    const end = start + showsPerPage;
+
+    grid.innerHTML = "";
+    const pageShows = filteredShows.slice(start, end);
+
+    if (filteredShows.length === 0) {
+      noResults.style.display = "block";
+      pagination.style.display = "none";
+      return;
+    }
+
+    noResults.style.display = "none";
+    pagination.style.display = filteredShows.length > showsPerPage ? "flex" : "none";
+
+    pageShows.forEach(show => {
+      const card = document.createElement("div");
+      card.className = "show-card";
+      card.innerHTML = `
+        ${show.imgUrl ? `<img src="${show.imgUrl}" class="show-img" alt="${show.venue}" />` : ""}
+        <div class="show-content">
+          <div class="show-tags">
+            <span class="tag tag--upcoming">${show.date}</span>
+          </div>
+          <p class="show-title">${show.venue}</p>
+          <ul class="show-details">
+            <li class="show-detail">
+              <ion-icon class="show-icon" name="star-outline"></ion-icon>
+              <span><strong>${show.age}</strong></span>
+            </li>
+            <li class="show-detail">
+              <ion-icon class="show-icon" name="location-outline"></ion-icon>
+              <span><strong>${show.address}</strong></span>
+            </li>
+            <li class="show-detail">
+              <ion-icon class="show-icon" name="ticket-outline"></ion-icon>
+              <span><strong>${show.ticketUrl
+                ? `<a href="${show.ticketUrl}" target="_blank" rel="noopener noreferrer">Link To Show</a>`
+                : "Link coming soon"
+              }</strong></span>
+            </li>
+          </ul>
         </div>
+      `;
+      grid.appendChild(card);
+    });
 
-        <div class="container grid grid--3-cols margin-bottom-md">
-          <!-- Show 1 -->
-          <div class="show-card">
-            <img
-              src="img/shows/subterranean.jpg"
-              class="show-img"
-              alt="Subterranean venue"
-            />
-            <div class="show-content">
-              <div class="show-tags">
-                <span class="tag tag--upcoming">February 20th</span>
-              </div>
-              <p class="show-title">Subterranean</p>
-              <ul class="show-details">
-                <li class="show-detail">
-                  <ion-icon class="show-icon" name="star-outline"></ion-icon>
-                  <span><strong>17+</strong></span>
-                </li>
-                <li class="show-detail">
-                  <ion-icon
-                    class="show-icon"
-                    name="location-outline"
-                  ></ion-icon>
-                  <span><strong>2011 W. North Avenue</strong></span>
-                </li>
-                <li class="show-detail">
-                  <ion-icon class="show-icon" name="ticket-outline"></ion-icon>
-                  <span>
-                    <strong>
-                      <a
-                        href="https://wl.eventim.us/event/painted-canyon/674384?afflky=BKBGManagementCo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Link To Show
-                      </a>
-                    </strong>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+    pageIndicator.textContent = `${currentPage} / ${totalPages}`;
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+  }
 
-          <!-- Show 2 https://wl.eventim.us/event/kelcey-ayer/670572?afflky=BKBGManagementCo -->
-          <div class="show-card">
-            <img
-              src="img/shows/beatkitchen.jpg"
-              class="show-img"
-              alt="Beat Kitchen venue"
-            />
-            <div class="show-content">
-              <div class="show-tags">
-                <span class="tag tag--upcoming">March 15th</span>
-              </div>
-              <p class="show-title">Beat Kitchen</p>
-              <ul class="show-details">
-                <li class="show-detail">
-                  <ion-icon class="show-icon" name="star-outline"></ion-icon>
-                  <span><strong>17+</strong></span>
-                </li>
-                <li class="show-detail">
-                  <ion-icon
-                    class="show-icon"
-                    name="location-outline"
-                  ></ion-icon>
-                  <span><strong>2100 W. Belmont Ave</strong></span>
-                </li>
+  function filterShows() {
+    const query = searchInput.value.toLowerCase().trim();
+    filteredShows = allShowsData.filter(show =>
+      show.venue.toLowerCase().includes(query) ||
+      show.date.toLowerCase().includes(query) ||
+      show.month.toLowerCase().includes(query)
+    );
+    currentPage = 1;
+    renderShows();
+  }
 
-                <li class="show-detail">
-                  <ion-icon class="show-icon" name="ticket-outline"></ion-icon>
-                  <span>
-                    <strong>
-                      <a
-                        href="https://wl.eventim.us/event/kelcey-ayer/670572?afflky=BKBGManagementCo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Link To Show
-                      </a>
-                    </strong>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+  searchInput.addEventListener("input", filterShows);
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) { currentPage--; renderShows(); }
+  });
+  nextBtn.addEventListener("click", () => {
+    const totalPages = Math.ceil(filteredShows.length / showsPerPage);
+    if (currentPage < totalPages) { currentPage++; renderShows(); }
+  });
 
-          <!-- Show 3 -->
-          <div class="show-card">
-            <img
-              src="img/shows/reggies.jpg"
-              class="show-img"
-              alt="Reggies Music Joint venue"
-            />
-            <div class="show-content">
-              <div class="show-tags">
-                <span class="tag tag--upcoming">April 11th</span>
-              </div>
-              <p class="show-title">Reggies Music Joint</p>
-              <ul class="show-details">
-                <li class="show-detail">
-                  <ion-icon class="show-icon" name="star-outline"></ion-icon>
-                  <span><strong>21+</strong></span>
-                </li>
-                <li class="show-detail">
-                  <ion-icon
-                    class="show-icon"
-                    name="location-outline"
-                  ></ion-icon>
-                  <span><strong>2105 South State Street</strong></span>
-                </li>
-                <li class="show-detail">
-                  <ion-icon class="show-icon" name="ticket-outline"></ion-icon>
-                  <span><strong>Link To Show HERE</strong></span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+  onValue(ref(db, "shows"), (snapshot) => {
+    const data = snapshot.val() || {};
+    allShowsData = Object.values(data).sort((a, b) => (a.order || 0) - (b.order || 0));
+    filteredShows = [...allShowsData];
+    currentPage = 1;
+    renderShows();
+  });
+</script>
 
       <!-- MERCH SECTION -->
       <section class="section-merch" id="merch">
@@ -413,7 +450,7 @@
               </div>
               <div class="merch-info">
                 <h3 class="merch-name">Official Sticker</h3>
-                <p class="merch-price">$1.00</p>
+                <p class="merch-price">$2.00</p>
                 <a href="#" class="btn merch-btn">Purchase at Show!</a>
               </div>
             </div>
@@ -498,13 +535,7 @@
               <!-- BIO TEXT CENTER -->
               <div class="bio-text-col">
                 <p class="bio-text">
-                  <span class="mikey-harms-text">MIKEY HARMS</span> is a
-                  Chicago-based singer-songwriter known for his heartfelt lyrics
-                  and captivating performances. With a passion for music that
-                  spans various genres, Mikey brings authenticity and emotion to
-                  every song he creates. His journey in music has been marked by
-                  dedication to his craft and a deep connection with his
-                  audience.
+                  <span class="mikey-harms-text">MIKEY HARMS</span> is a Chicagoland singer-songwriter hailing from Tinley Park.  Pulling inspiration from across genres and art forms, Mikey is a striking performer with a diverse range - most often aligning with alternative rock and folk.  From sentimental tones of simple voice and guitar to mammoth orchestractions, Mikey's sound is the product of eclectic tastes, frequent collaboration, and constant inspiration from his incredible friends and contemporaries.  Tenacious and original, Mikey is regarded as a promising and innovative young musician, rising rapidly in the Chicago scene.
                 </p>
                 <div class="bio-toggle">
                   <button id="bioToggleBtn" class="bio-toggle-btn">
@@ -797,7 +828,7 @@
             </li>
           </ul>
           <p class="copyright">
-            Copyright &copy; <span class="year">2026</span> by Sydroka
+            Copyright &copy; <span class="year">2026</span> by SydAlec
           </p>
         </div>
         <div class="address-col">
@@ -867,6 +898,127 @@
         </nav>
       </div>
     </footer>
+    <!-- SECRET BUTTON -->
+<div class="secret-btn-wrapper">
+  <button class="secret-btn" id="secretBtn" onclick="activateSecret()">Do Not Click</button>
+</div>
+
+<div class="rainbow-overlay" id="rainbowOverlay"></div>
+
+<!-- Hidden iframe that loads secret page -->
+<iframe id="secretFrame" src="secret.html" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; border:none; z-index:99999;"></iframe>
+
+<style>
+  .secret-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem 3.2rem 4rem;
+    background: #000;
+  }
+
+  .secret-btn {
+    background: transparent;
+    border: 1px solid #222;
+    color: #222;
+    font-size: 1.2rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .secret-btn:hover {
+    border-color: #444;
+    color: #444;
+  }
+
+  .rainbow-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      45deg,
+      red, orange, yellow, green, cyan, blue, violet,
+      red, orange, yellow, green, cyan, blue, violet
+    );
+    background-size: 400% 400%;
+    transition: opacity 0.3s;
+  }
+
+  .rainbow-overlay.active {
+    pointer-events: all;
+    animation: rainbowShift 0.3s linear infinite, flashIn 3s forwards;
+  }
+
+  @keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes flashIn {
+    0% { opacity: 0; }
+    15% { opacity: 0.9; }
+    30% { opacity: 0.4; }
+    50% { opacity: 1; }
+    70% { opacity: 0.5; }
+    85% { opacity: 0.95; }
+    100% { opacity: 1; }
+  }
+</style>
+
+<script>
+  let mainAudio = null;
+
+  function activateSecret() {
+    const overlay = document.getElementById("rainbowOverlay");
+    overlay.classList.add("active");
+
+    // Start the song and keep a reference to it
+    mainAudio = new Audio("audio/found.mp3");
+    mainAudio.loop = true;
+    mainAudio.play();
+
+    // Flash the page
+    document.body.style.transition = "filter 0.2s";
+    let flashes = 0;
+    const flashInterval = setInterval(() => {
+      flashes++;
+      document.body.style.filter = flashes % 2 === 0
+        ? "hue-rotate(180deg) saturate(5) brightness(2)"
+        : "hue-rotate(90deg) saturate(3) brightness(1.5)";
+      if (flashes >= 10) {
+        clearInterval(flashInterval);
+        document.body.style.filter = "none";
+      }
+    }, 200);
+
+    setTimeout(() => {
+      overlay.classList.remove("active");
+      overlay.style.display = "none";
+      document.getElementById("secretFrame").style.display = "block";
+    }, 3000);
+  }
+
+  // Listen for back button message from secret page
+  window.addEventListener("message", (e) => {
+    if (e.data === "goBack") {
+      // Stop the audio
+      if (mainAudio) {
+        mainAudio.pause();
+        mainAudio.currentTime = 0;
+        mainAudio = null;
+      }
+      document.getElementById("secretFrame").style.display = "none";
+      document.getElementById("rainbowOverlay").style.display = "";
+    }
+  });
+</script>
   </body>
 </html>
 

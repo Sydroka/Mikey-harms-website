@@ -313,6 +313,7 @@
         border-radius: 16px;
         padding: 3.2rem;
         text-align: center;
+        margin-bottom: 2.4rem;
       }
 
       .go-live-btn {
@@ -369,6 +370,270 @@
         50% {
           opacity: 0.3;
         }
+      }
+
+      /* ===================== */
+      /* SHOWS MANAGER STYLES  */
+      /* ===================== */
+      .shows-card {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 3.2rem;
+        margin-bottom: 2.4rem;
+      }
+
+      .shows-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .shows-card .section-desc {
+        font-size: 1.4rem;
+        color: #888;
+        margin-bottom: 2.4rem;
+      }
+
+      .show-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 2.4rem;
+        padding-bottom: 2.4rem;
+        border-bottom: 1px solid #2a2a2a;
+      }
+
+      .show-form input,
+      .show-form select {
+        width: 100%;
+        padding: 1.2rem 1.6rem;
+        font-size: 1.6rem;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background: #111;
+        color: #fff;
+        font-family: inherit;
+      }
+
+      .show-form input:focus,
+      .show-form select:focus {
+        outline: none;
+        border-color: #f02e2e;
+      }
+
+      .show-form select option {
+        background: #111;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+
+      .add-show-btn {
+        width: 100%;
+        padding: 1.4rem;
+        background: #f02e2e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.3s;
+      }
+
+      .add-show-btn:hover {
+        background: #c02020;
+      }
+
+      .shows-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .show-admin-item {
+        background: #111;
+        border-radius: 12px;
+        padding: 2rem;
+        border: 1px solid #2a2a2a;
+      }
+
+      .show-admin-item.editing {
+        border-color: #f02e2e;
+      }
+
+      .show-admin-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1.6rem;
+      }
+
+      .show-admin-info h4 {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .show-admin-info p {
+        font-size: 1.4rem;
+        color: #888;
+      }
+
+      .show-admin-actions {
+        display: flex;
+        gap: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      .edit-btn,
+      .delete-btn,
+      .save-edit-btn,
+      .cancel-edit-btn {
+        padding: 0.8rem 1.4rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+
+      .edit-btn {
+        background: #2a2a2a;
+        color: #fff;
+      }
+
+      .edit-btn:hover {
+        background: #3a3a3a;
+      }
+
+      .delete-btn {
+        background: transparent;
+        color: #f02e2e;
+        border: 1px solid #f02e2e;
+      }
+
+      .delete-btn:hover {
+        background: #f02e2e;
+        color: #fff;
+      }
+
+      .save-edit-btn {
+        background: #f02e2e;
+        color: #fff;
+      }
+
+      .save-edit-btn:hover {
+        background: #c02020;
+      }
+
+      .cancel-edit-btn {
+        background: #2a2a2a;
+        color: #888;
+      }
+
+      .cancel-edit-btn:hover {
+        color: #fff;
+      }
+
+      .show-edit-form {
+        display: none;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-top: 1.6rem;
+        padding-top: 1.6rem;
+        border-top: 1px solid #2a2a2a;
+      }
+
+      .show-edit-form.open {
+        display: flex;
+      }
+
+      .show-edit-form input,
+      .show-edit-form select {
+        width: 100%;
+        padding: 1rem 1.4rem;
+        font-size: 1.5rem;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background: #0a0a0a;
+        color: #fff;
+        font-family: inherit;
+      }
+
+      .show-edit-form input:focus,
+      .show-edit-form select:focus {
+        outline: none;
+        border-color: #f02e2e;
+      }
+
+      .show-img-preview {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-top: 0.8rem;
+        display: none;
+      }
+
+      .show-img-preview.visible {
+        display: block;
+      }
+
+      .img-actions {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .img-upload-label {
+        padding: 0.8rem 1.4rem;
+        background: #2a2a2a;
+        color: #fff;
+        border-radius: 6px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .img-upload-label:hover {
+        background: #3a3a3a;
+      }
+
+      .remove-img-btn {
+        padding: 0.8rem 1.4rem;
+        background: transparent;
+        color: #f02e2e;
+        border: 1px solid #f02e2e;
+        border-radius: 6px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+
+      .remove-img-btn:hover {
+        background: #f02e2e;
+        color: #fff;
+      }
+
+      .no-shows-msg {
+        text-align: center;
+        color: #555;
+        font-size: 1.6rem;
+        padding: 2rem 0;
+      }
+
+      .shows-saved-msg {
+        color: #44ff88;
+        font-size: 1.4rem;
+        margin-left: 1.2rem;
+        display: none;
       }
     </style>
   </head>
@@ -481,6 +746,62 @@
             You are currently offline
           </p>
         </div>
+
+        <!-- SHOWS MANAGER -->
+        <div class="shows-card">
+          <h3>🎤 Shows Manager</h3>
+          <p class="section-desc">
+            Add, edit, or remove shows. Changes appear on the website instantly.
+          </p>
+
+          <!-- Add New Show Form -->
+          <div class="show-form">
+            <input
+              type="text"
+              id="new-venue"
+              placeholder="Venue name (e.g. Subterranean)"
+            />
+            <div class="form-row">
+              <input
+                type="text"
+                id="new-date"
+                placeholder="Date (e.g. February 20th)"
+              />
+              <input
+                type="text"
+                id="new-month"
+                placeholder="Month (e.g. February)"
+              />
+            </div>
+            <input
+              type="text"
+              id="new-address"
+              placeholder="Address (e.g. 2011 W. North Avenue)"
+            />
+            <input
+              type="text"
+              id="new-age"
+              placeholder="Age restriction (e.g. 17+ or 21+)"
+            />
+            <input
+              type="text"
+              id="new-ticket-url"
+              placeholder="Ticket link URL (optional)"
+            />
+            <input
+              type="text"
+              id="new-img-url"
+              placeholder="Image URL (optional - paste a link to venue photo)"
+            />
+            <button class="add-show-btn" onclick="addShow()">+ Add Show</button>
+            <span class="shows-saved-msg" id="showAddedMsg">✓ Show added!</span>
+          </div>
+
+          <!-- Existing Shows List -->
+          <div class="shows-list" id="shows-list">
+            <p class="no-shows-msg">No shows yet. Add one above!</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -493,6 +814,8 @@
         onValue,
         push,
         onDisconnect,
+        remove,
+        update,
       } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
       const firebaseConfig = {
@@ -534,24 +857,21 @@
       };
 
       function loadDashboard() {
+        // Live status
         onValue(ref(db, "liveStatus"), (snapshot) => {
           const data = snapshot.val() || {};
-
           document.getElementById("tiktokToggle").checked =
             data.tiktok || false;
           document.getElementById("instagramToggle").checked =
             data.instagram || false;
           document.getElementById("youtubeToggle").checked =
             data.youtube || false;
-
-          if (data.youtubeUrl) {
+          if (data.youtubeUrl)
             document.getElementById("youtubeUrl").value = data.youtubeUrl;
-          }
 
           const isLive = data.isLive || false;
           const btn = document.getElementById("goLiveBtn");
           const statusText = document.getElementById("liveStatusText");
-
           if (isLive) {
             btn.textContent = "END STREAM";
             btn.classList.add("live");
@@ -564,12 +884,161 @@
           }
         });
 
+        // Visitors
         onValue(ref(db, "visitors"), (snapshot) => {
           const data = snapshot.val() || {};
-          const count = Object.keys(data).length;
-          document.getElementById("visitorCount").textContent = count;
+          document.getElementById("visitorCount").textContent =
+            Object.keys(data).length;
+        });
+
+        // Shows
+        onValue(ref(db, "shows"), (snapshot) => {
+          const data = snapshot.val() || {};
+          const list = document.getElementById("shows-list");
+          list.innerHTML = "";
+
+          const entries = Object.entries(data).sort(
+            (a, b) => (a[1].order || 0) - (b[1].order || 0),
+          );
+
+          if (entries.length === 0) {
+            list.innerHTML =
+              '<p class="no-shows-msg">No shows yet. Add one above!</p>';
+            return;
+          }
+
+          entries.forEach(([id, show]) => {
+            const item = document.createElement("div");
+            item.className = "show-admin-item";
+            item.id = `show-item-${id}`;
+            item.innerHTML = `
+              <div class="show-admin-top">
+                <div class="show-admin-info">
+                  <h4>${show.venue}</h4>
+                  <p>${show.date} &bull; ${show.address} &bull; ${show.age}</p>
+                </div>
+                <div class="show-admin-actions">
+                  <button class="edit-btn" onclick="toggleEdit('${id}')">Edit</button>
+                  <button class="delete-btn" onclick="deleteShow('${id}')">Delete</button>
+                </div>
+              </div>
+              ${show.imgUrl ? `<img src="${show.imgUrl}" class="show-img-preview visible" id="preview-${id}" />` : `<img class="show-img-preview" id="preview-${id}" />`}
+              <div class="show-edit-form" id="edit-form-${id}">
+                <input type="text" id="edit-venue-${id}" value="${show.venue}" placeholder="Venue name" />
+                <div class="form-row">
+                  <input type="text" id="edit-date-${id}" value="${show.date}" placeholder="Date" />
+                  <input type="text" id="edit-month-${id}" value="${show.month}" placeholder="Month" />
+                </div>
+                <input type="text" id="edit-address-${id}" value="${show.address}" placeholder="Address" />
+                <input type="text" id="edit-age-${id}" value="${show.age}" placeholder="Age restriction" />
+                <input type="text" id="edit-ticket-${id}" value="${show.ticketUrl || ""}" placeholder="Ticket URL" />
+                <input type="text" id="edit-img-${id}" value="${show.imgUrl || ""}" placeholder="Image URL" oninput="previewImg('${id}')" />
+                <div style="display:flex; gap:1.2rem; margin-top:0.4rem;">
+                  <button class="save-edit-btn" onclick="saveEdit('${id}', ${show.order || 0})">Save Changes</button>
+                  <button class="cancel-edit-btn" onclick="toggleEdit('${id}')">Cancel</button>
+                </div>
+              </div>
+            `;
+            list.appendChild(item);
+          });
         });
       }
+
+      window.addShow = function () {
+        const venue = document.getElementById("new-venue").value.trim();
+        const date = document.getElementById("new-date").value.trim();
+        const month = document.getElementById("new-month").value.trim();
+        const address = document.getElementById("new-address").value.trim();
+        const age = document.getElementById("new-age").value.trim();
+        const ticketUrl = document
+          .getElementById("new-ticket-url")
+          .value.trim();
+        const imgUrl = document.getElementById("new-img-url").value.trim();
+
+        if (!venue || !date || !month || !address || !age) {
+          alert(
+            "Please fill in venue, date, month, address, and age restriction.",
+          );
+          return;
+        }
+
+        const newRef = push(ref(db, "shows"));
+        set(newRef, {
+          venue,
+          date,
+          month,
+          address,
+          age,
+          ticketUrl,
+          imgUrl,
+          order: Date.now(),
+        });
+
+        // Clear form
+        [
+          "new-venue",
+          "new-date",
+          "new-month",
+          "new-address",
+          "new-age",
+          "new-ticket-url",
+          "new-img-url",
+        ].forEach((id) => (document.getElementById(id).value = ""));
+
+        const msg = document.getElementById("showAddedMsg");
+        msg.style.display = "inline";
+        setTimeout(() => (msg.style.display = "none"), 2000);
+      };
+
+      window.deleteShow = function (id) {
+        if (confirm("Delete this show?")) {
+          remove(ref(db, `shows/${id}`));
+        }
+      };
+
+      window.toggleEdit = function (id) {
+        const form = document.getElementById(`edit-form-${id}`);
+        const item = document.getElementById(`show-item-${id}`);
+        form.classList.toggle("open");
+        item.classList.toggle("editing");
+      };
+
+      window.saveEdit = function (id, order) {
+        const venue = document.getElementById(`edit-venue-${id}`).value.trim();
+        const date = document.getElementById(`edit-date-${id}`).value.trim();
+        const month = document.getElementById(`edit-month-${id}`).value.trim();
+        const address = document
+          .getElementById(`edit-address-${id}`)
+          .value.trim();
+        const age = document.getElementById(`edit-age-${id}`).value.trim();
+        const ticketUrl = document
+          .getElementById(`edit-ticket-${id}`)
+          .value.trim();
+        const imgUrl = document.getElementById(`edit-img-${id}`).value.trim();
+
+        update(ref(db, `shows/${id}`), {
+          venue,
+          date,
+          month,
+          address,
+          age,
+          ticketUrl,
+          imgUrl,
+          order,
+        });
+        toggleEdit(id);
+      };
+
+      window.previewImg = function (id) {
+        const url = document.getElementById(`edit-img-${id}`).value.trim();
+        const preview = document.getElementById(`preview-${id}`);
+        if (url) {
+          preview.src = url;
+          preview.classList.add("visible");
+        } else {
+          preview.classList.remove("visible");
+        }
+      };
 
       window.updatePlatform = function (platform, value) {
         set(ref(db, `liveStatus/${platform}`), value);
@@ -580,9 +1049,7 @@
         set(ref(db, "liveStatus/youtubeUrl"), url);
         const success = document.getElementById("saveSuccess");
         success.style.display = "inline";
-        setTimeout(() => {
-          success.style.display = "none";
-        }, 2000);
+        setTimeout(() => (success.style.display = "none"), 2000);
       };
 
       window.toggleLive = function () {

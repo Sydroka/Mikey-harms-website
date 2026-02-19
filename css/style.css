@@ -71,6 +71,11 @@
   height: 8.9rem;
 }
 
+.logo-crop {
+  overflow: hidden;
+  height: 70px; /* adjust this until the MH circle disappears */
+}
+
 /**************************/
 /* NAVIGATION */
 /**************************/
@@ -203,8 +208,14 @@
   object-position: center;
 }
 
+.carousel-slide:nth-child(1) img {
+  object-position: center 30%;
+}
+.carousel-slide:nth-child(2) img {
+  object-position: center 45%;
+}
 .carousel-slide:nth-child(3) img {
-  object-position: center top;
+  object-position: center 30%;
 }
 
 /* Navigation Arrows */
@@ -568,7 +579,12 @@
 /**************************/
 
 .section-shows {
-  padding: 9.6rem 0;
+  padding: 1.8rem 0 9.6rem;
+  scroll-margin-top: 8rem; /* match this to your header height */
+}
+
+.section-shows .container:first-child {
+  margin-bottom: 2rem; /* was likely 4.8rem or 9.6rem, adjust to taste */
 }
 
 .show-card {
@@ -660,6 +676,77 @@
 .show-detail a:hover {
   color: #d32424;
   text-decoration: underline;
+}
+
+/* Search Bar */
+.shows-search-container {
+  margin-bottom: 3.2rem;
+}
+.shows-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 100px;
+  padding: 1rem 2.4rem;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+.shows-search-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #888;
+}
+.shows-search-input {
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  width: 100%;
+  font-family: inherit;
+}
+
+/* Pagination */
+.shows-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-top: 3.2rem;
+}
+.shows-arrow {
+  background-color: #100c0c;
+  border: none;
+  color: #fff;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.shows-arrow:hover:not(:disabled) {
+  background-color: #ef2c2c;
+}
+.shows-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.shows-arrow ion-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.shows-page-indicator {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.shows-no-results {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #888;
+  padding: 3.2rem 0;
 }
 
 /**************************/
