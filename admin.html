@@ -14,11 +14,9 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       html {
         font-size: 62.5%;
       }
-
       body {
         font-family: "Alata", sans-serif;
         background: #0a0a0a;
@@ -34,7 +32,6 @@
         max-width: 60rem;
         padding: 2.4rem;
       }
-
       .admin-logo {
         text-align: center;
         font-size: 3.2rem;
@@ -44,19 +41,17 @@
         letter-spacing: 2px;
       }
 
+      /* LOGIN */
       .login-box {
         background: #1a1a1a;
         border-radius: 16px;
         padding: 4rem;
         text-align: center;
       }
-
       .login-box h2 {
         font-size: 2.4rem;
         margin-bottom: 3.2rem;
-        color: #fff;
       }
-
       .login-input {
         width: 100%;
         padding: 1.6rem 2rem;
@@ -68,12 +63,10 @@
         margin-bottom: 1.6rem;
         font-family: inherit;
       }
-
       .login-input:focus {
         outline: none;
         border-color: #f02e2e;
       }
-
       .login-btn {
         width: 100%;
         padding: 1.6rem;
@@ -87,11 +80,9 @@
         font-family: inherit;
         transition: background 0.3s;
       }
-
       .login-btn:hover {
         background: #c02020;
       }
-
       .login-error {
         color: #f02e2e;
         font-size: 1.4rem;
@@ -99,21 +90,19 @@
         display: none;
       }
 
+      /* DASHBOARD */
       .dashboard {
         display: none;
       }
-
       .dashboard-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 3.2rem;
       }
-
       .dashboard-header h2 {
         font-size: 2.4rem;
       }
-
       .logout-btn {
         padding: 0.8rem 1.6rem;
         background: transparent;
@@ -125,12 +114,12 @@
         font-family: inherit;
         transition: all 0.3s;
       }
-
       .logout-btn:hover {
         color: #fff;
         border-color: #666;
       }
 
+      /* VISITOR */
       .visitor-card {
         background: #1a1a1a;
         border-radius: 16px;
@@ -140,11 +129,9 @@
         align-items: center;
         gap: 2.4rem;
       }
-
       .visitor-icon {
         font-size: 4rem;
       }
-
       .visitor-info h3 {
         font-size: 1.4rem;
         color: #888;
@@ -152,32 +139,411 @@
         letter-spacing: 1px;
         margin-bottom: 0.8rem;
       }
-
       .visitor-count {
         font-size: 4.8rem;
         font-weight: 700;
         color: #f02e2e;
       }
-
       .visitor-label {
         font-size: 1.4rem;
         color: #666;
         margin-top: 0.4rem;
       }
 
+      /* SECTION CARD */
+      .section-card {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 3.2rem;
+        margin-bottom: 2.4rem;
+      }
+      .section-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+      }
+      .section-card .section-desc {
+        font-size: 1.4rem;
+        color: #888;
+        margin-bottom: 2.4rem;
+      }
+      .count-badge {
+        display: inline-block;
+        background: #2a2a2a;
+        color: #888;
+        font-size: 1.3rem;
+        padding: 0.4rem 1rem;
+        border-radius: 100px;
+        margin-left: 1rem;
+        font-weight: 400;
+        vertical-align: middle;
+      }
+
+      /* FORMS */
+      .item-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 2.4rem;
+        padding-bottom: 2.4rem;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .item-form input,
+      .item-form select,
+      .item-form textarea {
+        width: 100%;
+        padding: 1.2rem 1.6rem;
+        font-size: 1.6rem;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background: #111;
+        color: #fff;
+        font-family: inherit;
+      }
+      .item-form input:focus,
+      .item-form select:focus,
+      .item-form textarea:focus {
+        outline: none;
+        border-color: #f02e2e;
+      }
+      .item-form textarea {
+        resize: vertical;
+        min-height: 10rem;
+        line-height: 1.6;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+
+      /* BUTTONS */
+      .add-btn {
+        width: 100%;
+        padding: 1.4rem;
+        background: #f02e2e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.3s;
+      }
+      .add-btn:hover {
+        background: #c02020;
+      }
+      .add-btn:disabled {
+        background: #333;
+        cursor: not-allowed;
+      }
+      .edit-btn,
+      .delete-btn,
+      .save-edit-btn,
+      .cancel-edit-btn {
+        padding: 0.8rem 1.4rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+      .edit-btn {
+        background: #2a2a2a;
+        color: #fff;
+      }
+      .edit-btn:hover {
+        background: #3a3a3a;
+      }
+      .delete-btn {
+        background: transparent;
+        color: #f02e2e;
+        border: 1px solid #f02e2e;
+      }
+      .delete-btn:hover {
+        background: #f02e2e;
+        color: #fff;
+      }
+      .save-edit-btn {
+        background: #f02e2e;
+        color: #fff;
+      }
+      .save-edit-btn:hover {
+        background: #c02020;
+      }
+      .cancel-edit-btn {
+        background: #2a2a2a;
+        color: #888;
+      }
+      .cancel-edit-btn:hover {
+        color: #fff;
+      }
+
+      /* ITEM LISTS */
+      .items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+      .admin-item {
+        background: #111;
+        border-radius: 12px;
+        padding: 2rem;
+        border: 1px solid #2a2a2a;
+        transition:
+          border-color 0.3s,
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .admin-item.editing {
+        border-color: #f02e2e;
+      }
+      .admin-item.dragging {
+        opacity: 0.5;
+        border-color: #f02e2e;
+        transform: scale(0.98);
+      }
+      .admin-item.drag-over {
+        border-color: #44ff88;
+        box-shadow: 0 0 0 2px rgba(68, 255, 136, 0.3);
+      }
+      .admin-item-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1.6rem;
+      }
+      .admin-item-left {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.6rem;
+        flex: 1;
+        min-width: 0;
+      }
+      .admin-item-info h4 {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+      }
+      .admin-item-info p {
+        font-size: 1.4rem;
+        color: #888;
+      }
+      .admin-item-actions {
+        display: flex;
+        gap: 0.8rem;
+        flex-shrink: 0;
+      }
+      .reorder-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        flex-shrink: 0;
+      }
+      .reorder-btn {
+        width: 3.6rem;
+        height: 3.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #2a2a2a;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.8rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+        line-height: 1;
+      }
+      .reorder-btn:hover:not(:disabled) {
+        background: #f02e2e;
+        transform: scale(1.05);
+      }
+      .reorder-btn:disabled {
+        opacity: 0.2;
+        cursor: not-allowed;
+      }
+      .position-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.8rem;
+        height: 2.8rem;
+        background: #f02e2e;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 1.4rem;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+      }
+
+      .edit-form {
+        display: none;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-top: 1.6rem;
+        padding-top: 1.6rem;
+        border-top: 1px solid #2a2a2a;
+      }
+      .edit-form.open {
+        display: flex;
+      }
+      .edit-form input,
+      .edit-form select,
+      .edit-form textarea {
+        width: 100%;
+        padding: 1rem 1.4rem;
+        font-size: 1.5rem;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background: #0a0a0a;
+        color: #fff;
+        font-family: inherit;
+      }
+      .edit-form input:focus,
+      .edit-form select:focus,
+      .edit-form textarea:focus {
+        outline: none;
+        border-color: #f02e2e;
+      }
+      .edit-form textarea {
+        resize: vertical;
+        min-height: 8rem;
+        line-height: 1.6;
+      }
+
+      .no-items-msg {
+        text-align: center;
+        color: #555;
+        font-size: 1.6rem;
+        padding: 2rem 0;
+      }
+      .saved-msg {
+        color: #44ff88;
+        font-size: 1.4rem;
+        margin-left: 1.2rem;
+        display: none;
+      }
+
+      /* FILE UPLOAD */
+      .file-upload-wrapper {
+        position: relative;
+      }
+      .file-upload-label {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.2rem 1.6rem;
+        background: #111;
+        border: 2px dashed #333;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1.5rem;
+        color: #888;
+      }
+      .file-upload-label:hover {
+        border-color: #f02e2e;
+        color: #fff;
+      }
+      .file-upload-label.has-file {
+        border-color: #44ff88;
+        color: #44ff88;
+        border-style: solid;
+      }
+      .file-upload-label .upload-icon {
+        font-size: 2rem;
+      }
+      .file-upload-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .upload-progress {
+        width: 100%;
+        height: 0.6rem;
+        background: #333;
+        border-radius: 3px;
+        overflow: hidden;
+        display: none;
+      }
+      .upload-progress.active {
+        display: block;
+      }
+      .upload-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #f02e2e 0%, #ff6262 100%);
+        width: 0%;
+        transition: width 0.2s;
+        border-radius: 3px;
+      }
+      .upload-status {
+        font-size: 1.3rem;
+        color: #888;
+        display: none;
+      }
+      .upload-status.active {
+        display: block;
+      }
+
+      /* PREVIEWS */
+      .thumb-preview {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 1px solid #2a2a2a;
+      }
+      .img-preview {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-top: 0.8rem;
+        display: none;
+      }
+      .img-preview.visible {
+        display: block;
+      }
+
+      /* CHECKBOX */
+      .color-picker-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .color-picker-wrapper label {
+        font-size: 1.3rem;
+        color: #888;
+        white-space: nowrap;
+      }
+      .color-picker-wrapper input[type="checkbox"] {
+        width: 2rem;
+        height: 2rem;
+        accent-color: #f02e2e;
+        cursor: pointer;
+      }
+
+      /* LIVE CARD */
       .live-card {
         background: #1a1a1a;
         border-radius: 16px;
         padding: 3.2rem;
         margin-bottom: 2.4rem;
       }
-
       .live-card h3 {
         font-size: 1.8rem;
         margin-bottom: 2.4rem;
         color: #fff;
       }
-
       .platform-row {
         display: flex;
         align-items: center;
@@ -185,38 +551,31 @@
         padding: 1.6rem 0;
         border-bottom: 1px solid #222;
       }
-
       .platform-row:last-of-type {
         border-bottom: none;
       }
-
       .platform-info {
         display: flex;
         align-items: center;
         gap: 1.6rem;
       }
-
       .platform-icon {
         font-size: 2.8rem;
       }
-
       .platform-name {
         font-size: 1.8rem;
         font-weight: 600;
       }
-
       .toggle-switch {
         position: relative;
         width: 6rem;
         height: 3.2rem;
       }
-
       .toggle-switch input {
         opacity: 0;
         width: 0;
         height: 0;
       }
-
       .toggle-slider {
         position: absolute;
         cursor: pointer;
@@ -228,7 +587,6 @@
         border-radius: 3.2rem;
         transition: 0.3s;
       }
-
       .toggle-slider:before {
         position: absolute;
         content: "";
@@ -240,11 +598,9 @@
         border-radius: 50%;
         transition: 0.3s;
       }
-
       input:checked + .toggle-slider {
         background: #f02e2e;
       }
-
       input:checked + .toggle-slider:before {
         transform: translateX(2.8rem);
       }
@@ -255,18 +611,15 @@
         padding: 3.2rem;
         margin-bottom: 2.4rem;
       }
-
       .youtube-card h3 {
         font-size: 1.8rem;
         margin-bottom: 0.8rem;
       }
-
       .youtube-card p {
         font-size: 1.4rem;
         color: #888;
         margin-bottom: 2rem;
       }
-
       .youtube-input {
         width: 100%;
         padding: 1.4rem 1.6rem;
@@ -278,12 +631,10 @@
         margin-bottom: 1.2rem;
         font-family: inherit;
       }
-
       .youtube-input:focus {
         outline: none;
         border-color: #f02e2e;
       }
-
       .save-btn {
         padding: 1.2rem 2.4rem;
         background: #f02e2e;
@@ -296,11 +647,9 @@
         font-family: inherit;
         transition: background 0.3s;
       }
-
       .save-btn:hover {
         background: #c02020;
       }
-
       .save-success {
         color: #44ff88;
         font-size: 1.4rem;
@@ -315,7 +664,6 @@
         text-align: center;
         margin-bottom: 2.4rem;
       }
-
       .go-live-btn {
         width: 100%;
         padding: 2rem;
@@ -330,28 +678,23 @@
         transition: all 0.3s;
         letter-spacing: 2px;
       }
-
       .go-live-btn:hover {
         background: #c02020;
         transform: scale(1.02);
       }
-
       .go-live-btn.live {
         background: #222;
         color: #f02e2e;
         border: 2px solid #f02e2e;
       }
-
       .go-live-btn.live:hover {
         background: #1a0000;
       }
-
       .live-status-text {
         margin-top: 1.6rem;
         font-size: 1.4rem;
         color: #888;
       }
-
       .live-dot {
         display: inline-block;
         width: 1rem;
@@ -361,7 +704,6 @@
         margin-right: 0.6rem;
         animation: pulse 1s infinite;
       }
-
       @keyframes pulse {
         0%,
         100% {
@@ -372,268 +714,19 @@
         }
       }
 
-      /* ===================== */
-      /* SHOWS MANAGER STYLES  */
-      /* ===================== */
-      .shows-card {
-        background: #1a1a1a;
-        border-radius: 16px;
-        padding: 3.2rem;
-        margin-bottom: 2.4rem;
-      }
-
-      .shows-card h3 {
-        font-size: 1.8rem;
-        margin-bottom: 0.4rem;
-      }
-
-      .shows-card .section-desc {
-        font-size: 1.4rem;
-        color: #888;
-        margin-bottom: 2.4rem;
-      }
-
-      .show-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-        margin-bottom: 2.4rem;
-        padding-bottom: 2.4rem;
-        border-bottom: 1px solid #2a2a2a;
-      }
-
-      .show-form input,
-      .show-form select {
-        width: 100%;
-        padding: 1.2rem 1.6rem;
-        font-size: 1.6rem;
-        border-radius: 8px;
-        border: 2px solid #333;
-        background: #111;
-        color: #fff;
-        font-family: inherit;
-      }
-
-      .show-form input:focus,
-      .show-form select:focus {
-        outline: none;
-        border-color: #f02e2e;
-      }
-
-      .show-form select option {
-        background: #111;
-      }
-
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.2rem;
-      }
-
-      .add-show-btn {
-        width: 100%;
-        padding: 1.4rem;
-        background: #f02e2e;
-        color: #fff;
+      .section-divider {
         border: none;
-        border-radius: 8px;
-        font-size: 1.6rem;
-        font-weight: 600;
-        cursor: pointer;
-        font-family: inherit;
-        transition: background 0.3s;
+        border-top: 2px solid #f02e2e;
+        margin: 1.6rem 0 2.4rem;
+        opacity: 0.3;
       }
-
-      .add-show-btn:hover {
-        background: #c02020;
-      }
-
-      .shows-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1.6rem;
-      }
-
-      .show-admin-item {
-        background: #111;
-        border-radius: 12px;
-        padding: 2rem;
-        border: 1px solid #2a2a2a;
-      }
-
-      .show-admin-item.editing {
-        border-color: #f02e2e;
-      }
-
-      .show-admin-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 1.6rem;
-      }
-
-      .show-admin-info h4 {
-        font-size: 1.8rem;
-        margin-bottom: 0.4rem;
-      }
-
-      .show-admin-info p {
-        font-size: 1.4rem;
-        color: #888;
-      }
-
-      .show-admin-actions {
-        display: flex;
-        gap: 0.8rem;
-        flex-shrink: 0;
-      }
-
-      .edit-btn,
-      .delete-btn,
-      .save-edit-btn,
-      .cancel-edit-btn {
-        padding: 0.8rem 1.4rem;
-        border: none;
-        border-radius: 6px;
-        font-size: 1.4rem;
-        font-weight: 600;
-        cursor: pointer;
-        font-family: inherit;
-        transition: all 0.3s;
-      }
-
-      .edit-btn {
-        background: #2a2a2a;
-        color: #fff;
-      }
-
-      .edit-btn:hover {
-        background: #3a3a3a;
-      }
-
-      .delete-btn {
-        background: transparent;
+      .section-label {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
         color: #f02e2e;
-        border: 1px solid #f02e2e;
-      }
-
-      .delete-btn:hover {
-        background: #f02e2e;
-        color: #fff;
-      }
-
-      .save-edit-btn {
-        background: #f02e2e;
-        color: #fff;
-      }
-
-      .save-edit-btn:hover {
-        background: #c02020;
-      }
-
-      .cancel-edit-btn {
-        background: #2a2a2a;
-        color: #888;
-      }
-
-      .cancel-edit-btn:hover {
-        color: #fff;
-      }
-
-      .show-edit-form {
-        display: none;
-        flex-direction: column;
-        gap: 1.2rem;
-        margin-top: 1.6rem;
-        padding-top: 1.6rem;
-        border-top: 1px solid #2a2a2a;
-      }
-
-      .show-edit-form.open {
-        display: flex;
-      }
-
-      .show-edit-form input,
-      .show-edit-form select {
-        width: 100%;
-        padding: 1rem 1.4rem;
-        font-size: 1.5rem;
-        border-radius: 8px;
-        border: 2px solid #333;
-        background: #0a0a0a;
-        color: #fff;
-        font-family: inherit;
-      }
-
-      .show-edit-form input:focus,
-      .show-edit-form select:focus {
-        outline: none;
-        border-color: #f02e2e;
-      }
-
-      .show-img-preview {
-        width: 100%;
-        height: 12rem;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-top: 0.8rem;
-        display: none;
-      }
-
-      .show-img-preview.visible {
-        display: block;
-      }
-
-      .img-actions {
-        display: flex;
-        gap: 0.8rem;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .img-upload-label {
-        padding: 0.8rem 1.4rem;
-        background: #2a2a2a;
-        color: #fff;
-        border-radius: 6px;
-        font-size: 1.4rem;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-
-      .img-upload-label:hover {
-        background: #3a3a3a;
-      }
-
-      .remove-img-btn {
-        padding: 0.8rem 1.4rem;
-        background: transparent;
-        color: #f02e2e;
-        border: 1px solid #f02e2e;
-        border-radius: 6px;
-        font-size: 1.4rem;
-        cursor: pointer;
-        font-family: inherit;
-        transition: all 0.3s;
-      }
-
-      .remove-img-btn:hover {
-        background: #f02e2e;
-        color: #fff;
-      }
-
-      .no-shows-msg {
-        text-align: center;
-        color: #555;
-        font-size: 1.6rem;
-        padding: 2rem 0;
-      }
-
-      .shows-saved-msg {
-        color: #44ff88;
-        font-size: 1.4rem;
-        margin-left: 1.2rem;
-        display: none;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
       }
     </style>
   </head>
@@ -641,7 +734,7 @@
     <div class="admin-container">
       <div class="admin-logo">MIKEY HARMS</div>
 
-      <!-- LOGIN SCREEN -->
+      <!-- LOGIN -->
       <div class="login-box" id="loginBox">
         <h2>Admin Login</h2>
         <input
@@ -659,7 +752,7 @@
       <!-- DASHBOARD -->
       <div class="dashboard" id="dashboard">
         <div class="dashboard-header">
-          <h2>Live Dashboard</h2>
+          <h2>Admin Dashboard</h2>
           <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
 
@@ -673,94 +766,139 @@
           </div>
         </div>
 
-        <!-- PLATFORM TOGGLES -->
-        <div class="live-card">
-          <h3>Platforms</h3>
-          <div class="platform-row">
-            <div class="platform-info">
-              <span class="platform-icon">🎵</span>
-              <span class="platform-name">TikTok</span>
-            </div>
-            <label class="toggle-switch">
-              <input
-                type="checkbox"
-                id="tiktokToggle"
-                onchange="updatePlatform('tiktok', this.checked)"
-              />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="platform-row">
-            <div class="platform-info">
-              <span class="platform-icon">📸</span>
-              <span class="platform-name">Instagram</span>
-            </div>
-            <label class="toggle-switch">
-              <input
-                type="checkbox"
-                id="instagramToggle"
-                onchange="updatePlatform('instagram', this.checked)"
-              />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="platform-row">
-            <div class="platform-info">
-              <span class="platform-icon">▶️</span>
-              <span class="platform-name">YouTube</span>
-            </div>
-            <label class="toggle-switch">
-              <input
-                type="checkbox"
-                id="youtubeToggle"
-                onchange="updatePlatform('youtube', this.checked)"
-              />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-        </div>
+        <hr class="section-divider" />
+        <p class="section-label">Hero Carousel</p>
 
-        <!-- YOUTUBE URL -->
-        <div class="youtube-card">
-          <h3>YouTube Live URL</h3>
-          <p>
-            Paste your StreamYard/YouTube live stream URL here so fans can watch
-            on the website
-          </p>
-          <input
-            type="text"
-            class="youtube-input"
-            id="youtubeUrl"
-            placeholder="https://www.youtube.com/watch?v=..."
-          />
-          <button class="save-btn" onclick="saveYoutubeUrl()">Save URL</button>
-          <span class="save-success" id="saveSuccess">✓ Saved!</span>
-        </div>
-
-        <!-- GO LIVE BUTTON -->
-        <div class="go-live-card">
-          <button class="go-live-btn" id="goLiveBtn" onclick="toggleLive()">
-            GO LIVE
-          </button>
-          <p class="live-status-text" id="liveStatusText">
-            You are currently offline
-          </p>
-        </div>
-
-        <!-- SHOWS MANAGER -->
-        <div class="shows-card">
-          <h3>🎤 Shows Manager</h3>
+        <!-- ======== 1. CAROUSEL MANAGER ======== -->
+        <div class="section-card" id="carouselSection">
+          <h3>
+            🖼️ Hero Carousel
+            <span class="count-badge" id="carouselCountBadge">0</span>
+          </h3>
           <p class="section-desc">
-            Add, edit, or remove shows. Changes appear on the website instantly.
+            Manage the image slideshow at the top of the site. Upload images and
+            reorder them.
           </p>
-
-          <!-- Add New Show Form -->
-          <div class="show-form">
+          <div class="item-form">
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="carousel-img-label">
+                <span class="upload-icon">🖼️</span>
+                <span id="carousel-img-label-text">Choose image...</span>
+              </label>
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-carousel-img"
+                accept="image/*"
+                onchange="
+                  handleFileSelect(
+                    this,
+                    'carousel-img-label',
+                    'carousel-img-label-text',
+                  )
+                "
+              />
+            </div>
             <input
               type="text"
-              id="new-venue"
-              placeholder="Venue name (e.g. Subterranean)"
+              id="new-carousel-alt"
+              placeholder="Image description (e.g. Mikey on stage)"
             />
+            <div class="upload-progress" id="carousel-upload-progress">
+              <div class="upload-progress-bar" id="carousel-upload-bar"></div>
+            </div>
+            <span class="upload-status" id="carousel-upload-status"></span>
+            <button
+              class="add-btn"
+              id="addCarouselBtn"
+              onclick="addCarouselImage()"
+            >
+              + Upload Image
+            </button>
+            <span class="saved-msg" id="carouselAddedMsg">✓ Added!</span>
+          </div>
+          <div class="items-list" id="carousel-list">
+            <p class="no-items-msg">No carousel images yet.</p>
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+        <p class="section-label">Music</p>
+
+        <!-- ======== 2. MUSIC MANAGER ======== -->
+        <div class="section-card" id="musicSection">
+          <h3>
+            🎶 Music Manager
+            <span class="count-badge" id="trackCountBadge">0</span>
+          </h3>
+          <p class="section-desc">
+            Upload songs with album art. Reorder with arrows.
+          </p>
+          <div class="item-form">
+            <input
+              type="text"
+              id="new-track-title"
+              placeholder="Song title (e.g. Rusty Metal Box)"
+            />
+            <div class="color-picker-wrapper">
+              <label>White title text on artwork?</label
+              ><input type="checkbox" id="new-track-white" />
+            </div>
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="mp3-label"
+                ><span class="upload-icon">🎵</span
+                ><span id="mp3-label-text">Choose MP3 file...</span></label
+              >
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-track-mp3"
+                accept="audio/mpeg,audio/mp3"
+                onchange="handleFileSelect(this, 'mp3-label', 'mp3-label-text')"
+              />
+            </div>
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="art-label"
+                ><span class="upload-icon">🖼️</span
+                ><span id="art-label-text">Choose album art...</span></label
+              >
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-track-art"
+                accept="image/*"
+                onchange="handleFileSelect(this, 'art-label', 'art-label-text')"
+              />
+            </div>
+            <div class="upload-progress" id="track-upload-progress">
+              <div class="upload-progress-bar" id="track-upload-bar"></div>
+            </div>
+            <span class="upload-status" id="track-upload-status"></span>
+            <button class="add-btn" id="addTrackBtn" onclick="addTrack()">
+              + Upload &amp; Add Track
+            </button>
+            <span class="saved-msg" id="trackAddedMsg">✓ Track added!</span>
+          </div>
+          <div class="items-list" id="tracks-list">
+            <p class="no-items-msg">No tracks yet.</p>
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+        <p class="section-label">Shows</p>
+
+        <!-- ======== 3. SHOWS MANAGER ======== -->
+        <div class="section-card" id="showsSection">
+          <h3>
+            🎤 Shows Manager
+            <span class="count-badge" id="showCountBadge">0</span>
+          </h3>
+          <p class="section-desc">
+            Add unlimited shows. Reorder with arrows. Site shows 3 at a time
+            with pagination.
+          </p>
+          <div class="item-form">
+            <input type="text" id="new-venue" placeholder="Venue name" />
             <div class="form-row">
               <input
                 type="text"
@@ -773,11 +911,7 @@
                 placeholder="Month (e.g. February)"
               />
             </div>
-            <input
-              type="text"
-              id="new-address"
-              placeholder="Address (e.g. 2011 W. North Avenue)"
-            />
+            <input type="text" id="new-address" placeholder="Address" />
             <input
               type="text"
               id="new-age"
@@ -791,16 +925,300 @@
             <input
               type="text"
               id="new-img-url"
-              placeholder="Image URL (optional - paste a link to venue photo)"
+              placeholder="Image URL (optional)"
             />
-            <button class="add-show-btn" onclick="addShow()">+ Add Show</button>
-            <span class="shows-saved-msg" id="showAddedMsg">✓ Show added!</span>
+            <button class="add-btn" onclick="addShow()">+ Add Show</button>
+            <span class="saved-msg" id="showAddedMsg">✓ Show added!</span>
+          </div>
+          <div class="items-list" id="shows-list">
+            <p class="no-items-msg">No shows yet.</p>
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+        <p class="section-label">Merch</p>
+
+        <!-- ======== 4. MERCH MANAGER ======== -->
+        <div class="section-card" id="merchSection">
+          <h3>
+            🛍️ Merch Manager
+            <span class="count-badge" id="merchCountBadge">0</span>
+          </h3>
+          <p class="section-desc">
+            Add merch items with image, price, and shop link. Site shows 3 at a
+            time with pagination arrows if more.
+          </p>
+          <div class="item-form">
+            <input
+              type="text"
+              id="new-merch-name"
+              placeholder="Item name (e.g. Limited Edition T-Shirt)"
+            />
+            <input
+              type="text"
+              id="new-merch-price"
+              placeholder="Price (e.g. 15.00)"
+            />
+            <input
+              type="text"
+              id="new-merch-link"
+              placeholder="Shopify link (or leave empty for Coming Soon)"
+            />
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="merch-img-label"
+                ><span class="upload-icon">🖼️</span
+                ><span id="merch-img-label-text"
+                  >Choose merch image...</span
+                ></label
+              >
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-merch-img"
+                accept="image/*"
+                onchange="
+                  handleFileSelect(
+                    this,
+                    'merch-img-label',
+                    'merch-img-label-text',
+                  )
+                "
+              />
+            </div>
+            <div class="upload-progress" id="merch-upload-progress">
+              <div class="upload-progress-bar" id="merch-upload-bar"></div>
+            </div>
+            <span class="upload-status" id="merch-upload-status"></span>
+            <button class="add-btn" id="addMerchBtn" onclick="addMerch()">
+              + Upload &amp; Add Item
+            </button>
+            <span class="saved-msg" id="merchAddedMsg">✓ Added!</span>
+          </div>
+          <div class="items-list" id="merch-list">
+            <p class="no-items-msg">No merch yet.</p>
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+        <p class="section-label">Bio</p>
+
+        <!-- ======== 5. BIO MANAGER ======== -->
+        <div class="section-card" id="bioSection">
+          <h3>📝 Bio Manager</h3>
+          <p class="section-desc">
+            Edit the Mikey bio text, band bio text, and manage bio carousel
+            images.
+          </p>
+
+          <!-- Mikey Bio Text -->
+          <div class="item-form">
+            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
+              >Mikey Bio Text</label
+            >
+            <textarea
+              id="mikey-bio-text"
+              placeholder="Enter Mikey's bio text..."
+            ></textarea>
+            <button class="add-btn" onclick="saveMikeyBio()">
+              Save Mikey Bio
+            </button>
+            <span class="saved-msg" id="mikeyBioSavedMsg">✓ Saved!</span>
           </div>
 
-          <!-- Existing Shows List -->
-          <div class="shows-list" id="shows-list">
-            <p class="no-shows-msg">No shows yet. Add one above!</p>
+          <!-- Band Bio Text -->
+          <div class="item-form">
+            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
+              >Band Bio Text</label
+            >
+            <textarea
+              id="band-bio-text"
+              placeholder="Enter band bio text..."
+            ></textarea>
+            <button class="add-btn" onclick="saveBandBio()">
+              Save Band Bio
+            </button>
+            <span class="saved-msg" id="bandBioSavedMsg">✓ Saved!</span>
           </div>
+
+          <!-- Left Carousel Images -->
+          <div class="item-form">
+            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
+              >Left Bio Carousel Images
+              <span class="count-badge" id="bioLeftCountBadge">0</span></label
+            >
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="bio-left-label"
+                ><span class="upload-icon">🖼️</span
+                ><span id="bio-left-label-text">Choose image...</span></label
+              >
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-bio-left-img"
+                accept="image/*"
+                onchange="
+                  handleFileSelect(
+                    this,
+                    'bio-left-label',
+                    'bio-left-label-text',
+                  )
+                "
+              />
+            </div>
+            <div class="upload-progress" id="bio-left-upload-progress">
+              <div class="upload-progress-bar" id="bio-left-upload-bar"></div>
+            </div>
+            <button class="add-btn" onclick="addBioImage('left')">
+              + Upload Image
+            </button>
+            <span class="saved-msg" id="bioLeftAddedMsg">✓ Added!</span>
+          </div>
+          <div class="items-list" id="bio-left-list">
+            <p class="no-items-msg">No images yet.</p>
+          </div>
+
+          <!-- Right Carousel Images -->
+          <div class="item-form" style="margin-top: 2.4rem">
+            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
+              >Right Bio Carousel Images
+              <span class="count-badge" id="bioRightCountBadge">0</span></label
+            >
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="bio-right-label"
+                ><span class="upload-icon">🖼️</span
+                ><span id="bio-right-label-text">Choose image...</span></label
+              >
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-bio-right-img"
+                accept="image/*"
+                onchange="
+                  handleFileSelect(
+                    this,
+                    'bio-right-label',
+                    'bio-right-label-text',
+                  )
+                "
+              />
+            </div>
+            <div class="upload-progress" id="bio-right-upload-progress">
+              <div class="upload-progress-bar" id="bio-right-upload-bar"></div>
+            </div>
+            <button class="add-btn" onclick="addBioImage('right')">
+              + Upload Image
+            </button>
+            <span class="saved-msg" id="bioRightAddedMsg">✓ Added!</span>
+          </div>
+          <div class="items-list" id="bio-right-list">
+            <p class="no-items-msg">No images yet.</p>
+          </div>
+
+          <!-- Band Image -->
+          <div class="item-form" style="margin-top: 2.4rem">
+            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
+              >Band Bio Image</label
+            >
+            <div class="file-upload-wrapper">
+              <label class="file-upload-label" id="band-img-label"
+                ><span class="upload-icon">🖼️</span
+                ><span id="band-img-label-text"
+                  >Choose band image...</span
+                ></label
+              >
+              <input
+                type="file"
+                class="file-upload-input"
+                id="new-band-img"
+                accept="image/*"
+                onchange="
+                  handleFileSelect(
+                    this,
+                    'band-img-label',
+                    'band-img-label-text',
+                  )
+                "
+              />
+            </div>
+            <div class="upload-progress" id="band-img-upload-progress">
+              <div class="upload-progress-bar" id="band-img-upload-bar"></div>
+            </div>
+            <button class="add-btn" onclick="saveBandImage()">
+              Upload Band Image
+            </button>
+            <span class="saved-msg" id="bandImgSavedMsg">✓ Saved!</span>
+            <img class="img-preview" id="band-img-preview" />
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+        <p class="section-label">Streaming / Live</p>
+
+        <!-- ======== 6. LIVE SECTION ======== -->
+        <div class="live-card">
+          <h3>Platforms</h3>
+          <div class="platform-row">
+            <div class="platform-info">
+              <span class="platform-icon">🎵</span
+              ><span class="platform-name">TikTok</span>
+            </div>
+            <label class="toggle-switch"
+              ><input
+                type="checkbox"
+                id="tiktokToggle"
+                onchange="updatePlatform('tiktok', this.checked)" /><span
+                class="toggle-slider"
+              ></span
+            ></label>
+          </div>
+          <div class="platform-row">
+            <div class="platform-info">
+              <span class="platform-icon">📸</span
+              ><span class="platform-name">Instagram</span>
+            </div>
+            <label class="toggle-switch"
+              ><input
+                type="checkbox"
+                id="instagramToggle"
+                onchange="updatePlatform('instagram', this.checked)" /><span
+                class="toggle-slider"
+              ></span
+            ></label>
+          </div>
+          <div class="platform-row">
+            <div class="platform-info">
+              <span class="platform-icon">▶️</span
+              ><span class="platform-name">YouTube</span>
+            </div>
+            <label class="toggle-switch"
+              ><input
+                type="checkbox"
+                id="youtubeToggle"
+                onchange="updatePlatform('youtube', this.checked)" /><span
+                class="toggle-slider"
+              ></span
+            ></label>
+          </div>
+        </div>
+        <div class="youtube-card">
+          <h3>YouTube Live URL</h3>
+          <p>Paste your live stream URL here</p>
+          <input
+            type="text"
+            class="youtube-input"
+            id="youtubeUrl"
+            placeholder="https://www.youtube.com/watch?v=..."
+          />
+          <button class="save-btn" onclick="saveYoutubeUrl()">Save URL</button>
+          <span class="save-success" id="saveSuccess">✓ Saved!</span>
+        </div>
+        <div class="go-live-card">
+          <button class="go-live-btn" id="goLiveBtn" onclick="toggleLive()">
+            GO LIVE
+          </button>
+          <p class="live-status-text" id="liveStatusText">
+            You are currently offline
+          </p>
         </div>
       </div>
     </div>
@@ -817,6 +1235,13 @@
         remove,
         update,
       } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+      import {
+        getStorage,
+        ref as storageRef,
+        uploadBytesResumable,
+        getDownloadURL,
+        deleteObject,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
@@ -830,12 +1255,19 @@
 
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
-
+      const storage = getStorage(app);
       const ADMIN_PASSWORD = "danisfat123ed";
 
+      let showEntries = [],
+        trackEntries = [],
+        carouselEntries = [],
+        merchEntries = [],
+        bioLeftEntries = [],
+        bioRightEntries = [];
+
+      // ===== AUTH =====
       window.login = function () {
-        const input = document.getElementById("passwordInput").value;
-        if (input === ADMIN_PASSWORD) {
+        if (document.getElementById("passwordInput").value === ADMIN_PASSWORD) {
           document.getElementById("loginBox").style.display = "none";
           document.getElementById("dashboard").style.display = "block";
           loadDashboard();
@@ -843,138 +1275,541 @@
           document.getElementById("loginError").style.display = "block";
         }
       };
-
       document
         .getElementById("passwordInput")
-        .addEventListener("keypress", function (e) {
+        .addEventListener("keypress", (e) => {
           if (e.key === "Enter") window.login();
         });
-
       window.logout = function () {
         document.getElementById("loginBox").style.display = "block";
         document.getElementById("dashboard").style.display = "none";
         document.getElementById("passwordInput").value = "";
       };
 
+      // ===== FILE HELPERS =====
+      window.handleFileSelect = function (input, labelId, textId) {
+        const label = document.getElementById(labelId),
+          text = document.getElementById(textId);
+        if (input.files.length > 0) {
+          text.textContent = input.files[0].name;
+          label.classList.add("has-file");
+        } else {
+          text.textContent = "Choose file...";
+          label.classList.remove("has-file");
+        }
+      };
+
+      function uploadFile(file, path, onProgress) {
+        return new Promise((resolve, reject) => {
+          const fileRef = storageRef(storage, path);
+          const task = uploadBytesResumable(fileRef, file);
+          task.on(
+            "state_changed",
+            (s) => {
+              if (onProgress)
+                onProgress((s.bytesTransferred / s.totalBytes) * 100);
+            },
+            reject,
+            async () => {
+              resolve(await getDownloadURL(task.snapshot.ref));
+            },
+          );
+        });
+      }
+
+      function flashMsg(id) {
+        const m = document.getElementById(id);
+        m.style.display = "inline";
+        setTimeout(() => (m.style.display = "none"), 2000);
+      }
+
+      function buildReorderableList(entries, listId, dbPath, renderFn) {
+        const list = document.getElementById(listId);
+        list.innerHTML = "";
+        if (entries.length === 0) {
+          list.innerHTML = '<p class="no-items-msg">No items yet.</p>';
+          return;
+        }
+        entries.forEach(([id, data], index) => {
+          const item = renderFn(id, data, index, entries.length);
+          item.setAttribute("draggable", "true");
+          item.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text/plain", dbPath + ":" + id);
+            item.classList.add("dragging");
+          });
+          item.addEventListener("dragend", () => {
+            item.classList.remove("dragging");
+            list
+              .querySelectorAll(".admin-item")
+              .forEach((el) => el.classList.remove("drag-over"));
+          });
+          item.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            item.classList.add("drag-over");
+          });
+          item.addEventListener("dragleave", () =>
+            item.classList.remove("drag-over"),
+          );
+          item.addEventListener("drop", (e) => {
+            e.preventDefault();
+            item.classList.remove("drag-over");
+            const payload = e.dataTransfer.getData("text/plain");
+            const [prefix, draggedId] = payload.split(":");
+            if (prefix === dbPath && draggedId !== id)
+              swapOrder(entries, dbPath, draggedId, id);
+          });
+          list.appendChild(item);
+        });
+      }
+
+      function moveItem(entries, dbPath, itemId, direction) {
+        const i = entries.findIndex(([id]) => id === itemId);
+        if (i === -1) return;
+        const j = i + direction;
+        if (j < 0 || j >= entries.length) return;
+        const updates = {};
+        updates[`${dbPath}/${entries[i][0]}/order`] = entries[j][1].order || 0;
+        updates[`${dbPath}/${entries[j][0]}/order`] = entries[i][1].order || 0;
+        if ((entries[i][1].order || 0) === (entries[j][1].order || 0))
+          updates[`${dbPath}/${entries[i][0]}/order`] =
+            (entries[i][1].order || 0) + direction;
+        update(ref(db), updates);
+      }
+
+      function swapOrder(entries, dbPath, draggedId, droppedId) {
+        const d = entries.find(([id]) => id === draggedId),
+          t = entries.find(([id]) => id === droppedId);
+        if (!d || !t) return;
+        const updates = {};
+        updates[`${dbPath}/${draggedId}/order`] = t[1].order || 0;
+        updates[`${dbPath}/${droppedId}/order`] = d[1].order || 0;
+        update(ref(db), updates);
+      }
+
+      function getMaxOrder(entries) {
+        let m = 0;
+        entries.forEach(([, d]) => {
+          if ((d.order || 0) > m) m = d.order || 0;
+        });
+        return m;
+      }
+
+      function sortEntries(data) {
+        return Object.entries(data).sort(
+          (a, b) => (a[1].order || 0) - (b[1].order || 0),
+        );
+      }
+
+      // ===== DASHBOARD =====
       function loadDashboard() {
         // Live status
-        onValue(ref(db, "liveStatus"), (snapshot) => {
-          const data = snapshot.val() || {};
-          document.getElementById("tiktokToggle").checked =
-            data.tiktok || false;
+        onValue(ref(db, "liveStatus"), (s) => {
+          const d = s.val() || {};
+          document.getElementById("tiktokToggle").checked = d.tiktok || false;
           document.getElementById("instagramToggle").checked =
-            data.instagram || false;
-          document.getElementById("youtubeToggle").checked =
-            data.youtube || false;
-          if (data.youtubeUrl)
-            document.getElementById("youtubeUrl").value = data.youtubeUrl;
-
-          const isLive = data.isLive || false;
-          const btn = document.getElementById("goLiveBtn");
-          const statusText = document.getElementById("liveStatusText");
-          if (isLive) {
+            d.instagram || false;
+          document.getElementById("youtubeToggle").checked = d.youtube || false;
+          if (d.youtubeUrl)
+            document.getElementById("youtubeUrl").value = d.youtubeUrl;
+          const btn = document.getElementById("goLiveBtn"),
+            st = document.getElementById("liveStatusText");
+          if (d.isLive) {
             btn.textContent = "END STREAM";
             btn.classList.add("live");
-            statusText.innerHTML =
+            st.innerHTML =
               '<span class="live-dot"></span> You are currently LIVE';
           } else {
             btn.textContent = "GO LIVE";
             btn.classList.remove("live");
-            statusText.textContent = "You are currently offline";
+            st.textContent = "You are currently offline";
           }
         });
-
         // Visitors
-        onValue(ref(db, "visitors"), (snapshot) => {
-          const data = snapshot.val() || {};
-          document.getElementById("visitorCount").textContent =
-            Object.keys(data).length;
+        onValue(ref(db, "visitors"), (s) => {
+          document.getElementById("visitorCount").textContent = Object.keys(
+            s.val() || {},
+          ).length;
         });
 
-        // Shows
-        onValue(ref(db, "shows"), (snapshot) => {
-          const data = snapshot.val() || {};
-          const list = document.getElementById("shows-list");
-          list.innerHTML = "";
-
-          const entries = Object.entries(data).sort(
-            (a, b) => (a[1].order || 0) - (b[1].order || 0),
+        // === CAROUSEL ===
+        onValue(ref(db, "carousel"), (s) => {
+          carouselEntries = sortEntries(s.val() || {});
+          document.getElementById("carouselCountBadge").textContent =
+            carouselEntries.length;
+          buildReorderableList(
+            carouselEntries,
+            "carousel-list",
+            "carousel",
+            (id, d, i, len) => {
+              const el = document.createElement("div");
+              el.className = "admin-item";
+              el.id = `carousel-item-${id}`;
+              el.innerHTML = `<div class="admin-item-top"><div class="admin-item-left">
+              <div class="reorder-controls"><button class="reorder-btn" onclick="moveItem(carouselEntries,'carousel','${id}',-1)" ${i === 0 ? "disabled" : ""}>&#9650;</button><button class="reorder-btn" onclick="moveItem(carouselEntries,'carousel','${id}',1)" ${i === len - 1 ? "disabled" : ""}>&#9660;</button></div>
+              <span class="position-badge">${i + 1}</span>
+              ${d.imgUrl ? `<img src="${d.imgUrl}" class="thumb-preview"/>` : ""}
+              <div class="admin-item-info"><h4>${d.alt || "Carousel Image"}</h4><p>Position ${i + 1}</p></div>
+            </div><div class="admin-item-actions"><button class="delete-btn" onclick="deleteStorageItem('carousel','${id}','${d.storagePath || ""}')">Delete</button></div></div>`;
+              return el;
+            },
           );
+        });
 
-          if (entries.length === 0) {
-            list.innerHTML =
-              '<p class="no-shows-msg">No shows yet. Add one above!</p>';
-            return;
+        // === TRACKS ===
+        onValue(ref(db, "tracks"), (s) => {
+          trackEntries = sortEntries(s.val() || {});
+          document.getElementById("trackCountBadge").textContent =
+            trackEntries.length;
+          buildReorderableList(
+            trackEntries,
+            "tracks-list",
+            "tracks",
+            (id, d, i, len) => {
+              const el = document.createElement("div");
+              el.className = "admin-item";
+              el.id = `track-item-${id}`;
+              el.innerHTML = `<div class="admin-item-top"><div class="admin-item-left">
+              <div class="reorder-controls"><button class="reorder-btn" onclick="moveItem(trackEntries,'tracks','${id}',-1)" ${i === 0 ? "disabled" : ""}>&#9650;</button><button class="reorder-btn" onclick="moveItem(trackEntries,'tracks','${id}',1)" ${i === len - 1 ? "disabled" : ""}>&#9660;</button></div>
+              <span class="position-badge">${i + 1}</span>
+              ${d.artUrl ? `<img src="${d.artUrl}" class="thumb-preview"/>` : ""}
+              <div class="admin-item-info"><h4>${d.title}</h4><p>${d.whiteText ? "White" : "Dark"} text</p></div>
+            </div><div class="admin-item-actions">
+              <button class="edit-btn" onclick="toggleEdit('track-edit-${id}','track-item-${id}')">Edit</button>
+              <button class="delete-btn" onclick="deleteTrack('${id}')">Delete</button>
+            </div></div>
+            <div class="edit-form" id="track-edit-${id}">
+              <input type="text" id="et-title-${id}" value="${d.title}" placeholder="Title"/>
+              <div class="color-picker-wrapper"><label>White text?</label><input type="checkbox" id="et-white-${id}" ${d.whiteText ? "checked" : ""}/></div>
+              <div style="display:flex;gap:1.2rem;"><button class="save-edit-btn" onclick="saveTrackEdit('${id}')">Save</button><button class="cancel-edit-btn" onclick="toggleEdit('track-edit-${id}','track-item-${id}')">Cancel</button></div>
+            </div>`;
+              return el;
+            },
+          );
+        });
+
+        // === SHOWS ===
+        onValue(ref(db, "shows"), (s) => {
+          showEntries = sortEntries(s.val() || {});
+          document.getElementById("showCountBadge").textContent =
+            showEntries.length;
+          buildReorderableList(
+            showEntries,
+            "shows-list",
+            "shows",
+            (id, d, i, len) => {
+              const el = document.createElement("div");
+              el.className = "admin-item";
+              el.id = `show-item-${id}`;
+              el.innerHTML = `<div class="admin-item-top"><div class="admin-item-left">
+              <div class="reorder-controls"><button class="reorder-btn" onclick="moveItem(showEntries,'shows','${id}',-1)" ${i === 0 ? "disabled" : ""}>&#9650;</button><button class="reorder-btn" onclick="moveItem(showEntries,'shows','${id}',1)" ${i === len - 1 ? "disabled" : ""}>&#9660;</button></div>
+              <span class="position-badge">${i + 1}</span>
+              <div class="admin-item-info"><h4>${d.venue}</h4><p>${d.date} &bull; ${d.address}</p></div>
+            </div><div class="admin-item-actions">
+              <button class="edit-btn" onclick="toggleEdit('show-edit-${id}','show-item-${id}')">Edit</button>
+              <button class="delete-btn" onclick="deleteItem('shows','${id}')">Delete</button>
+            </div></div>
+            <div class="edit-form" id="show-edit-${id}">
+              <input type="text" id="es-venue-${id}" value="${d.venue}" placeholder="Venue"/>
+              <div class="form-row"><input type="text" id="es-date-${id}" value="${d.date}" placeholder="Date"/><input type="text" id="es-month-${id}" value="${d.month}" placeholder="Month"/></div>
+              <input type="text" id="es-address-${id}" value="${d.address}" placeholder="Address"/>
+              <input type="text" id="es-age-${id}" value="${d.age}" placeholder="Age"/>
+              <input type="text" id="es-ticket-${id}" value="${d.ticketUrl || ""}" placeholder="Ticket URL"/>
+              <input type="text" id="es-img-${id}" value="${d.imgUrl || ""}" placeholder="Image URL"/>
+              <div style="display:flex;gap:1.2rem;"><button class="save-edit-btn" onclick="saveShowEdit('${id}')">Save</button><button class="cancel-edit-btn" onclick="toggleEdit('show-edit-${id}','show-item-${id}')">Cancel</button></div>
+            </div>`;
+              return el;
+            },
+          );
+        });
+
+        // === MERCH ===
+        onValue(ref(db, "merch"), (s) => {
+          merchEntries = sortEntries(s.val() || {});
+          document.getElementById("merchCountBadge").textContent =
+            merchEntries.length;
+          buildReorderableList(
+            merchEntries,
+            "merch-list",
+            "merch",
+            (id, d, i, len) => {
+              const el = document.createElement("div");
+              el.className = "admin-item";
+              el.id = `merch-item-${id}`;
+              el.innerHTML = `<div class="admin-item-top"><div class="admin-item-left">
+              <div class="reorder-controls"><button class="reorder-btn" onclick="moveItem(merchEntries,'merch','${id}',-1)" ${i === 0 ? "disabled" : ""}>&#9650;</button><button class="reorder-btn" onclick="moveItem(merchEntries,'merch','${id}',1)" ${i === len - 1 ? "disabled" : ""}>&#9660;</button></div>
+              <span class="position-badge">${i + 1}</span>
+              ${d.imgUrl ? `<img src="${d.imgUrl}" class="thumb-preview"/>` : ""}
+              <div class="admin-item-info"><h4>${d.name}</h4><p>$${d.price} &bull; ${d.link ? "Has link" : "Coming Soon"}</p></div>
+            </div><div class="admin-item-actions">
+              <button class="edit-btn" onclick="toggleEdit('merch-edit-${id}','merch-item-${id}')">Edit</button>
+              <button class="delete-btn" onclick="deleteStorageItem('merch','${id}','${d.storagePath || ""}')">Delete</button>
+            </div></div>
+            <div class="edit-form" id="merch-edit-${id}">
+              <input type="text" id="em-name-${id}" value="${d.name}" placeholder="Name"/>
+              <input type="text" id="em-price-${id}" value="${d.price}" placeholder="Price"/>
+              <input type="text" id="em-link-${id}" value="${d.link || ""}" placeholder="Shop link"/>
+              <div style="display:flex;gap:1.2rem;"><button class="save-edit-btn" onclick="saveMerchEdit('${id}')">Save</button><button class="cancel-edit-btn" onclick="toggleEdit('merch-edit-${id}','merch-item-${id}')">Cancel</button></div>
+            </div>`;
+              return el;
+            },
+          );
+        });
+
+        // === BIO ===
+        onValue(ref(db, "bio"), (s) => {
+          const d = s.val() || {};
+          document.getElementById("mikey-bio-text").value = d.mikeyText || "";
+          document.getElementById("band-bio-text").value = d.bandText || "";
+          if (d.bandImgUrl) {
+            const p = document.getElementById("band-img-preview");
+            p.src = d.bandImgUrl;
+            p.classList.add("visible");
           }
+        });
 
-          entries.forEach(([id, show]) => {
-            const item = document.createElement("div");
-            item.className = "show-admin-item";
-            item.id = `show-item-${id}`;
-            item.innerHTML = `
-              <div class="show-admin-top">
-                <div class="show-admin-info">
-                  <h4>${show.venue}</h4>
-                  <p>${show.date} &bull; ${show.address} &bull; ${show.age}</p>
-                </div>
-                <div class="show-admin-actions">
-                  <button class="edit-btn" onclick="toggleEdit('${id}')">Edit</button>
-                  <button class="delete-btn" onclick="deleteShow('${id}')">Delete</button>
-                </div>
-              </div>
-              ${show.imgUrl ? `<img src="${show.imgUrl}" class="show-img-preview visible" id="preview-${id}" />` : `<img class="show-img-preview" id="preview-${id}" />`}
-              <div class="show-edit-form" id="edit-form-${id}">
-                <input type="text" id="edit-venue-${id}" value="${show.venue}" placeholder="Venue name" />
-                <div class="form-row">
-                  <input type="text" id="edit-date-${id}" value="${show.date}" placeholder="Date" />
-                  <input type="text" id="edit-month-${id}" value="${show.month}" placeholder="Month" />
-                </div>
-                <input type="text" id="edit-address-${id}" value="${show.address}" placeholder="Address" />
-                <input type="text" id="edit-age-${id}" value="${show.age}" placeholder="Age restriction" />
-                <input type="text" id="edit-ticket-${id}" value="${show.ticketUrl || ""}" placeholder="Ticket URL" />
-                <input type="text" id="edit-img-${id}" value="${show.imgUrl || ""}" placeholder="Image URL" oninput="previewImg('${id}')" />
-                <div style="display:flex; gap:1.2rem; margin-top:0.4rem;">
-                  <button class="save-edit-btn" onclick="saveEdit('${id}', ${show.order || 0})">Save Changes</button>
-                  <button class="cancel-edit-btn" onclick="toggleEdit('${id}')">Cancel</button>
-                </div>
-              </div>
-            `;
-            list.appendChild(item);
-          });
+        // Bio left carousel
+        onValue(ref(db, "bioImages/left"), (s) => {
+          bioLeftEntries = sortEntries(s.val() || {});
+          document.getElementById("bioLeftCountBadge").textContent =
+            bioLeftEntries.length;
+          buildReorderableList(
+            bioLeftEntries,
+            "bio-left-list",
+            "bioImages/left",
+            (id, d, i, len) => {
+              const el = document.createElement("div");
+              el.className = "admin-item";
+              el.id = `bio-left-item-${id}`;
+              el.innerHTML = `<div class="admin-item-top"><div class="admin-item-left">
+              <div class="reorder-controls"><button class="reorder-btn" onclick="moveItem(bioLeftEntries,'bioImages/left','${id}',-1)" ${i === 0 ? "disabled" : ""}>&#9650;</button><button class="reorder-btn" onclick="moveItem(bioLeftEntries,'bioImages/left','${id}',1)" ${i === len - 1 ? "disabled" : ""}>&#9660;</button></div>
+              <span class="position-badge">${i + 1}</span>
+              <img src="${d.imgUrl}" class="thumb-preview"/>
+            </div><div class="admin-item-actions"><button class="delete-btn" onclick="deleteStorageItem('bioImages/left','${id}','${d.storagePath || ""}')">Delete</button></div></div>`;
+              return el;
+            },
+          );
+        });
+
+        // Bio right carousel
+        onValue(ref(db, "bioImages/right"), (s) => {
+          bioRightEntries = sortEntries(s.val() || {});
+          document.getElementById("bioRightCountBadge").textContent =
+            bioRightEntries.length;
+          buildReorderableList(
+            bioRightEntries,
+            "bio-right-list",
+            "bioImages/right",
+            (id, d, i, len) => {
+              const el = document.createElement("div");
+              el.className = "admin-item";
+              el.id = `bio-right-item-${id}`;
+              el.innerHTML = `<div class="admin-item-top"><div class="admin-item-left">
+              <div class="reorder-controls"><button class="reorder-btn" onclick="moveItem(bioRightEntries,'bioImages/right','${id}',-1)" ${i === 0 ? "disabled" : ""}>&#9650;</button><button class="reorder-btn" onclick="moveItem(bioRightEntries,'bioImages/right','${id}',1)" ${i === len - 1 ? "disabled" : ""}>&#9660;</button></div>
+              <span class="position-badge">${i + 1}</span>
+              <img src="${d.imgUrl}" class="thumb-preview"/>
+            </div><div class="admin-item-actions"><button class="delete-btn" onclick="deleteStorageItem('bioImages/right','${id}','${d.storagePath || ""}')">Delete</button></div></div>`;
+              return el;
+            },
+          );
         });
       }
 
-      window.addShow = function () {
-        const venue = document.getElementById("new-venue").value.trim();
-        const date = document.getElementById("new-date").value.trim();
-        const month = document.getElementById("new-month").value.trim();
-        const address = document.getElementById("new-address").value.trim();
-        const age = document.getElementById("new-age").value.trim();
-        const ticketUrl = document
-          .getElementById("new-ticket-url")
-          .value.trim();
-        const imgUrl = document.getElementById("new-img-url").value.trim();
+      // ===== GENERIC HELPERS =====
+      window.moveItem = moveItem;
+      window.toggleEdit = function (formId, itemId) {
+        document.getElementById(formId).classList.toggle("open");
+        document.getElementById(itemId).classList.toggle("editing");
+      };
+      window.deleteItem = function (path, id) {
+        if (confirm("Delete?")) remove(ref(db, `${path}/${id}`));
+      };
+      window.deleteStorageItem = async function (path, id, storagePath) {
+        if (!confirm("Delete?")) return;
+        if (storagePath) {
+          try {
+            await deleteObject(storageRef(storage, storagePath));
+          } catch (e) {
+            console.warn(e);
+          }
+        }
+        remove(ref(db, `${path}/${id}`));
+      };
 
-        if (!venue || !date || !month || !address || !age) {
-          alert(
-            "Please fill in venue, date, month, address, and age restriction.",
-          );
+      // ===== CAROUSEL =====
+      window.addCarouselImage = async function () {
+        const input = document.getElementById("new-carousel-img");
+        const alt =
+          document.getElementById("new-carousel-alt").value.trim() ||
+          "Carousel Image";
+        if (!input.files.length) {
+          alert("Choose an image.");
           return;
         }
+        const btn = document.getElementById("addCarouselBtn");
+        btn.disabled = true;
+        btn.textContent = "Uploading...";
+        const prog = document.getElementById("carousel-upload-progress");
+        prog.classList.add("active");
+        const bar = document.getElementById("carousel-upload-bar");
+        try {
+          const t = Date.now(),
+            ext = input.files[0].name.split(".").pop();
+          const url = await uploadFile(
+            input.files[0],
+            `carousel/img_${t}.${ext}`,
+            (p) => {
+              bar.style.width = p + "%";
+            },
+          );
+          const newRef = push(ref(db, "carousel"));
+          await set(newRef, {
+            imgUrl: url,
+            alt,
+            storagePath: `carousel/img_${t}.${ext}`,
+            order: getMaxOrder(carouselEntries) + 1,
+          });
+          input.value = "";
+          document.getElementById("new-carousel-alt").value = "";
+          document
+            .getElementById("carousel-img-label")
+            .classList.remove("has-file");
+          document.getElementById("carousel-img-label-text").textContent =
+            "Choose image...";
+          flashMsg("carouselAddedMsg");
+        } catch (e) {
+          alert("Upload failed: " + e.message);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "+ Upload Image";
+          prog.classList.remove("active");
+          bar.style.width = "0%";
+        }
+      };
 
+      // ===== TRACKS =====
+      window.addTrack = async function () {
+        const title = document.getElementById("new-track-title").value.trim();
+        const whiteText = document.getElementById("new-track-white").checked;
+        const mp3Input = document.getElementById("new-track-mp3"),
+          artInput = document.getElementById("new-track-art");
+        if (!title) {
+          alert("Enter title.");
+          return;
+        }
+        if (!mp3Input.files.length) {
+          alert("Select MP3.");
+          return;
+        }
+        if (!artInput.files.length) {
+          alert("Select art.");
+          return;
+        }
+        const btn = document.getElementById("addTrackBtn");
+        btn.disabled = true;
+        btn.textContent = "Uploading...";
+        const prog = document.getElementById("track-upload-progress");
+        prog.classList.add("active");
+        const bar = document.getElementById("track-upload-bar");
+        const status = document.getElementById("track-upload-status");
+        status.classList.add("active");
+        try {
+          const t = Date.now(),
+            safe = title.replace(/[^a-z0-9]/gi, "_").toLowerCase();
+          status.textContent = "Uploading MP3...";
+          const mp3Url = await uploadFile(
+            mp3Input.files[0],
+            `tracks/${safe}_${t}.mp3`,
+            (p) => {
+              bar.style.width = p * 0.6 + "%";
+            },
+          );
+          status.textContent = "Uploading artwork...";
+          const artExt = artInput.files[0].name.split(".").pop();
+          const artUrl = await uploadFile(
+            artInput.files[0],
+            `art/${safe}_${t}.${artExt}`,
+            (p) => {
+              bar.style.width = 60 + p * 0.4 + "%";
+            },
+          );
+          status.textContent = "Saving...";
+          const newRef = push(ref(db, "tracks"));
+          await set(newRef, {
+            title,
+            whiteText,
+            mp3Url,
+            artUrl,
+            mp3Path: `tracks/${safe}_${t}.mp3`,
+            artPath: `art/${safe}_${t}.${artExt}`,
+            order: getMaxOrder(trackEntries) + 1,
+          });
+          document.getElementById("new-track-title").value = "";
+          document.getElementById("new-track-white").checked = false;
+          mp3Input.value = "";
+          artInput.value = "";
+          ["mp3-label", "art-label"].forEach((l) =>
+            document.getElementById(l).classList.remove("has-file"),
+          );
+          document.getElementById("mp3-label-text").textContent =
+            "Choose MP3 file...";
+          document.getElementById("art-label-text").textContent =
+            "Choose album art...";
+          flashMsg("trackAddedMsg");
+        } catch (e) {
+          alert("Failed: " + e.message);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "+ Upload & Add Track";
+          prog.classList.remove("active");
+          status.classList.remove("active");
+          bar.style.width = "0%";
+        }
+      };
+      window.deleteTrack = async function (id) {
+        if (!confirm("Delete track and files?")) return;
+        const e = trackEntries.find(([eid]) => eid === id);
+        if (e) {
+          try {
+            if (e[1].mp3Path)
+              await deleteObject(storageRef(storage, e[1].mp3Path));
+          } catch (ex) {}
+          try {
+            if (e[1].artPath)
+              await deleteObject(storageRef(storage, e[1].artPath));
+          } catch (ex) {}
+        }
+        remove(ref(db, `tracks/${id}`));
+      };
+      window.saveTrackEdit = function (id) {
+        update(ref(db, `tracks/${id}`), {
+          title: document.getElementById(`et-title-${id}`).value.trim(),
+          whiteText: document.getElementById(`et-white-${id}`).checked,
+        });
+        toggleEdit(`track-edit-${id}`, `track-item-${id}`);
+      };
+
+      // ===== SHOWS =====
+      window.addShow = function () {
+        const v = document.getElementById("new-venue").value.trim(),
+          d = document.getElementById("new-date").value.trim(),
+          mo = document.getElementById("new-month").value.trim(),
+          a = document.getElementById("new-address").value.trim(),
+          ag = document.getElementById("new-age").value.trim();
+        if (!v || !d || !mo || !a || !ag) {
+          alert("Fill required fields.");
+          return;
+        }
         const newRef = push(ref(db, "shows"));
         set(newRef, {
-          venue,
-          date,
-          month,
-          address,
-          age,
-          ticketUrl,
-          imgUrl,
-          order: Date.now(),
+          venue: v,
+          date: d,
+          month: mo,
+          address: a,
+          age: ag,
+          ticketUrl: document.getElementById("new-ticket-url").value.trim(),
+          imgUrl: document.getElementById("new-img-url").value.trim(),
+          order: getMaxOrder(showEntries) + 1,
         });
-
-        // Clear form
         [
           "new-venue",
           "new-date",
@@ -984,81 +1819,204 @@
           "new-ticket-url",
           "new-img-url",
         ].forEach((id) => (document.getElementById(id).value = ""));
-
-        const msg = document.getElementById("showAddedMsg");
-        msg.style.display = "inline";
-        setTimeout(() => (msg.style.display = "none"), 2000);
+        flashMsg("showAddedMsg");
       };
-
-      window.deleteShow = function (id) {
-        if (confirm("Delete this show?")) {
-          remove(ref(db, `shows/${id}`));
-        }
-      };
-
-      window.toggleEdit = function (id) {
-        const form = document.getElementById(`edit-form-${id}`);
-        const item = document.getElementById(`show-item-${id}`);
-        form.classList.toggle("open");
-        item.classList.toggle("editing");
-      };
-
-      window.saveEdit = function (id, order) {
-        const venue = document.getElementById(`edit-venue-${id}`).value.trim();
-        const date = document.getElementById(`edit-date-${id}`).value.trim();
-        const month = document.getElementById(`edit-month-${id}`).value.trim();
-        const address = document
-          .getElementById(`edit-address-${id}`)
-          .value.trim();
-        const age = document.getElementById(`edit-age-${id}`).value.trim();
-        const ticketUrl = document
-          .getElementById(`edit-ticket-${id}`)
-          .value.trim();
-        const imgUrl = document.getElementById(`edit-img-${id}`).value.trim();
-
+      window.saveShowEdit = function (id) {
+        const entry = showEntries.find(([eid]) => eid === id);
         update(ref(db, `shows/${id}`), {
-          venue,
-          date,
-          month,
-          address,
-          age,
-          ticketUrl,
-          imgUrl,
-          order,
+          venue: document.getElementById(`es-venue-${id}`).value.trim(),
+          date: document.getElementById(`es-date-${id}`).value.trim(),
+          month: document.getElementById(`es-month-${id}`).value.trim(),
+          address: document.getElementById(`es-address-${id}`).value.trim(),
+          age: document.getElementById(`es-age-${id}`).value.trim(),
+          ticketUrl: document.getElementById(`es-ticket-${id}`).value.trim(),
+          imgUrl: document.getElementById(`es-img-${id}`).value.trim(),
+          order: entry ? entry[1].order || 0 : Date.now(),
         });
-        toggleEdit(id);
+        toggleEdit(`show-edit-${id}`, `show-item-${id}`);
       };
 
-      window.previewImg = function (id) {
-        const url = document.getElementById(`edit-img-${id}`).value.trim();
-        const preview = document.getElementById(`preview-${id}`);
-        if (url) {
-          preview.src = url;
-          preview.classList.add("visible");
-        } else {
-          preview.classList.remove("visible");
+      // ===== MERCH =====
+      window.addMerch = async function () {
+        const name = document.getElementById("new-merch-name").value.trim();
+        const price = document.getElementById("new-merch-price").value.trim();
+        const link = document.getElementById("new-merch-link").value.trim();
+        const imgInput = document.getElementById("new-merch-img");
+        if (!name || !price) {
+          alert("Enter name and price.");
+          return;
+        }
+        if (!imgInput.files.length) {
+          alert("Select image.");
+          return;
+        }
+        const btn = document.getElementById("addMerchBtn");
+        btn.disabled = true;
+        btn.textContent = "Uploading...";
+        const prog = document.getElementById("merch-upload-progress");
+        prog.classList.add("active");
+        const bar = document.getElementById("merch-upload-bar");
+        try {
+          const t = Date.now(),
+            ext = imgInput.files[0].name.split(".").pop();
+          const url = await uploadFile(
+            imgInput.files[0],
+            `merch/img_${t}.${ext}`,
+            (p) => {
+              bar.style.width = p + "%";
+            },
+          );
+          const newRef = push(ref(db, "merch"));
+          await set(newRef, {
+            name,
+            price,
+            link,
+            imgUrl: url,
+            storagePath: `merch/img_${t}.${ext}`,
+            order: getMaxOrder(merchEntries) + 1,
+          });
+          document.getElementById("new-merch-name").value = "";
+          document.getElementById("new-merch-price").value = "";
+          document.getElementById("new-merch-link").value = "";
+          imgInput.value = "";
+          document
+            .getElementById("merch-img-label")
+            .classList.remove("has-file");
+          document.getElementById("merch-img-label-text").textContent =
+            "Choose merch image...";
+          flashMsg("merchAddedMsg");
+        } catch (e) {
+          alert("Failed: " + e.message);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "+ Upload & Add Item";
+          prog.classList.remove("active");
+          bar.style.width = "0%";
+        }
+      };
+      window.saveMerchEdit = function (id) {
+        const entry = merchEntries.find(([eid]) => eid === id);
+        update(ref(db, `merch/${id}`), {
+          name: document.getElementById(`em-name-${id}`).value.trim(),
+          price: document.getElementById(`em-price-${id}`).value.trim(),
+          link: document.getElementById(`em-link-${id}`).value.trim(),
+          order: entry ? entry[1].order || 0 : Date.now(),
+        });
+        toggleEdit(`merch-edit-${id}`, `merch-item-${id}`);
+      };
+
+      // ===== BIO =====
+      window.saveMikeyBio = function () {
+        set(
+          ref(db, "bio/mikeyText"),
+          document.getElementById("mikey-bio-text").value,
+        );
+        flashMsg("mikeyBioSavedMsg");
+      };
+      window.saveBandBio = function () {
+        set(
+          ref(db, "bio/bandText"),
+          document.getElementById("band-bio-text").value,
+        );
+        flashMsg("bandBioSavedMsg");
+      };
+      window.addBioImage = async function (side) {
+        const input = document.getElementById(`new-bio-${side}-img`);
+        if (!input.files.length) {
+          alert("Choose image.");
+          return;
+        }
+        const prog = document.getElementById(`bio-${side}-upload-progress`);
+        prog.classList.add("active");
+        const bar = document.getElementById(`bio-${side}-upload-bar`);
+        const entries = side === "left" ? bioLeftEntries : bioRightEntries;
+        try {
+          const t = Date.now(),
+            ext = input.files[0].name.split(".").pop();
+          const url = await uploadFile(
+            input.files[0],
+            `bio/${side}_${t}.${ext}`,
+            (p) => {
+              bar.style.width = p + "%";
+            },
+          );
+          const newRef = push(ref(db, `bioImages/${side}`));
+          await set(newRef, {
+            imgUrl: url,
+            storagePath: `bio/${side}_${t}.${ext}`,
+            order: getMaxOrder(entries) + 1,
+          });
+          input.value = "";
+          document
+            .getElementById(`bio-${side}-label`)
+            .classList.remove("has-file");
+          document.getElementById(`bio-${side}-label-text`).textContent =
+            "Choose image...";
+          flashMsg(
+            `bio${side.charAt(0).toUpperCase() + side.slice(1)}AddedMsg`,
+          );
+        } catch (e) {
+          alert("Failed: " + e.message);
+        } finally {
+          prog.classList.remove("active");
+          bar.style.width = "0%";
+        }
+      };
+      window.saveBandImage = async function () {
+        const input = document.getElementById("new-band-img");
+        if (!input.files.length) {
+          alert("Choose image.");
+          return;
+        }
+        const prog = document.getElementById("band-img-upload-progress");
+        prog.classList.add("active");
+        const bar = document.getElementById("band-img-upload-bar");
+        try {
+          const t = Date.now(),
+            ext = input.files[0].name.split(".").pop();
+          const url = await uploadFile(
+            input.files[0],
+            `bio/band_${t}.${ext}`,
+            (p) => {
+              bar.style.width = p + "%";
+            },
+          );
+          await set(ref(db, "bio/bandImgUrl"), url);
+          await set(ref(db, "bio/bandImgPath"), `bio/band_${t}.${ext}`);
+          document.getElementById("band-img-preview").src = url;
+          document.getElementById("band-img-preview").classList.add("visible");
+          input.value = "";
+          document
+            .getElementById("band-img-label")
+            .classList.remove("has-file");
+          document.getElementById("band-img-label-text").textContent =
+            "Choose band image...";
+          flashMsg("bandImgSavedMsg");
+        } catch (e) {
+          alert("Failed: " + e.message);
+        } finally {
+          prog.classList.remove("active");
+          bar.style.width = "0%";
         }
       };
 
-      window.updatePlatform = function (platform, value) {
-        set(ref(db, `liveStatus/${platform}`), value);
+      // ===== LIVE =====
+      window.updatePlatform = function (p, v) {
+        set(ref(db, `liveStatus/${p}`), v);
       };
-
       window.saveYoutubeUrl = function () {
-        const url = document.getElementById("youtubeUrl").value;
-        set(ref(db, "liveStatus/youtubeUrl"), url);
-        const success = document.getElementById("saveSuccess");
-        success.style.display = "inline";
-        setTimeout(() => (success.style.display = "none"), 2000);
+        set(
+          ref(db, "liveStatus/youtubeUrl"),
+          document.getElementById("youtubeUrl").value,
+        );
+        flashMsg("saveSuccess");
       };
-
       window.toggleLive = function () {
         const btn = document.getElementById("goLiveBtn");
-        const isCurrentlyLive = btn.classList.contains("live");
-        set(ref(db, "liveStatus/isLive"), !isCurrentlyLive);
+        set(ref(db, "liveStatus/isLive"), !btn.classList.contains("live"));
       };
 
-      // Track visitor
+      // Visitor
       const visitorRef = push(ref(db, "visitors"));
       set(visitorRef, { active: true, timestamp: Date.now() });
       onDisconnect(visitorRef).remove();

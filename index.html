@@ -59,43 +59,137 @@
       <img src="img/MHlogo.png" alt="Logo" class="simple-logo" />
     </div>
 
-    <!-- HERO SECTION - IMAGE CAROUSEL -->
+    <!-- HERO SECTION - IMAGE CAROUSEL (loaded from Firebase) -->
     <section class="section-hero">
-     <div class="carousel-container">
-  <div class="carousel-wrapper">
-    <div class="carousel-slide active">
-      <img src="img/scroll/mhcar2.JPG" alt="Mikey Harms 2" />
-    </div>
-    <div class="carousel-slide">
-      <img src="img/scroll/Mheadshot1.jpg" alt="Mikey Harms 1" />
-    </div>
-    <div class="carousel-slide">
-      <img src="img/scroll/mhcar3.JPG" alt="Mikey Harms 3" />
-    </div>
-    <div class="carousel-slide">
-      <img src="img/scroll/promis.png" alt="Mikey Harms 4" />
-    </div>
-  </div>
+      <div class="carousel-container">
+        <div class="carousel-wrapper" id="carousel-wrapper">
+          <!-- Slides load from Firebase -->
+        </div>
         <button
           class="carousel-arrow carousel-arrow-left"
           aria-label="Previous image"
+          id="heroArrowLeft"
         >
           <ion-icon name="chevron-back-outline"></ion-icon>
         </button>
         <button
           class="carousel-arrow carousel-arrow-right"
           aria-label="Next image"
+          id="heroArrowRight"
         >
           <ion-icon name="chevron-forward-outline"></ion-icon>
         </button>
-        <div class="carousel-dots">
-          <span class="dot active" data-slide="0"></span>
-          <span class="dot" data-slide="1"></span>
-          <span class="dot" data-slide="2"></span>
-          <span class="dot" data-slide="3"></span>
+        <div class="carousel-dots" id="carousel-dots">
+          <!-- Dots load from Firebase -->
         </div>
       </div>
     </section>
+
+    <!-- Firebase Carousel Loader -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+      const fbConf = {
+        apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+        authDomain: "mikey-harms-website.firebaseapp.com",
+        databaseURL: "https://mikey-harms-website-default-rtdb.firebaseio.com",
+        projectId: "mikey-harms-website",
+        storageBucket: "mikey-harms-website.firebasestorage.app",
+        messagingSenderId: "359019811623",
+        appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+      };
+
+      const carApp = initializeApp(fbConf, "carouselApp");
+      const carDb = getDatabase(carApp);
+
+      const wrapper = document.getElementById("carousel-wrapper");
+      const dotsContainer = document.getElementById("carousel-dots");
+      const leftArrow = document.getElementById("heroArrowLeft");
+      const rightArrow = document.getElementById("heroArrowRight");
+
+      let currentSlide = 0;
+      let autoInterval;
+      let slideCount = 0;
+
+      function showSlide(index) {
+        const slides = wrapper.querySelectorAll(".carousel-slide");
+        const dots = dotsContainer.querySelectorAll(".dot");
+        slides.forEach((s) => s.classList.remove("active"));
+        dots.forEach((d) => d.classList.remove("active"));
+        if (slides[index]) slides[index].classList.add("active");
+        if (dots[index]) dots[index].classList.add("active");
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slideCount;
+        showSlide(currentSlide);
+      }
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+        showSlide(currentSlide);
+      }
+      function startAuto() {
+        autoInterval = setInterval(nextSlide, 4000);
+      }
+      function resetAuto() {
+        clearInterval(autoInterval);
+        startAuto();
+      }
+
+      rightArrow.addEventListener("click", () => {
+        nextSlide();
+        resetAuto();
+      });
+      leftArrow.addEventListener("click", () => {
+        prevSlide();
+        resetAuto();
+      });
+
+      onValue(ref(carDb, "carousel"), (snapshot) => {
+        const data = snapshot.val() || {};
+        const images = Object.values(data).sort(
+          (a, b) => (a.order || 0) - (b.order || 0),
+        );
+
+        wrapper.innerHTML = "";
+        dotsContainer.innerHTML = "";
+        clearInterval(autoInterval);
+
+        if (images.length === 0) {
+          // Fallback if no images in Firebase
+          wrapper.innerHTML =
+            '<div class="carousel-slide active"><img src="img/scroll/mhcar2.JPG" alt="Mikey Harms" /></div>';
+          slideCount = 1;
+          return;
+        }
+
+        slideCount = images.length;
+
+        images.forEach((img, i) => {
+          const slide = document.createElement("div");
+          slide.className = "carousel-slide" + (i === 0 ? " active" : "");
+          slide.innerHTML = `<img src="${img.imgUrl}" alt="${img.alt || "Mikey Harms"}" />`;
+          wrapper.appendChild(slide);
+
+          const dot = document.createElement("span");
+          dot.className = "dot" + (i === 0 ? " active" : "");
+          dot.addEventListener("click", () => {
+            currentSlide = i;
+            showSlide(i);
+            resetAuto();
+          });
+          dotsContainer.appendChild(dot);
+        });
+
+        currentSlide = 0;
+        if (slideCount > 1) startAuto();
+      });
+    </script>
 
     <!-- HEADER -->
     <header class="header">
@@ -127,33 +221,13 @@
     </header>
 
     <main>
-      <!-- RELEASED TRACKS SECTION -->
+      <!-- RELEASED TRACKS SECTION (loaded from Firebase) -->
       <section class="section-tracks" id="music">
         <div class="container">
           <span class="subheading">Released Tracks</span>
 
-          <div class="tracks-grid">
-            <div class="track-item" data-audio="audio/rusty.mp3">
-              <img src="img/logoBLK.jpg" alt="Rusty Metal Box" />
-              <div class="play-overlay">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </div>
-              <div class="track-title">Rusty Metal Box</div>
-            </div>
-            <div class="track-item" data-audio="audio/third.mp3">
-              <img src="img/logoBLK.jpg" alt="Third Time Today" />
-              <div class="play-overlay">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </div>
-              <div class="track-title">Third Time Today</div>
-            </div>
-            <div class="track-item" data-audio="audio/promis.mp3">
-              <img src="img/scroll/promis.png" alt="Promises" />
-              <div class="play-overlay">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </div>
-              <div class="track-title white">Promises</div>
-            </div>
+          <div class="tracks-grid" id="tracks-grid">
+            <!-- Tracks load here from Firebase -->
           </div>
 
           <!-- Audio Player -->
@@ -194,28 +268,151 @@
                 value="100"
               />
             </div>
-            <audio id="musicPlayer">
-              <source src="" type="audio/mpeg" />
-            </audio>
-          </div>
-
-
-
-          <!-- VIDEO (add the dash dash greaterthan back here)
-          <h2 class="heading-secondary" style="margin-top: 6.4rem">
-            <span class="mikey-harms-text">MIKEY HARMS</span> Band - Sunday,
-            February 1st 2026
-          </h2>
-          <div class="video-container">
-            <video controls>
-              <source src="img/MHpractice1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <audio id="musicPlayer"><source src="" type="audio/mpeg" /></audio>
           </div>
         </div>
       </section>
 
-      -->
+      <!-- Firebase Tracks Loader -->
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          onValue,
+        } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+        const fbConf = {
+          apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+          authDomain: "mikey-harms-website.firebaseapp.com",
+          databaseURL:
+            "https://mikey-harms-website-default-rtdb.firebaseio.com",
+          projectId: "mikey-harms-website",
+          storageBucket: "mikey-harms-website.firebasestorage.app",
+          messagingSenderId: "359019811623",
+          appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+        };
+
+        const tApp = initializeApp(fbConf, "tracksApp");
+        const tDb = getDatabase(tApp);
+
+        const tracksGrid = document.getElementById("tracks-grid");
+        const audioPlayer = document.getElementById("audioPlayer");
+        const musicPlayer = document.getElementById("musicPlayer");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const progressBar = document.querySelector(".progress-bar");
+        const progressFill = document.getElementById("progressFill");
+        const currentTimeEl = document.getElementById("currentTime");
+        const durationEl = document.getElementById("duration");
+        const volumeBtn = document.getElementById("volumeBtn");
+        const volumeSlider = document.getElementById("volumeSlider");
+        const playerAlbumArt = document.getElementById("playerAlbumArt");
+        const playerTrackName = document.getElementById("playerTrackName");
+        let currentTrackEl = null;
+
+        function formatTime(s) {
+          const m = Math.floor(s / 60);
+          const sec = Math.floor(s % 60);
+          return `${m}:${sec.toString().padStart(2, "0")}`;
+        }
+
+        onValue(ref(tDb, "tracks"), (snapshot) => {
+          const data = snapshot.val() || {};
+          const tracks = Object.values(data).sort(
+            (a, b) => (a.order || 0) - (b.order || 0),
+          );
+          tracksGrid.innerHTML = "";
+          if (tracks.length === 0) {
+            tracksGrid.innerHTML =
+              '<p style="text-align:center; font-size:1.8rem; color:#888; grid-column:1/-1;">New music coming soon!</p>';
+            return;
+          }
+          tracks.forEach((track) => {
+            const item = document.createElement("div");
+            item.className = "track-item";
+            item.setAttribute("data-audio", track.mp3Url);
+            item.innerHTML = `
+        <img src="${track.artUrl}" alt="${track.title}" />
+        <div class="play-overlay"><ion-icon name="play-circle-outline"></ion-icon></div>
+        <div class="track-title ${track.whiteText ? "white" : ""}">${track.title}</div>
+      `;
+            item.addEventListener("click", function () {
+              document
+                .querySelectorAll(".track-item")
+                .forEach((t) => t.classList.remove("playing"));
+              this.classList.add("playing");
+              musicPlayer.src = this.getAttribute("data-audio");
+              playerAlbumArt.src = this.querySelector("img").src;
+              playerTrackName.textContent = this.querySelector("img").alt;
+              audioPlayer.style.display = "block";
+              musicPlayer.play();
+              currentTrackEl = this;
+              playPauseBtn
+                .querySelector("ion-icon")
+                .setAttribute("name", "pause");
+            });
+            tracksGrid.appendChild(item);
+          });
+        });
+
+        if (playPauseBtn)
+          playPauseBtn.addEventListener("click", () => {
+            if (musicPlayer.paused) {
+              musicPlayer.play();
+              playPauseBtn
+                .querySelector("ion-icon")
+                .setAttribute("name", "pause");
+            } else {
+              musicPlayer.pause();
+              playPauseBtn
+                .querySelector("ion-icon")
+                .setAttribute("name", "play");
+            }
+          });
+        if (musicPlayer) {
+          musicPlayer.addEventListener("timeupdate", () => {
+            progressFill.style.width = `${(musicPlayer.currentTime / musicPlayer.duration) * 100}%`;
+            currentTimeEl.textContent = formatTime(musicPlayer.currentTime);
+          });
+          musicPlayer.addEventListener("loadedmetadata", () => {
+            durationEl.textContent = formatTime(musicPlayer.duration);
+          });
+          musicPlayer.addEventListener("ended", () => {
+            playPauseBtn.querySelector("ion-icon").setAttribute("name", "play");
+            if (currentTrackEl) currentTrackEl.classList.remove("playing");
+          });
+        }
+        if (progressBar)
+          progressBar.addEventListener("click", (e) => {
+            const r = progressBar.getBoundingClientRect();
+            musicPlayer.currentTime =
+              ((e.clientX - r.left) / r.width) * musicPlayer.duration;
+          });
+        if (volumeSlider)
+          volumeSlider.addEventListener("input", (e) => {
+            musicPlayer.volume = e.target.value / 100;
+            const vi = volumeBtn.querySelector("ion-icon");
+            if (e.target.value == 0) vi.setAttribute("name", "volume-mute");
+            else if (e.target.value < 50) vi.setAttribute("name", "volume-low");
+            else vi.setAttribute("name", "volume-high");
+          });
+        if (volumeBtn)
+          volumeBtn.addEventListener("click", () => {
+            if (musicPlayer.volume > 0) {
+              musicPlayer.volume = 0;
+              volumeSlider.value = 0;
+              volumeBtn
+                .querySelector("ion-icon")
+                .setAttribute("name", "volume-mute");
+            } else {
+              musicPlayer.volume = 1;
+              volumeSlider.value = 100;
+              volumeBtn
+                .querySelector("ion-icon")
+                .setAttribute("name", "volume-high");
+            }
+          });
+      </script>
 
       <!-- MUSIC & SOCIALS SECTION -->
       <section class="section-music-socials" id="socials">
@@ -227,304 +424,356 @@
                 class="footer-link"
                 href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ"
                 target="_blank"
+                ><i class="fab fa-spotify"></i><span>Spotify</span></a
               >
-                <i class="fab fa-spotify"></i>
-                <span>Spotify</span>
-              </a>
             </li>
             <li>
               <a
                 class="footer-link"
                 href="https://music.apple.com/us/artist/mikey-harms/1573931931"
                 target="_blank"
+                ><ion-icon class="social-icon" name="logo-apple"></ion-icon
+                ><span>Apple Music</span></a
               >
-                <ion-icon class="social-icon" name="logo-apple"></ion-icon>
-                <span>Apple Music</span>
-              </a>
             </li>
             <li>
               <a
                 class="footer-link"
                 href="https://www.youtube.com/@mikey_harms_"
                 target="_blank"
+                ><ion-icon class="social-icon" name="logo-youtube"></ion-icon
+                ><span>YouTube</span></a
               >
-                <ion-icon class="social-icon" name="logo-youtube"></ion-icon>
-                <span>YouTube</span>
-              </a>
             </li>
             <li>
               <a
                 class="footer-link"
                 href="https://www.instagram.com/mikeyharmsmusic/"
                 target="_blank"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+                ><span>Instagram</span></a
               >
-                <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
-                <span>Instagram</span>
-              </a>
             </li>
             <li>
               <a
                 class="footer-link"
                 href="https://www.tiktok.com/@mikey_harms_"
                 target="_blank"
+                ><ion-icon class="social-icon" name="logo-tiktok"></ion-icon
+                ><span>TikTok</span></a
               >
-                <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
-                <span>TikTok</span>
-              </a>
             </li>
           </ul>
         </div>
       </section>
 
       <!-- LIVE SHOWS SECTION -->
-<section class="section-shows" id="shows">
-  <div class="container center-text">
-    <span class="subheading">Live</span>
-    <h2 class="heading-secondary">
-      See <span class="mikey-harms-text">MIKEY HARMS</span> live!
-    </h2>
-  </div>
-
-  <!-- Search Bar -->
-  <div class="container shows-search-container">
-    <div class="shows-search-wrapper">
-      <ion-icon class="shows-search-icon" name="search-outline"></ion-icon>
-      <input
-        type="text"
-        id="shows-search"
-        class="shows-search-input"
-        placeholder="Search by venue, date, or month..."
-      />
-    </div>
-  </div>
-
-  <!-- Shows Grid -->
-  <div class="container">
-    <div class="grid grid--3-cols margin-bottom-md" id="shows-grid">
-      <!-- Shows load here from Firebase -->
-    </div>
-
-    <!-- No results message -->
-    <p class="shows-no-results" id="shows-no-results" style="display:none;">No shows found. Try a different search!</p>
-
-    <!-- Pagination -->
-    <div class="shows-pagination" id="shows-pagination" style="display:none;">
-      <button class="shows-arrow" id="shows-prev" aria-label="Previous shows">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </button>
-      <span class="shows-page-indicator" id="shows-page-indicator">1 / 1</span>
-      <button class="shows-arrow" id="shows-next" aria-label="Next shows">
-        <ion-icon name="chevron-forward-outline"></ion-icon>
-      </button>
-    </div>
-  </div>
-</section>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
-    authDomain: "mikey-harms-website.firebaseapp.com",
-    databaseURL: "https://mikey-harms-website-default-rtdb.firebaseio.com",
-    projectId: "mikey-harms-website",
-    storageBucket: "mikey-harms-website.firebasestorage.app",
-    messagingSenderId: "359019811623",
-    appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  const showsPerPage = 3;
-  let currentPage = 1;
-  let filteredShows = [];
-  let allShowsData = [];
-
-  const grid = document.getElementById("shows-grid");
-  const searchInput = document.getElementById("shows-search");
-  const prevBtn = document.getElementById("shows-prev");
-  const nextBtn = document.getElementById("shows-next");
-  const pageIndicator = document.getElementById("shows-page-indicator");
-  const noResults = document.getElementById("shows-no-results");
-  const pagination = document.getElementById("shows-pagination");
-
-  function renderShows() {
-    const totalPages = Math.max(1, Math.ceil(filteredShows.length / showsPerPage));
-    const start = (currentPage - 1) * showsPerPage;
-    const end = start + showsPerPage;
-
-    grid.innerHTML = "";
-    const pageShows = filteredShows.slice(start, end);
-
-    if (filteredShows.length === 0) {
-      noResults.style.display = "block";
-      pagination.style.display = "none";
-      return;
-    }
-
-    noResults.style.display = "none";
-    pagination.style.display = filteredShows.length > showsPerPage ? "flex" : "none";
-
-    pageShows.forEach(show => {
-      const card = document.createElement("div");
-      card.className = "show-card";
-      card.innerHTML = `
-        ${show.imgUrl ? `<img src="${show.imgUrl}" class="show-img" alt="${show.venue}" />` : ""}
-        <div class="show-content">
-          <div class="show-tags">
-            <span class="tag tag--upcoming">${show.date}</span>
-          </div>
-          <p class="show-title">${show.venue}</p>
-          <ul class="show-details">
-            <li class="show-detail">
-              <ion-icon class="show-icon" name="star-outline"></ion-icon>
-              <span><strong>${show.age}</strong></span>
-            </li>
-            <li class="show-detail">
-              <ion-icon class="show-icon" name="location-outline"></ion-icon>
-              <span><strong>${show.address}</strong></span>
-            </li>
-            <li class="show-detail">
-              <ion-icon class="show-icon" name="ticket-outline"></ion-icon>
-              <span><strong>${show.ticketUrl
-                ? `<a href="${show.ticketUrl}" target="_blank" rel="noopener noreferrer">Link To Show</a>`
-                : "Link coming soon"
-              }</strong></span>
-            </li>
-          </ul>
+      <section class="section-shows" id="shows">
+        <div class="container center-text">
+          <span class="subheading">Live</span>
+          <h2 class="heading-secondary">
+            See <span class="mikey-harms-text">MIKEY HARMS</span> live!
+          </h2>
         </div>
-      `;
-      grid.appendChild(card);
-    });
-
-    pageIndicator.textContent = `${currentPage} / ${totalPages}`;
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
-  }
-
-  function filterShows() {
-    const query = searchInput.value.toLowerCase().trim();
-    filteredShows = allShowsData.filter(show =>
-      show.venue.toLowerCase().includes(query) ||
-      show.date.toLowerCase().includes(query) ||
-      show.month.toLowerCase().includes(query)
-    );
-    currentPage = 1;
-    renderShows();
-  }
-
-  searchInput.addEventListener("input", filterShows);
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) { currentPage--; renderShows(); }
-  });
-  nextBtn.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredShows.length / showsPerPage);
-    if (currentPage < totalPages) { currentPage++; renderShows(); }
-  });
-
-  onValue(ref(db, "shows"), (snapshot) => {
-    const data = snapshot.val() || {};
-    allShowsData = Object.values(data).sort((a, b) => (a.order || 0) - (b.order || 0));
-    filteredShows = [...allShowsData];
-    currentPage = 1;
-    renderShows();
-  });
-</script>
-
-      <!-- MERCH SECTION -->
-      <section class="section-merch" id="merch">
+        <div class="container shows-search-container">
+          <div class="shows-search-wrapper">
+            <ion-icon
+              class="shows-search-icon"
+              name="search-outline"
+            ></ion-icon>
+            <input
+              type="text"
+              id="shows-search"
+              class="shows-search-input"
+              placeholder="Search by venue, date, or month..."
+            />
+          </div>
+        </div>
         <div class="container">
-          <span class="subheading">Merch</span>
-          <h2 class="heading-secondary">Official Merchandise</h2>
-
-          <div class="merch-grid">
-            <!-- Merch Item 1 -->
-            <div class="merch-item">
-              <div class="merch-img-box">
-                <img
-                  src="img/merch/MHsticker.png"
-                  alt="Mikey Harms Merchandise"
-                />
-              </div>
-              <div class="merch-info">
-                <h3 class="merch-name">Official Sticker</h3>
-                <p class="merch-price">$2.00</p>
-                <a href="#" class="btn merch-btn">Coming Soon...</a>
-              </div>
-            </div>
-
-            <!-- Merch Item 2 -->
-            <div class="merch-item">
-              <div class="merch-img-box">
-                <img
-                  src="img/merch/MHshirt.png"
-                  alt="Mikey Harms Merchandise"
-                />
-              </div>
-              <div class="merch-info">
-                <h3 class="merch-name">Limited Edition T-Shirt</h3>
-                <p class="merch-price">$15.00</p>
-                <a href="#" class="btn merch-btn">Coming Soon...</a>
-              </div>
-            </div>
-
-            <!-- Merch Item 3 -->
-            <div class="merch-item">
-              <div class="merch-img-box">
-                <img src="img/merch/MHcd.png" alt="Mikey Harms Merchandise" />
-              </div>
-              <div class="merch-info">
-                <h3 class="merch-name">Exclusive CD</h3>
-                <p class="merch-price">$12.00</p>
-                <a href="#" class="btn merch-btn">Coming Soon...</a>
-              </div>
-            </div>
+          <div class="grid grid--3-cols margin-bottom-md" id="shows-grid"></div>
+          <p
+            class="shows-no-results"
+            id="shows-no-results"
+            style="display: none"
+          >
+            No shows found. Try a different search!
+          </p>
+          <div
+            class="shows-pagination"
+            id="shows-pagination"
+            style="display: none"
+          >
+            <button
+              class="shows-arrow"
+              id="shows-prev"
+              aria-label="Previous shows"
+            >
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <span class="shows-page-indicator" id="shows-page-indicator"
+              >1 / 1</span
+            >
+            <button class="shows-arrow" id="shows-next" aria-label="Next shows">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- BIO SECTION -->
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          onValue,
+        } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+        const fbConf = {
+          apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+          authDomain: "mikey-harms-website.firebaseapp.com",
+          databaseURL:
+            "https://mikey-harms-website-default-rtdb.firebaseio.com",
+          projectId: "mikey-harms-website",
+          storageBucket: "mikey-harms-website.firebasestorage.app",
+          messagingSenderId: "359019811623",
+          appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+        };
+        const sApp = initializeApp(fbConf, "showsApp");
+        const sDb = getDatabase(sApp);
+
+        const showsPerPage = 3;
+        let currentPage = 1,
+          filteredShows = [],
+          allShowsData = [];
+        const grid = document.getElementById("shows-grid");
+        const searchInput = document.getElementById("shows-search");
+        const prevBtn = document.getElementById("shows-prev");
+        const nextBtn = document.getElementById("shows-next");
+        const pageIndicator = document.getElementById("shows-page-indicator");
+        const noResults = document.getElementById("shows-no-results");
+        const pagination = document.getElementById("shows-pagination");
+
+        function renderShows() {
+          const totalPages = Math.max(
+            1,
+            Math.ceil(filteredShows.length / showsPerPage),
+          );
+          const start = (currentPage - 1) * showsPerPage;
+          grid.innerHTML = "";
+          const pageShows = filteredShows.slice(start, start + showsPerPage);
+          if (filteredShows.length === 0) {
+            noResults.style.display = "block";
+            pagination.style.display = "none";
+            return;
+          }
+          noResults.style.display = "none";
+          pagination.style.display =
+            filteredShows.length > showsPerPage ? "flex" : "none";
+          pageShows.forEach((show) => {
+            const card = document.createElement("div");
+            card.className = "show-card";
+            card.innerHTML = `${show.imgUrl ? `<img src="${show.imgUrl}" class="show-img" alt="${show.venue}" />` : ""}
+        <div class="show-content"><div class="show-tags"><span class="tag tag--upcoming">${show.date}</span></div>
+        <p class="show-title">${show.venue}</p><ul class="show-details">
+        <li class="show-detail"><ion-icon class="show-icon" name="star-outline"></ion-icon><span><strong>${show.age}</strong></span></li>
+        <li class="show-detail"><ion-icon class="show-icon" name="location-outline"></ion-icon><span><strong>${show.address}</strong></span></li>
+        <li class="show-detail"><ion-icon class="show-icon" name="ticket-outline"></ion-icon><span><strong>${show.ticketUrl ? `<a href="${show.ticketUrl}" target="_blank" rel="noopener noreferrer">Link To Show</a>` : "Link coming soon"}</strong></span></li>
+        </ul></div>`;
+            grid.appendChild(card);
+          });
+          pageIndicator.textContent = `${currentPage} / ${totalPages}`;
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+        }
+
+        function filterShows() {
+          const q = searchInput.value.toLowerCase().trim();
+          filteredShows = allShowsData.filter(
+            (s) =>
+              s.venue.toLowerCase().includes(q) ||
+              s.date.toLowerCase().includes(q) ||
+              s.month.toLowerCase().includes(q),
+          );
+          currentPage = 1;
+          renderShows();
+        }
+
+        searchInput.addEventListener("input", filterShows);
+        prevBtn.addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderShows();
+          }
+        });
+        nextBtn.addEventListener("click", () => {
+          if (currentPage < Math.ceil(filteredShows.length / showsPerPage)) {
+            currentPage++;
+            renderShows();
+          }
+        });
+
+        onValue(ref(sDb, "shows"), (snapshot) => {
+          allShowsData = Object.values(snapshot.val() || {}).sort(
+            (a, b) => (a.order || 0) - (b.order || 0),
+          );
+          filteredShows = [...allShowsData];
+          currentPage = 1;
+          renderShows();
+        });
+      </script>
+
+      <!-- MERCH SECTION (loaded from Firebase) -->
+      <section class="section-merch" id="merch">
+        <div class="container">
+          <span class="subheading">Merch</span>
+          <h2 class="heading-secondary">Official Merchandise</h2>
+          <div class="merch-grid" id="merch-grid">
+            <!-- Merch loads from Firebase -->
+          </div>
+          <p
+            class="shows-no-results"
+            id="merch-no-results"
+            style="display: none"
+          >
+            Merch coming soon!
+          </p>
+          <div
+            class="shows-pagination"
+            id="merch-pagination"
+            style="display: none"
+          >
+            <button
+              class="shows-arrow"
+              id="merch-prev"
+              aria-label="Previous merch"
+            >
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <span class="shows-page-indicator" id="merch-page-indicator"
+              >1 / 1</span
+            >
+            <button class="shows-arrow" id="merch-next" aria-label="Next merch">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Firebase Merch Loader -->
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          onValue,
+        } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+        const fbConf = {
+          apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+          authDomain: "mikey-harms-website.firebaseapp.com",
+          databaseURL:
+            "https://mikey-harms-website-default-rtdb.firebaseio.com",
+          projectId: "mikey-harms-website",
+          storageBucket: "mikey-harms-website.firebasestorage.app",
+          messagingSenderId: "359019811623",
+          appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+        };
+        const mApp = initializeApp(fbConf, "merchApp");
+        const mDb = getDatabase(mApp);
+
+        const merchPerPage = 3;
+        let merchPage = 1,
+          allMerch = [];
+        const merchGrid = document.getElementById("merch-grid");
+        const merchPrev = document.getElementById("merch-prev");
+        const merchNext = document.getElementById("merch-next");
+        const merchPageInd = document.getElementById("merch-page-indicator");
+        const merchNoResults = document.getElementById("merch-no-results");
+        const merchPagination = document.getElementById("merch-pagination");
+
+        function renderMerch() {
+          const totalPages = Math.max(
+            1,
+            Math.ceil(allMerch.length / merchPerPage),
+          );
+          const start = (merchPage - 1) * merchPerPage;
+          merchGrid.innerHTML = "";
+          if (allMerch.length === 0) {
+            merchNoResults.style.display = "block";
+            merchPagination.style.display = "none";
+            return;
+          }
+          merchNoResults.style.display = "none";
+          merchPagination.style.display =
+            allMerch.length > merchPerPage ? "flex" : "none";
+          const pageItems = allMerch.slice(start, start + merchPerPage);
+          pageItems.forEach((item) => {
+            const el = document.createElement("div");
+            el.className = "merch-item";
+            const btnText = item.link ? "Shop Now" : "Coming Soon...";
+            const btnHref = item.link || "#";
+            el.innerHTML = `
+        <div class="merch-img-box"><img src="${item.imgUrl}" alt="${item.name}" /></div>
+        <div class="merch-info">
+          <h3 class="merch-name">${item.name}</h3>
+          <p class="merch-price">$${item.price}</p>
+          <a href="${btnHref}" class="btn merch-btn" ${item.link ? 'target="_blank" rel="noopener noreferrer"' : ""}>${btnText}</a>
+        </div>`;
+            merchGrid.appendChild(el);
+          });
+          merchPageInd.textContent = `${merchPage} / ${totalPages}`;
+          merchPrev.disabled = merchPage === 1;
+          merchNext.disabled = merchPage === totalPages;
+        }
+
+        merchPrev.addEventListener("click", () => {
+          if (merchPage > 1) {
+            merchPage--;
+            renderMerch();
+          }
+        });
+        merchNext.addEventListener("click", () => {
+          if (merchPage < Math.ceil(allMerch.length / merchPerPage)) {
+            merchPage++;
+            renderMerch();
+          }
+        });
+
+        onValue(ref(mDb, "merch"), (snapshot) => {
+          allMerch = Object.values(snapshot.val() || {}).sort(
+            (a, b) => (a.order || 0) - (b.order || 0),
+          );
+          merchPage = 1;
+          renderMerch();
+        });
+      </script>
+
+      <!-- BIO SECTION (loaded from Firebase) -->
       <section class="section-bio" id="bio">
         <div class="container">
           <span class="subheading">About</span>
 
-          <!-- Mikey Bio (default view) -->
+          <!-- Mikey Bio -->
           <div id="mikeyBio" class="bio-content">
             <h2 class="heading-secondary">
               <span class="mikey-harms-text">MIKEY HARMS</span>
             </h2>
-
-            <!-- Bio layout with carousels -->
             <div class="bio-layout">
-              <!-- LEFT CAROUSEL (bio1, bio2) -->
+              <!-- LEFT CAROUSEL -->
               <div class="bio-carousel" id="carouselLeft">
-                <div class="bio-carousel-track">
-                  <img
-                    src="img/bio/bio1.png"
-                    alt="Mikey Harms"
-                    class="bio-carousel-img active"
-                  />
-                  <img
-                    src="img/bio/bio2.jpg"
-                    alt="Mikey Harms"
-                    class="bio-carousel-img"
-                  />
+                <div class="bio-carousel-track" id="bio-left-track">
+                  <!-- Images load from Firebase -->
                 </div>
                 <div class="bio-carousel-controls">
                   <button
-                    class="bio-carousel-arrow bio-carousel-arrow-left"
+                    class="bio-carousel-arrow"
                     onclick="moveCarousel('carouselLeft', -1)"
                   >
                     &#8249;
                   </button>
-                  <div class="bio-carousel-dots" id="dotsLeft">
-                    <span class="bio-dot active"></span>
-                    <span class="bio-dot"></span>
-                  </div>
+                  <div class="bio-carousel-dots" id="bio-left-dots"></div>
                   <button
-                    class="bio-carousel-arrow bio-carousel-arrow-right"
+                    class="bio-carousel-arrow"
                     onclick="moveCarousel('carouselLeft', 1)"
                   >
                     &#8250;
@@ -534,8 +783,8 @@
 
               <!-- BIO TEXT CENTER -->
               <div class="bio-text-col">
-                <p class="bio-text">
-                  <span class="mikey-harms-text">MIKEY HARMS</span> is a Chicagoland singer-songwriter hailing from Tinley Park.  Pulling inspiration from across genres and art forms, Mikey is a striking performer with a diverse range - most often aligning with alternative rock and folk.  From sentimental tones of simple voice and guitar to mammoth orchestractions, Mikey's sound is the product of eclectic tastes, frequent collaboration, and constant inspiration from his incredible friends and contemporaries.  Tenacious and original, Mikey is regarded as a promising and innovative young musician, rising rapidly in the Chicago scene.
+                <p class="bio-text" id="mikey-bio-display">
+                  <!-- Text loads from Firebase -->
                 </p>
                 <div class="bio-toggle">
                   <button id="bioToggleBtn" class="bio-toggle-btn">
@@ -544,39 +793,21 @@
                 </div>
               </div>
 
-              <!-- RIGHT CAROUSEL (bio3, bio4, bio5) -->
+              <!-- RIGHT CAROUSEL -->
               <div class="bio-carousel" id="carouselRight">
-                <div class="bio-carousel-track">
-                  <img
-                    src="img/bio/bio3.jpeg"
-                    alt="Mikey Harms"
-                    class="bio-carousel-img active"
-                  />
-                  <img
-                    src="img/bio/bio4.jpg"
-                    alt="Mikey Harms"
-                    class="bio-carousel-img"
-                  />
-                  <img
-                    src="img/bio/bio5.jpg"
-                    alt="Mikey Harms"
-                    class="bio-carousel-img"
-                  />
+                <div class="bio-carousel-track" id="bio-right-track">
+                  <!-- Images load from Firebase -->
                 </div>
                 <div class="bio-carousel-controls">
                   <button
-                    class="bio-carousel-arrow bio-carousel-arrow-left"
+                    class="bio-carousel-arrow"
                     onclick="moveCarousel('carouselRight', -1)"
                   >
                     &#8249;
                   </button>
-                  <div class="bio-carousel-dots" id="dotsRight">
-                    <span class="bio-dot active"></span>
-                    <span class="bio-dot"></span>
-                    <span class="bio-dot"></span>
-                  </div>
+                  <div class="bio-carousel-dots" id="bio-right-dots"></div>
                   <button
-                    class="bio-carousel-arrow bio-carousel-arrow-right"
+                    class="bio-carousel-arrow"
                     onclick="moveCarousel('carouselRight', 1)"
                   >
                     &#8250;
@@ -586,23 +817,21 @@
             </div>
           </div>
 
-          <!-- Band Bio (hidden by default) -->
+          <!-- Band Bio -->
           <div id="bandBio" class="bio-content" style="display: none">
             <h2 class="heading-secondary">The Band</h2>
             <div class="band-info">
-              <p class="bio-text">
-                <span class="mikey-harms-text">MIKEY HARMS</span> current line
-                up is: <br /><br />
-                Matt D'Astice on guitar
-                <br />
-                Josh Picardi on keys
-                <br />
-                Antony Picardi on bass
-                <br />
-                Stevie Beilke on drums
+              <p class="bio-text" id="band-bio-display">
+                <!-- Text loads from Firebase -->
               </p>
               <div class="band-img-box">
-                <img src="img/bio/band.jpg" alt="The Band" class="band-img" />
+                <img
+                  src=""
+                  alt="The Band"
+                  class="band-img"
+                  id="band-img-display"
+                  style="display: none"
+                />
               </div>
             </div>
             <div class="bio-toggle">
@@ -614,6 +843,114 @@
         </div>
       </section>
 
+      <!-- Firebase Bio Loader -->
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          onValue,
+        } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+        const fbConf = {
+          apiKey: "AIzaSyDiB96LIN28Wa2ef0uJjV8nFy4u7h-9skY",
+          authDomain: "mikey-harms-website.firebaseapp.com",
+          databaseURL:
+            "https://mikey-harms-website-default-rtdb.firebaseio.com",
+          projectId: "mikey-harms-website",
+          storageBucket: "mikey-harms-website.firebasestorage.app",
+          messagingSenderId: "359019811623",
+          appId: "1:359019811623:web:87b7189fff0a27ea5a4f02",
+        };
+        const bApp = initializeApp(fbConf, "bioApp");
+        const bDb = getDatabase(bApp);
+
+        // Default fallback texts
+        const defaultMikeyBio =
+          '<span class="mikey-harms-text">MIKEY HARMS</span> is a Chicagoland singer-songwriter hailing from Tinley Park. Pulling inspiration from across genres and art forms, Mikey is a striking performer with a diverse range - most often aligning with alternative rock and folk. From sentimental tones of simple voice and guitar to mammoth orchestractions, Mikey\'s sound is the product of eclectic tastes, frequent collaboration, and constant inspiration from his incredible friends and contemporaries. Tenacious and original, Mikey is regarded as a promising and innovative young musician, rising rapidly in the Chicago scene.';
+        const defaultBandBio =
+          '<span class="mikey-harms-text">MIKEY HARMS</span> current line up is: <br /><br />Matt D\'Astice on guitar<br />Josh Picardi on keys<br />Antony Picardi on bass<br />Stevie Beilke on drums';
+
+        // Bio text
+        onValue(ref(bDb, "bio"), (snapshot) => {
+          const d = snapshot.val() || {};
+          const mikeyDisplay = document.getElementById("mikey-bio-display");
+          const bandDisplay = document.getElementById("band-bio-display");
+          const bandImg = document.getElementById("band-img-display");
+
+          // Use Firebase text or fallback
+          mikeyDisplay.innerHTML = d.mikeyText
+            ? d.mikeyText
+                .replace(/\n/g, "<br>")
+                .replace(
+                  /MIKEY HARMS/gi,
+                  '<span class="mikey-harms-text">MIKEY HARMS</span>',
+                )
+            : defaultMikeyBio;
+          mikeyDisplay.innerHTML = d.mikeyText
+            ? d.mikeyText
+                .replace(/\n/g, "<br>")
+                .replace(
+                  /MIKEY HARMS/gi,
+                  '<span class="mikey-harms-text">MIKEY HARMS</span>',
+                )
+            : defaultMikeyBio;
+
+          if (d.bandImgUrl) {
+            bandImg.src = d.bandImgUrl;
+            bandImg.style.display = "block";
+          } else {
+            bandImg.src = "img/bio/band.jpg";
+            bandImg.style.display = "block";
+          }
+        });
+
+        // Bio left carousel
+        function loadBioCarousel(side) {
+          onValue(ref(bDb, `bioImages/${side}`), (snapshot) => {
+            const data = snapshot.val() || {};
+            const images = Object.values(data).sort(
+              (a, b) => (a.order || 0) - (b.order || 0),
+            );
+            const track = document.getElementById(`bio-${side}-track`);
+            const dots = document.getElementById(`bio-${side}-dots`);
+
+            // Fallback images
+            const fallbacks =
+              side === "left"
+                ? [
+                    { imgUrl: "img/bio/bio1.png" },
+                    { imgUrl: "img/bio/bio2.jpg" },
+                  ]
+                : [
+                    { imgUrl: "img/bio/bio3.jpeg" },
+                    { imgUrl: "img/bio/bio4.jpg" },
+                    { imgUrl: "img/bio/bio5.jpg" },
+                  ];
+
+            const imgs = images.length > 0 ? images : fallbacks;
+
+            track.innerHTML = "";
+            dots.innerHTML = "";
+
+            imgs.forEach((img, i) => {
+              const imgEl = document.createElement("img");
+              imgEl.src = img.imgUrl;
+              imgEl.alt = "Mikey Harms";
+              imgEl.className = "bio-carousel-img" + (i === 0 ? " active" : "");
+              track.appendChild(imgEl);
+
+              const dot = document.createElement("span");
+              dot.className = "bio-dot" + (i === 0 ? " active" : "");
+              dots.appendChild(dot);
+            });
+          });
+        }
+
+        loadBioCarousel("left");
+        loadBioCarousel("right");
+      </script>
+
       <!-- CONTACT SECTION -->
       <section class="section-contact" id="contact">
         <div class="container">
@@ -623,7 +960,6 @@
               <p class="contact-text">
                 Want to book Mikey for a show? Have questions? Drop a message!
               </p>
-
               <form class="contact-form" name="contact" method="POST" netlify>
                 <input type="hidden" name="form-name" value="contact" />
                 <div>
@@ -636,7 +972,6 @@
                     required
                   />
                 </div>
-
                 <div>
                   <label for="email">Email address</label>
                   <input
@@ -647,7 +982,6 @@
                     required
                   />
                 </div>
-
                 <div>
                   <label for="message">Message</label>
                   <textarea
@@ -658,7 +992,6 @@
                     required
                   ></textarea>
                 </div>
-
                 <button class="btn btn--form">Send Message</button>
               </form>
             </div>
@@ -677,8 +1010,6 @@
       <div class="container">
         <span class="subheading">Streaming</span>
         <h2 class="heading-secondary">Watch Live</h2>
-
-        <!-- OFFLINE STATE -->
         <div class="live-offline" id="liveOffline">
           <div class="offline-icon">
             <img
@@ -696,27 +1027,22 @@
               href="https://www.tiktok.com/@mikey_harms_"
               target="_blank"
               class="offline-link tiktok-link"
+              ><ion-icon name="logo-tiktok"></ion-icon> TikTok</a
             >
-              <ion-icon name="logo-tiktok"></ion-icon> TikTok
-            </a>
             <a
               href="https://www.instagram.com/mikeyharmsmusic"
               target="_blank"
               class="offline-link instagram-link"
+              ><ion-icon name="logo-instagram"></ion-icon> Instagram</a
             >
-              <ion-icon name="logo-instagram"></ion-icon> Instagram
-            </a>
             <a
               href="https://www.youtube.com/@mikey_harms_"
               target="_blank"
               class="offline-link youtube-link"
+              ><ion-icon name="logo-youtube"></ion-icon> YouTube</a
             >
-              <ion-icon name="logo-youtube"></ion-icon> YouTube
-            </a>
           </div>
         </div>
-
-        <!-- LIVE STATE -->
         <div class="live-active" id="liveActive" style="display: none">
           <div class="live-badge">
             <span class="live-dot-red"></span> LIVE NOW
@@ -746,20 +1072,17 @@
                 class="live-platform-btn tiktok-btn"
                 id="tiktokLiveLink"
                 style="display: none"
+                ><ion-icon name="logo-tiktok"></ion-icon> Watch on TikTok</a
               >
-                <ion-icon name="logo-tiktok"></ion-icon>
-                Watch on TikTok
-              </a>
               <a
                 href="https://www.instagram.com/mikeyharmsmusic"
                 target="_blank"
                 class="live-platform-btn instagram-btn"
                 id="instagramLiveLink"
                 style="display: none"
+                ><ion-icon name="logo-instagram"></ion-icon> Watch on
+                Instagram</a
               >
-                <ion-icon name="logo-instagram"></ion-icon>
-                Watch on Instagram
-              </a>
             </div>
           </div>
         </div>
@@ -770,11 +1093,11 @@
     <footer class="footer">
       <div class="container grid grid--footer">
         <div class="logo-col">
-          <a href="#" class="footer-logo">
-            <h6 class="heading-secondary">
+          <a href="#" class="footer-logo"
+            ><h6 class="heading-secondary">
               <span class="mikey-harms-text">MIKEY HARMS</span>
-            </h6>
-          </a>
+            </h6></a
+          >
           <ul class="social-links">
             <li>
               <a
@@ -782,9 +1105,8 @@
                 href="https://www.instagram.com/mikeyharmsmusic"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
-              </a>
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
             </li>
             <li>
               <a
@@ -792,9 +1114,8 @@
                 href="https://www.tiktok.com/@mikey_harms_"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
-              </a>
+                ><ion-icon class="social-icon" name="logo-tiktok"></ion-icon
+              ></a>
             </li>
             <li>
               <a
@@ -802,9 +1123,8 @@
                 href="https://open.spotify.com/artist/46lz1b3P5lIRXXiEfHSbcQ"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <i class="fab fa-spotify social-icon"></i>
-              </a>
+                ><i class="fab fa-spotify social-icon"></i
+              ></a>
             </li>
             <li>
               <a
@@ -812,9 +1132,8 @@
                 href="https://music.apple.com/us/artist/mikey-harms/1573931931"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <ion-icon class="social-icon" name="logo-apple"></ion-icon>
-              </a>
+                ><ion-icon class="social-icon" name="logo-apple"></ion-icon
+              ></a>
             </li>
             <li>
               <a
@@ -822,9 +1141,8 @@
                 href="https://www.youtube.com/@mikey_harms_"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <ion-icon class="social-icon" name="logo-youtube"></ion-icon>
-              </a>
+                ><ion-icon class="social-icon" name="logo-youtube"></ion-icon
+              ></a>
             </li>
           </ul>
           <p class="copyright">
@@ -898,139 +1216,159 @@
         </nav>
       </div>
     </footer>
+
     <!-- SECRET BUTTON -->
-<div class="secret-btn-wrapper">
-  <button class="secret-btn" id="secretBtn" onclick="activateSecret()">Do Not Click</button>
-</div>
-
-<div class="rainbow-overlay" id="rainbowOverlay"></div>
-
-<!-- Hidden iframe that loads secret page -->
-<iframe id="secretFrame" src="secret.html" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; border:none; z-index:99999;"></iframe>
-
-<style>
-  .secret-btn-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    padding: 2rem 3.2rem 4rem;
-    background: #000;
-  }
-
-  .secret-btn {
-    background: transparent;
-    border: 1px solid #222;
-    color: #222;
-    font-size: 1.2rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.3s;
-    letter-spacing: 1px;
-  }
-
-  .secret-btn:hover {
-    border-color: #444;
-    color: #444;
-  }
-
-  .rainbow-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    background: linear-gradient(
-      45deg,
-      red, orange, yellow, green, cyan, blue, violet,
-      red, orange, yellow, green, cyan, blue, violet
-    );
-    background-size: 400% 400%;
-    transition: opacity 0.3s;
-  }
-
-  .rainbow-overlay.active {
-    pointer-events: all;
-    animation: rainbowShift 0.3s linear infinite, flashIn 3s forwards;
-  }
-
-  @keyframes rainbowShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  @keyframes flashIn {
-    0% { opacity: 0; }
-    15% { opacity: 0.9; }
-    30% { opacity: 0.4; }
-    50% { opacity: 1; }
-    70% { opacity: 0.5; }
-    85% { opacity: 0.95; }
-    100% { opacity: 1; }
-  }
-</style>
-
-<script>
-  let mainAudio = null;
-
-  function activateSecret() {
-    const overlay = document.getElementById("rainbowOverlay");
-    overlay.classList.add("active");
-
-    // Start the song and keep a reference to it
-    mainAudio = new Audio("audio/found.mp3");
-    mainAudio.loop = true;
-    mainAudio.play();
-
-    // Flash the page
-    document.body.style.transition = "filter 0.2s";
-    let flashes = 0;
-    const flashInterval = setInterval(() => {
-      flashes++;
-      document.body.style.filter = flashes % 2 === 0
-        ? "hue-rotate(180deg) saturate(5) brightness(2)"
-        : "hue-rotate(90deg) saturate(3) brightness(1.5)";
-      if (flashes >= 10) {
-        clearInterval(flashInterval);
-        document.body.style.filter = "none";
+    <div class="secret-btn-wrapper">
+      <button class="secret-btn" id="secretBtn" onclick="activateSecret()">
+        Do Not Click
+      </button>
+    </div>
+    <div class="rainbow-overlay" id="rainbowOverlay"></div>
+    <iframe
+      id="secretFrame"
+      src="secret.html"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        z-index: 99999;
+      "
+    ></iframe>
+    <style>
+      .secret-btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        padding: 2rem 3.2rem 4rem;
+        background: #000;
       }
-    }, 200);
-
-    setTimeout(() => {
-      overlay.classList.remove("active");
-      overlay.style.display = "none";
-      document.getElementById("secretFrame").style.display = "block";
-    }, 3000);
-  }
-
-  // Listen for back button message from secret page
-  window.addEventListener("message", (e) => {
-    if (e.data === "goBack") {
-      // Stop the audio
-      if (mainAudio) {
-        mainAudio.pause();
-        mainAudio.currentTime = 0;
-        mainAudio = null;
+      .secret-btn {
+        background: transparent;
+        border: 1px solid #222;
+        color: #222;
+        font-size: 1.2rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
+        letter-spacing: 1px;
       }
-      document.getElementById("secretFrame").style.display = "none";
-      document.getElementById("rainbowOverlay").style.display = "";
-    }
-  });
-</script>
+      .secret-btn:hover {
+        border-color: #444;
+        color: #444;
+      }
+      .rainbow-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        background: linear-gradient(
+          45deg,
+          red,
+          orange,
+          yellow,
+          green,
+          cyan,
+          blue,
+          violet,
+          red,
+          orange,
+          yellow,
+          green,
+          cyan,
+          blue,
+          violet
+        );
+        background-size: 400% 400%;
+        transition: opacity 0.3s;
+      }
+      .rainbow-overlay.active {
+        pointer-events: all;
+        animation:
+          rainbowShift 0.3s linear infinite,
+          flashIn 3s forwards;
+      }
+      @keyframes rainbowShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      @keyframes flashIn {
+        0% {
+          opacity: 0;
+        }
+        15% {
+          opacity: 0.9;
+        }
+        30% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+        70% {
+          opacity: 0.5;
+        }
+        85% {
+          opacity: 0.95;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+    <script>
+      let mainAudio = null;
+      function activateSecret() {
+        const overlay = document.getElementById("rainbowOverlay");
+        overlay.classList.add("active");
+        mainAudio = new Audio("audio/found.mp3");
+        mainAudio.loop = true;
+        mainAudio.play();
+        document.body.style.transition = "filter 0.2s";
+        let flashes = 0;
+        const flashInterval = setInterval(() => {
+          flashes++;
+          document.body.style.filter =
+            flashes % 2 === 0
+              ? "hue-rotate(180deg) saturate(5) brightness(2)"
+              : "hue-rotate(90deg) saturate(3) brightness(1.5)";
+          if (flashes >= 10) {
+            clearInterval(flashInterval);
+            document.body.style.filter = "none";
+          }
+        }, 200);
+        setTimeout(() => {
+          overlay.classList.remove("active");
+          overlay.style.display = "none";
+          document.getElementById("secretFrame").style.display = "block";
+        }, 3000);
+      }
+      window.addEventListener("message", (e) => {
+        if (e.data === "goBack") {
+          if (mainAudio) {
+            mainAudio.pause();
+            mainAudio.currentTime = 0;
+            mainAudio = null;
+          }
+          document.getElementById("secretFrame").style.display = "none";
+          document.getElementById("rainbowOverlay").style.display = "";
+        }
+      });
+    </script>
   </body>
 </html>
-
-<!--For Admin:
-
-Access admin.html (password protected)
-Start/stop stream with one click
-Stream goes to ALL platforms simultaneously
-
-For Public:
-
-See "Live Now" section on main site
-Platforms show "LIVE" indicator when you're streaming
-Click to watch on their preferred platform
-No access to streaming controls-->

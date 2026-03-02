@@ -435,6 +435,10 @@
     width: 6rem;
   }
 
+  .show-img {
+    height: 16rem;
+  }
+
   /* Video container */
   .video-container {
     margin-top: -6.4rem;
