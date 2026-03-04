@@ -878,7 +878,7 @@
           const bandDisplay = document.getElementById("band-bio-display");
           const bandImg = document.getElementById("band-img-display");
 
-          // Use Firebase text or fallback
+          // ✅ Mikey bio (duplicate removed)
           mikeyDisplay.innerHTML = d.mikeyText
             ? d.mikeyText
                 .replace(/\n/g, "<br>")
@@ -887,14 +887,16 @@
                   '<span class="mikey-harms-text">MIKEY HARMS</span>',
                 )
             : defaultMikeyBio;
-          mikeyDisplay.innerHTML = d.mikeyText
-            ? d.mikeyText
+
+          // ✅ Band bio (was missing, now reads from Firebase)
+          bandDisplay.innerHTML = d.bandText
+            ? d.bandText
                 .replace(/\n/g, "<br>")
                 .replace(
                   /MIKEY HARMS/gi,
                   '<span class="mikey-harms-text">MIKEY HARMS</span>',
                 )
-            : defaultMikeyBio;
+            : defaultBandBio;
 
           if (d.bandImgUrl) {
             bandImg.src = d.bandImgUrl;
@@ -905,7 +907,7 @@
           }
         });
 
-        // Bio left carousel
+        // Bio carousel loader
         function loadBioCarousel(side) {
           onValue(ref(bDb, `bioImages/${side}`), (snapshot) => {
             const data = snapshot.val() || {};
@@ -915,7 +917,6 @@
             const track = document.getElementById(`bio-${side}-track`);
             const dots = document.getElementById(`bio-${side}-dots`);
 
-            // Fallback images
             const fallbacks =
               side === "left"
                 ? [
