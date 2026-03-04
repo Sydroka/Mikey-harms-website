@@ -593,6 +593,12 @@
       <div class="login-box" id="loginBox">
         <h2>Admin Login</h2>
         <input
+          type="email"
+          class="login-input"
+          id="emailInput"
+          placeholder="Enter email"
+        />
+        <input
           type="password"
           class="login-input"
           id="passwordInput"
@@ -1094,13 +1100,10 @@
 
       // ===== AUTH =====
       window.login = async function () {
+        const email = document.getElementById("emailInput").value;
         const password = document.getElementById("passwordInput").value;
         try {
-          await signInWithEmailAndPassword(
-            auth,
-            "mikeyharms99@gmail.com",
-            password,
-          );
+          await signInWithEmailAndPassword(auth, email, password);
           document.getElementById("loginBox").style.display = "none";
           document.getElementById("dashboard").style.display = "block";
           loadDashboard();
