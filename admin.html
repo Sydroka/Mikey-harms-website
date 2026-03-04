@@ -150,22 +150,57 @@
         margin-top: 0.4rem;
       }
 
-      /* SECTION CARD */
-      .section-card {
+      /* COLLAPSIBLE SECTION */
+      .collapsible-section {
         background: #1a1a1a;
         border-radius: 16px;
-        padding: 3.2rem;
-        margin-bottom: 2.4rem;
+        margin-bottom: 1.6rem;
+        overflow: hidden;
       }
-      .section-card h3 {
+      .collapsible-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2.4rem 3.2rem;
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.2s;
+      }
+      .collapsible-header:hover {
+        background: #222;
+      }
+      .collapsible-header-left {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      .collapsible-header h3 {
         font-size: 1.8rem;
-        margin-bottom: 0.4rem;
       }
-      .section-card .section-desc {
+      .collapsible-arrow {
+        font-size: 1.2rem;
+        color: #888;
+        transition: transform 0.3s;
+        flex-shrink: 0;
+      }
+      .collapsible-section.open .collapsible-arrow {
+        transform: rotate(180deg);
+      }
+      .collapsible-body {
+        display: none;
+        padding: 0 3.2rem 3.2rem;
+        border-top: 1px solid #2a2a2a;
+      }
+      .collapsible-section.open .collapsible-body {
+        display: block;
+      }
+      .collapsible-desc {
         font-size: 1.4rem;
         color: #888;
-        margin-bottom: 2.4rem;
+        margin: 1.6rem 0 2.4rem;
       }
+
+      /* SECTION CARD (inner content) */
       .count-badge {
         display: inline-block;
         background: #2a2a2a;
@@ -173,7 +208,6 @@
         font-size: 1.3rem;
         padding: 0.4rem 1rem;
         border-radius: 100px;
-        margin-left: 1rem;
         font-weight: 400;
         vertical-align: middle;
       }
@@ -186,6 +220,11 @@
         margin-bottom: 2.4rem;
         padding-bottom: 2.4rem;
         border-bottom: 1px solid #2a2a2a;
+      }
+      .item-form:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
       }
       .item-form input,
       .item-form select,
@@ -288,7 +327,7 @@
         gap: 1.6rem;
       }
       .admin-item {
-        background: #111;
+        background: #0a0a0a;
         border-radius: 12px;
         padding: 2rem;
         border: 1px solid #2a2a2a;
@@ -532,201 +571,17 @@
         cursor: pointer;
       }
 
-      /* LIVE CARD */
-      .live-card {
-        background: #1a1a1a;
-        border-radius: 16px;
-        padding: 3.2rem;
-        margin-bottom: 2.4rem;
-      }
-      .live-card h3 {
-        font-size: 1.8rem;
-        margin-bottom: 2.4rem;
-        color: #fff;
-      }
-      .platform-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.6rem 0;
-        border-bottom: 1px solid #222;
-      }
-      .platform-row:last-of-type {
-        border-bottom: none;
-      }
-      .platform-info {
-        display: flex;
-        align-items: center;
-        gap: 1.6rem;
-      }
-      .platform-icon {
-        font-size: 2.8rem;
-      }
-      .platform-name {
-        font-size: 1.8rem;
-        font-weight: 600;
-      }
-      .toggle-switch {
-        position: relative;
-        width: 6rem;
-        height: 3.2rem;
-      }
-      .toggle-switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      .toggle-slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #333;
-        border-radius: 3.2rem;
-        transition: 0.3s;
-      }
-      .toggle-slider:before {
-        position: absolute;
-        content: "";
-        height: 2.4rem;
-        width: 2.4rem;
-        left: 0.4rem;
-        bottom: 0.4rem;
-        background: #fff;
-        border-radius: 50%;
-        transition: 0.3s;
-      }
-      input:checked + .toggle-slider {
-        background: #f02e2e;
-      }
-      input:checked + .toggle-slider:before {
-        transform: translateX(2.8rem);
-      }
-
-      .youtube-card {
-        background: #1a1a1a;
-        border-radius: 16px;
-        padding: 3.2rem;
-        margin-bottom: 2.4rem;
-      }
-      .youtube-card h3 {
-        font-size: 1.8rem;
-        margin-bottom: 0.8rem;
-      }
-      .youtube-card p {
-        font-size: 1.4rem;
-        color: #888;
-        margin-bottom: 2rem;
-      }
-      .youtube-input {
-        width: 100%;
-        padding: 1.4rem 1.6rem;
-        font-size: 1.6rem;
-        border-radius: 8px;
-        border: 2px solid #333;
-        background: #111;
-        color: #fff;
-        margin-bottom: 1.2rem;
-        font-family: inherit;
-      }
-      .youtube-input:focus {
-        outline: none;
-        border-color: #f02e2e;
-      }
-      .save-btn {
-        padding: 1.2rem 2.4rem;
-        background: #f02e2e;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        font-size: 1.6rem;
-        font-weight: 600;
-        cursor: pointer;
-        font-family: inherit;
-        transition: background 0.3s;
-      }
-      .save-btn:hover {
-        background: #c02020;
-      }
-      .save-success {
-        color: #44ff88;
-        font-size: 1.4rem;
-        margin-left: 1.2rem;
-        display: none;
-      }
-
-      .go-live-card {
-        background: #1a1a1a;
-        border-radius: 16px;
-        padding: 3.2rem;
-        text-align: center;
-        margin-bottom: 2.4rem;
-      }
-      .go-live-btn {
-        width: 100%;
-        padding: 2rem;
-        background: #f02e2e;
-        color: #fff;
-        border: none;
-        border-radius: 12px;
-        font-size: 2.4rem;
-        font-weight: 700;
-        cursor: pointer;
-        font-family: inherit;
-        transition: all 0.3s;
-        letter-spacing: 2px;
-      }
-      .go-live-btn:hover {
-        background: #c02020;
-        transform: scale(1.02);
-      }
-      .go-live-btn.live {
-        background: #222;
-        color: #f02e2e;
-        border: 2px solid #f02e2e;
-      }
-      .go-live-btn.live:hover {
-        background: #1a0000;
-      }
-      .live-status-text {
-        margin-top: 1.6rem;
-        font-size: 1.4rem;
-        color: #888;
-      }
-      .live-dot {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        border-radius: 50%;
-        background: #44ff88;
-        margin-right: 0.6rem;
-        animation: pulse 1s infinite;
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.3;
-        }
-      }
-
-      .section-divider {
-        border: none;
-        border-top: 2px solid #f02e2e;
-        margin: 1.6rem 0 2.4rem;
-        opacity: 0.3;
-      }
-      .section-label {
-        font-size: 1.2rem;
+      /* SUB SECTION LABEL */
+      .sub-section-label {
+        font-size: 1.3rem;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         color: #f02e2e;
-        margin-bottom: 0.8rem;
+        margin: 2.4rem 0 1.2rem;
         font-weight: 600;
+      }
+      .sub-section-label:first-child {
+        margin-top: 0;
       }
     </style>
   </head>
@@ -766,465 +621,432 @@
           </div>
         </div>
 
-        <hr class="section-divider" />
-        <p class="section-label">Hero Carousel</p>
-
-        <!-- ======== 1. CAROUSEL MANAGER ======== -->
-        <div class="section-card" id="carouselSection">
-          <h3>
-            🖼️ Hero Carousel
-            <span class="count-badge" id="carouselCountBadge">0</span>
-          </h3>
-          <p class="section-desc">
-            Manage the image slideshow at the top of the site. Upload images and
-            reorder them.
-          </p>
-          <div class="item-form">
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="carousel-img-label">
-                <span class="upload-icon">🖼️</span>
-                <span id="carousel-img-label-text">Choose image...</span>
-              </label>
-              <input
-                type="file"
-                class="file-upload-input"
-                id="new-carousel-img"
-                accept="image/*"
-                onchange="
-                  handleFileSelect(
-                    this,
-                    'carousel-img-label',
-                    'carousel-img-label-text',
-                  )
-                "
-              />
+        <!-- ======== 1. HERO CAROUSEL ======== -->
+        <div class="collapsible-section" id="section-carousel">
+          <div
+            class="collapsible-header"
+            onclick="toggleSection('section-carousel')"
+          >
+            <div class="collapsible-header-left">
+              <span>🖼️</span>
+              <h3>
+                Hero Carousel
+                <span class="count-badge" id="carouselCountBadge">0</span>
+              </h3>
             </div>
-            <input
-              type="text"
-              id="new-carousel-alt"
-              placeholder="Image description (e.g. Mikey on stage)"
-            />
-            <div class="upload-progress" id="carousel-upload-progress">
-              <div class="upload-progress-bar" id="carousel-upload-bar"></div>
-            </div>
-            <span class="upload-status" id="carousel-upload-status"></span>
-            <button
-              class="add-btn"
-              id="addCarouselBtn"
-              onclick="addCarouselImage()"
-            >
-              + Upload Image
-            </button>
-            <span class="saved-msg" id="carouselAddedMsg">✓ Added!</span>
+            <span class="collapsible-arrow">▼</span>
           </div>
-          <div class="items-list" id="carousel-list">
-            <p class="no-items-msg">No carousel images yet.</p>
-          </div>
-        </div>
-
-        <hr class="section-divider" />
-        <p class="section-label">Music</p>
-
-        <!-- ======== 2. MUSIC MANAGER ======== -->
-        <div class="section-card" id="musicSection">
-          <h3>
-            🎶 Music Manager
-            <span class="count-badge" id="trackCountBadge">0</span>
-          </h3>
-          <p class="section-desc">
-            Upload songs with album art. Reorder with arrows.
-          </p>
-          <div class="item-form">
-            <input
-              type="text"
-              id="new-track-title"
-              placeholder="Song title (e.g. Rusty Metal Box)"
-            />
-            <div class="color-picker-wrapper">
-              <label>White title text on artwork?</label
-              ><input type="checkbox" id="new-track-white" />
-            </div>
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="mp3-label"
-                ><span class="upload-icon">🎵</span
-                ><span id="mp3-label-text">Choose MP3 file...</span></label
-              >
-              <input
-                type="file"
-                class="file-upload-input"
-                id="new-track-mp3"
-                accept="audio/mpeg,audio/mp3"
-                onchange="handleFileSelect(this, 'mp3-label', 'mp3-label-text')"
-              />
-            </div>
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="art-label"
-                ><span class="upload-icon">🖼️</span
-                ><span id="art-label-text">Choose album art...</span></label
-              >
-              <input
-                type="file"
-                class="file-upload-input"
-                id="new-track-art"
-                accept="image/*"
-                onchange="handleFileSelect(this, 'art-label', 'art-label-text')"
-              />
-            </div>
-            <div class="upload-progress" id="track-upload-progress">
-              <div class="upload-progress-bar" id="track-upload-bar"></div>
-            </div>
-            <span class="upload-status" id="track-upload-status"></span>
-            <button class="add-btn" id="addTrackBtn" onclick="addTrack()">
-              + Upload &amp; Add Track
-            </button>
-            <span class="saved-msg" id="trackAddedMsg">✓ Track added!</span>
-          </div>
-          <div class="items-list" id="tracks-list">
-            <p class="no-items-msg">No tracks yet.</p>
-          </div>
-        </div>
-
-        <hr class="section-divider" />
-        <p class="section-label">Shows</p>
-
-        <!-- ======== 3. SHOWS MANAGER ======== -->
-        <div class="section-card" id="showsSection">
-          <h3>
-            🎤 Shows Manager
-            <span class="count-badge" id="showCountBadge">0</span>
-          </h3>
-          <p class="section-desc">
-            Add unlimited shows. Reorder with arrows. Site shows 3 at a time
-            with pagination.
-          </p>
-          <div class="item-form">
-            <input type="text" id="new-venue" placeholder="Venue name" />
-            <div class="form-row">
+          <div class="collapsible-body">
+            <p class="collapsible-desc">
+              Manage the image slideshow at the top of the site. Upload images
+              and reorder them.
+            </p>
+            <div class="item-form">
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="carousel-img-label">
+                  <span class="upload-icon">🖼️</span>
+                  <span id="carousel-img-label-text">Choose image...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-carousel-img"
+                  accept="image/*"
+                  onchange="
+                    handleFileSelect(
+                      this,
+                      'carousel-img-label',
+                      'carousel-img-label-text',
+                    )
+                  "
+                />
+              </div>
               <input
                 type="text"
-                id="new-date"
-                placeholder="Date (e.g. February 20th)"
+                id="new-carousel-alt"
+                placeholder="Image description (e.g. Mikey on stage)"
+              />
+              <div class="upload-progress" id="carousel-upload-progress">
+                <div class="upload-progress-bar" id="carousel-upload-bar"></div>
+              </div>
+              <span class="upload-status" id="carousel-upload-status"></span>
+              <button
+                class="add-btn"
+                id="addCarouselBtn"
+                onclick="addCarouselImage()"
+              >
+                + Upload Image
+              </button>
+              <span class="saved-msg" id="carouselAddedMsg">✓ Added!</span>
+            </div>
+            <div class="items-list" id="carousel-list">
+              <p class="no-items-msg">No carousel images yet.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== 2. MUSIC ======== -->
+        <div class="collapsible-section" id="section-music">
+          <div
+            class="collapsible-header"
+            onclick="toggleSection('section-music')"
+          >
+            <div class="collapsible-header-left">
+              <span>🎶</span>
+              <h3>
+                Music <span class="count-badge" id="trackCountBadge">0</span>
+              </h3>
+            </div>
+            <span class="collapsible-arrow">▼</span>
+          </div>
+          <div class="collapsible-body">
+            <p class="collapsible-desc">
+              Upload songs with album art. Reorder with arrows.
+            </p>
+            <div class="item-form">
+              <input
+                type="text"
+                id="new-track-title"
+                placeholder="Song title (e.g. Rusty Metal Box)"
+              />
+              <div class="color-picker-wrapper">
+                <label>White title text on artwork?</label>
+                <input type="checkbox" id="new-track-white" />
+              </div>
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="mp3-label">
+                  <span class="upload-icon">🎵</span>
+                  <span id="mp3-label-text">Choose MP3 file...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-track-mp3"
+                  accept="audio/mpeg,audio/mp3"
+                  onchange="
+                    handleFileSelect(this, 'mp3-label', 'mp3-label-text')
+                  "
+                />
+              </div>
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="art-label">
+                  <span class="upload-icon">🖼️</span>
+                  <span id="art-label-text">Choose album art...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-track-art"
+                  accept="image/*"
+                  onchange="
+                    handleFileSelect(this, 'art-label', 'art-label-text')
+                  "
+                />
+              </div>
+              <div class="upload-progress" id="track-upload-progress">
+                <div class="upload-progress-bar" id="track-upload-bar"></div>
+              </div>
+              <span class="upload-status" id="track-upload-status"></span>
+              <button class="add-btn" id="addTrackBtn" onclick="addTrack()">
+                + Upload &amp; Add Track
+              </button>
+              <span class="saved-msg" id="trackAddedMsg">✓ Track added!</span>
+            </div>
+            <div class="items-list" id="tracks-list">
+              <p class="no-items-msg">No tracks yet.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== 3. SHOWS ======== -->
+        <div class="collapsible-section" id="section-shows">
+          <div
+            class="collapsible-header"
+            onclick="toggleSection('section-shows')"
+          >
+            <div class="collapsible-header-left">
+              <span>🎤</span>
+              <h3>
+                Shows <span class="count-badge" id="showCountBadge">0</span>
+              </h3>
+            </div>
+            <span class="collapsible-arrow">▼</span>
+          </div>
+          <div class="collapsible-body">
+            <p class="collapsible-desc">
+              Add unlimited shows. Reorder with arrows. Site shows 3 at a time
+              with pagination.
+            </p>
+            <div class="item-form">
+              <input type="text" id="new-venue" placeholder="Venue name" />
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="new-date"
+                  placeholder="Date (e.g. February 20th)"
+                />
+                <input
+                  type="text"
+                  id="new-month"
+                  placeholder="Month (e.g. February)"
+                />
+              </div>
+              <input type="text" id="new-address" placeholder="Address" />
+              <input
+                type="text"
+                id="new-age"
+                placeholder="Age restriction (e.g. 17+ or 21+)"
               />
               <input
                 type="text"
-                id="new-month"
-                placeholder="Month (e.g. February)"
+                id="new-ticket-url"
+                placeholder="Ticket link URL (optional)"
               />
-            </div>
-            <input type="text" id="new-address" placeholder="Address" />
-            <input
-              type="text"
-              id="new-age"
-              placeholder="Age restriction (e.g. 17+ or 21+)"
-            />
-            <input
-              type="text"
-              id="new-ticket-url"
-              placeholder="Ticket link URL (optional)"
-            />
-            <input
-              type="text"
-              id="new-img-url"
-              placeholder="Image URL (optional)"
-            />
-            <button class="add-btn" onclick="addShow()">+ Add Show</button>
-            <span class="saved-msg" id="showAddedMsg">✓ Show added!</span>
-          </div>
-          <div class="items-list" id="shows-list">
-            <p class="no-items-msg">No shows yet.</p>
-          </div>
-        </div>
-
-        <hr class="section-divider" />
-        <p class="section-label">Merch</p>
-
-        <!-- ======== 4. MERCH MANAGER ======== -->
-        <div class="section-card" id="merchSection">
-          <h3>
-            🛍️ Merch Manager
-            <span class="count-badge" id="merchCountBadge">0</span>
-          </h3>
-          <p class="section-desc">
-            Add merch items with image, price, and shop link. Site shows 3 at a
-            time with pagination arrows if more.
-          </p>
-          <div class="item-form">
-            <input
-              type="text"
-              id="new-merch-name"
-              placeholder="Item name (e.g. Limited Edition T-Shirt)"
-            />
-            <input
-              type="text"
-              id="new-merch-price"
-              placeholder="Price (e.g. 15.00)"
-            />
-            <input
-              type="text"
-              id="new-merch-link"
-              placeholder="Shopify link (or leave empty for Coming Soon)"
-            />
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="merch-img-label"
-                ><span class="upload-icon">🖼️</span
-                ><span id="merch-img-label-text"
-                  >Choose merch image...</span
-                ></label
-              >
               <input
-                type="file"
-                class="file-upload-input"
-                id="new-merch-img"
-                accept="image/*"
-                onchange="
-                  handleFileSelect(
-                    this,
-                    'merch-img-label',
-                    'merch-img-label-text',
-                  )
-                "
+                type="text"
+                id="new-img-url"
+                placeholder="Image URL (optional)"
               />
+              <button class="add-btn" onclick="addShow()">+ Add Show</button>
+              <span class="saved-msg" id="showAddedMsg">✓ Show added!</span>
             </div>
-            <div class="upload-progress" id="merch-upload-progress">
-              <div class="upload-progress-bar" id="merch-upload-bar"></div>
+            <div class="items-list" id="shows-list">
+              <p class="no-items-msg">No shows yet.</p>
             </div>
-            <span class="upload-status" id="merch-upload-status"></span>
-            <button class="add-btn" id="addMerchBtn" onclick="addMerch()">
-              + Upload &amp; Add Item
-            </button>
-            <span class="saved-msg" id="merchAddedMsg">✓ Added!</span>
-          </div>
-          <div class="items-list" id="merch-list">
-            <p class="no-items-msg">No merch yet.</p>
           </div>
         </div>
 
-        <hr class="section-divider" />
-        <p class="section-label">Bio</p>
-
-        <!-- ======== 5. BIO MANAGER ======== -->
-        <div class="section-card" id="bioSection">
-          <h3>📝 Bio Manager</h3>
-          <p class="section-desc">
-            Edit the Mikey bio text, band bio text, and manage bio carousel
-            images.
-          </p>
-
-          <!-- Mikey Bio Text -->
-          <div class="item-form">
-            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
-              >Mikey Bio Text</label
-            >
-            <textarea
-              id="mikey-bio-text"
-              placeholder="Enter Mikey's bio text..."
-            ></textarea>
-            <button class="add-btn" onclick="saveMikeyBio()">
-              Save Mikey Bio
-            </button>
-            <span class="saved-msg" id="mikeyBioSavedMsg">✓ Saved!</span>
+        <!-- ======== 4. MERCH ======== -->
+        <div class="collapsible-section" id="section-merch">
+          <div
+            class="collapsible-header"
+            onclick="toggleSection('section-merch')"
+          >
+            <div class="collapsible-header-left">
+              <span>🛍️</span>
+              <h3>
+                Merch <span class="count-badge" id="merchCountBadge">0</span>
+              </h3>
+            </div>
+            <span class="collapsible-arrow">▼</span>
           </div>
-
-          <!-- Band Bio Text -->
-          <div class="item-form">
-            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
-              >Band Bio Text</label
-            >
-            <textarea
-              id="band-bio-text"
-              placeholder="Enter band bio text..."
-            ></textarea>
-            <button class="add-btn" onclick="saveBandBio()">
-              Save Band Bio
-            </button>
-            <span class="saved-msg" id="bandBioSavedMsg">✓ Saved!</span>
-          </div>
-
-          <!-- Left Carousel Images -->
-          <div class="item-form">
-            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
-              >Left Bio Carousel Images
-              <span class="count-badge" id="bioLeftCountBadge">0</span></label
-            >
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="bio-left-label"
-                ><span class="upload-icon">🖼️</span
-                ><span id="bio-left-label-text">Choose image...</span></label
-              >
+          <div class="collapsible-body">
+            <p class="collapsible-desc">
+              Add merch items with image, price, and shop link. Site shows 3 at
+              a time with pagination arrows if more.
+            </p>
+            <div class="item-form">
               <input
-                type="file"
-                class="file-upload-input"
-                id="new-bio-left-img"
-                accept="image/*"
-                onchange="
-                  handleFileSelect(
-                    this,
-                    'bio-left-label',
-                    'bio-left-label-text',
-                  )
-                "
+                type="text"
+                id="new-merch-name"
+                placeholder="Item name (e.g. Limited Edition T-Shirt)"
               />
-            </div>
-            <div class="upload-progress" id="bio-left-upload-progress">
-              <div class="upload-progress-bar" id="bio-left-upload-bar"></div>
-            </div>
-            <button class="add-btn" onclick="addBioImage('left')">
-              + Upload Image
-            </button>
-            <span class="saved-msg" id="bioLeftAddedMsg">✓ Added!</span>
-          </div>
-          <div class="items-list" id="bio-left-list">
-            <p class="no-items-msg">No images yet.</p>
-          </div>
-
-          <!-- Right Carousel Images -->
-          <div class="item-form" style="margin-top: 2.4rem">
-            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
-              >Right Bio Carousel Images
-              <span class="count-badge" id="bioRightCountBadge">0</span></label
-            >
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="bio-right-label"
-                ><span class="upload-icon">🖼️</span
-                ><span id="bio-right-label-text">Choose image...</span></label
-              >
               <input
-                type="file"
-                class="file-upload-input"
-                id="new-bio-right-img"
-                accept="image/*"
-                onchange="
-                  handleFileSelect(
-                    this,
-                    'bio-right-label',
-                    'bio-right-label-text',
-                  )
-                "
+                type="text"
+                id="new-merch-price"
+                placeholder="Price (e.g. 15.00)"
               />
-            </div>
-            <div class="upload-progress" id="bio-right-upload-progress">
-              <div class="upload-progress-bar" id="bio-right-upload-bar"></div>
-            </div>
-            <button class="add-btn" onclick="addBioImage('right')">
-              + Upload Image
-            </button>
-            <span class="saved-msg" id="bioRightAddedMsg">✓ Added!</span>
-          </div>
-          <div class="items-list" id="bio-right-list">
-            <p class="no-items-msg">No images yet.</p>
-          </div>
-
-          <!-- Band Image -->
-          <div class="item-form" style="margin-top: 2.4rem">
-            <label style="font-size: 1.5rem; color: #ccc; font-weight: 600"
-              >Band Bio Image</label
-            >
-            <div class="file-upload-wrapper">
-              <label class="file-upload-label" id="band-img-label"
-                ><span class="upload-icon">🖼️</span
-                ><span id="band-img-label-text"
-                  >Choose band image...</span
-                ></label
-              >
               <input
-                type="file"
-                class="file-upload-input"
-                id="new-band-img"
-                accept="image/*"
-                onchange="
-                  handleFileSelect(
-                    this,
-                    'band-img-label',
-                    'band-img-label-text',
-                  )
-                "
+                type="text"
+                id="new-merch-link"
+                placeholder="Shopify link (or leave empty for Coming Soon)"
               />
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="merch-img-label">
+                  <span class="upload-icon">🖼️</span>
+                  <span id="merch-img-label-text">Choose merch image...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-merch-img"
+                  accept="image/*"
+                  onchange="
+                    handleFileSelect(
+                      this,
+                      'merch-img-label',
+                      'merch-img-label-text',
+                    )
+                  "
+                />
+              </div>
+              <div class="upload-progress" id="merch-upload-progress">
+                <div class="upload-progress-bar" id="merch-upload-bar"></div>
+              </div>
+              <span class="upload-status" id="merch-upload-status"></span>
+              <button class="add-btn" id="addMerchBtn" onclick="addMerch()">
+                + Upload &amp; Add Item
+              </button>
+              <span class="saved-msg" id="merchAddedMsg">✓ Added!</span>
             </div>
-            <div class="upload-progress" id="band-img-upload-progress">
-              <div class="upload-progress-bar" id="band-img-upload-bar"></div>
+            <div class="items-list" id="merch-list">
+              <p class="no-items-msg">No merch yet.</p>
             </div>
-            <button class="add-btn" onclick="saveBandImage()">
-              Upload Band Image
-            </button>
-            <span class="saved-msg" id="bandImgSavedMsg">✓ Saved!</span>
-            <img class="img-preview" id="band-img-preview" />
           </div>
         </div>
 
-        <hr class="section-divider" />
-        <p class="section-label">Streaming / Live</p>
+        <!-- ======== 5. BIO ======== -->
+        <div class="collapsible-section" id="section-bio">
+          <div
+            class="collapsible-header"
+            onclick="toggleSection('section-bio')"
+          >
+            <div class="collapsible-header-left">
+              <span>📝</span>
+              <h3>Bio</h3>
+            </div>
+            <span class="collapsible-arrow">▼</span>
+          </div>
+          <div class="collapsible-body">
+            <p class="collapsible-desc">
+              Edit the Mikey bio text, band bio text, and manage bio carousel
+              images.
+            </p>
 
-        <!-- ======== 6. LIVE SECTION ======== -->
-        <div class="live-card">
-          <h3>Platforms</h3>
-          <div class="platform-row">
-            <div class="platform-info">
-              <span class="platform-icon">🎵</span
-              ><span class="platform-name">TikTok</span>
+            <p class="sub-section-label">Mikey Bio Text</p>
+            <div class="item-form">
+              <textarea
+                id="mikey-bio-text"
+                placeholder="Enter Mikey's bio text..."
+              ></textarea>
+              <button class="add-btn" onclick="saveMikeyBio()">
+                Save Mikey Bio
+              </button>
+              <span class="saved-msg" id="mikeyBioSavedMsg">✓ Saved!</span>
             </div>
-            <label class="toggle-switch"
-              ><input
-                type="checkbox"
-                id="tiktokToggle"
-                onchange="updatePlatform('tiktok', this.checked)" /><span
-                class="toggle-slider"
-              ></span
-            ></label>
-          </div>
-          <div class="platform-row">
-            <div class="platform-info">
-              <span class="platform-icon">📸</span
-              ><span class="platform-name">Instagram</span>
+
+            <p class="sub-section-label">Band Bio Text</p>
+            <div class="item-form">
+              <textarea
+                id="band-bio-text"
+                placeholder="Enter band bio text..."
+              ></textarea>
+              <button class="add-btn" onclick="saveBandBio()">
+                Save Band Bio
+              </button>
+              <span class="saved-msg" id="bandBioSavedMsg">✓ Saved!</span>
             </div>
-            <label class="toggle-switch"
-              ><input
-                type="checkbox"
-                id="instagramToggle"
-                onchange="updatePlatform('instagram', this.checked)" /><span
-                class="toggle-slider"
-              ></span
-            ></label>
-          </div>
-          <div class="platform-row">
-            <div class="platform-info">
-              <span class="platform-icon">▶️</span
-              ><span class="platform-name">YouTube</span>
+
+            <p class="sub-section-label">
+              Left Bio Carousel
+              <span class="count-badge" id="bioLeftCountBadge">0</span>
+            </p>
+            <div class="item-form">
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="bio-left-label">
+                  <span class="upload-icon">🖼️</span>
+                  <span id="bio-left-label-text">Choose image...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-bio-left-img"
+                  accept="image/*"
+                  onchange="
+                    handleFileSelect(
+                      this,
+                      'bio-left-label',
+                      'bio-left-label-text',
+                    )
+                  "
+                />
+              </div>
+              <div class="upload-progress" id="bio-left-upload-progress">
+                <div class="upload-progress-bar" id="bio-left-upload-bar"></div>
+              </div>
+              <button class="add-btn" onclick="addBioImage('left')">
+                + Upload Image
+              </button>
+              <span class="saved-msg" id="bioLeftAddedMsg">✓ Added!</span>
             </div>
-            <label class="toggle-switch"
-              ><input
-                type="checkbox"
-                id="youtubeToggle"
-                onchange="updatePlatform('youtube', this.checked)" /><span
-                class="toggle-slider"
-              ></span
-            ></label>
+            <div class="items-list" id="bio-left-list">
+              <p class="no-items-msg">No images yet.</p>
+            </div>
+
+            <p class="sub-section-label" style="margin-top: 2.4rem">
+              Right Bio Carousel
+              <span class="count-badge" id="bioRightCountBadge">0</span>
+            </p>
+            <div class="item-form">
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="bio-right-label">
+                  <span class="upload-icon">🖼️</span>
+                  <span id="bio-right-label-text">Choose image...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-bio-right-img"
+                  accept="image/*"
+                  onchange="
+                    handleFileSelect(
+                      this,
+                      'bio-right-label',
+                      'bio-right-label-text',
+                    )
+                  "
+                />
+              </div>
+              <div class="upload-progress" id="bio-right-upload-progress">
+                <div
+                  class="upload-progress-bar"
+                  id="bio-right-upload-bar"
+                ></div>
+              </div>
+              <button class="add-btn" onclick="addBioImage('right')">
+                + Upload Image
+              </button>
+              <span class="saved-msg" id="bioRightAddedMsg">✓ Added!</span>
+            </div>
+            <div class="items-list" id="bio-right-list">
+              <p class="no-items-msg">No images yet.</p>
+            </div>
+
+            <p class="sub-section-label" style="margin-top: 2.4rem">
+              Band Bio Image
+            </p>
+            <div class="item-form">
+              <div class="file-upload-wrapper">
+                <label class="file-upload-label" id="band-img-label">
+                  <span class="upload-icon">🖼️</span>
+                  <span id="band-img-label-text">Choose band image...</span>
+                </label>
+                <input
+                  type="file"
+                  class="file-upload-input"
+                  id="new-band-img"
+                  accept="image/*"
+                  onchange="
+                    handleFileSelect(
+                      this,
+                      'band-img-label',
+                      'band-img-label-text',
+                    )
+                  "
+                />
+              </div>
+              <div class="upload-progress" id="band-img-upload-progress">
+                <div class="upload-progress-bar" id="band-img-upload-bar"></div>
+              </div>
+              <button class="add-btn" onclick="saveBandImage()">
+                Upload Band Image
+              </button>
+              <span class="saved-msg" id="bandImgSavedMsg">✓ Saved!</span>
+              <img class="img-preview" id="band-img-preview" />
+            </div>
           </div>
-        </div>
-        <div class="youtube-card">
-          <h3>YouTube Live URL</h3>
-          <p>Paste your live stream URL here</p>
-          <input
-            type="text"
-            class="youtube-input"
-            id="youtubeUrl"
-            placeholder="https://www.youtube.com/watch?v=..."
-          />
-          <button class="save-btn" onclick="saveYoutubeUrl()">Save URL</button>
-          <span class="save-success" id="saveSuccess">✓ Saved!</span>
-        </div>
-        <div class="go-live-card">
-          <button class="go-live-btn" id="goLiveBtn" onclick="toggleLive()">
-            GO LIVE
-          </button>
-          <p class="live-status-text" id="liveStatusText">
-            You are currently offline
-          </p>
         </div>
       </div>
+      <!-- end dashboard -->
     </div>
+    <!-- end admin-container -->
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
       import {
         getDatabase,
         ref,
@@ -1256,7 +1078,7 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
       const storage = getStorage(app);
-      const ADMIN_PASSWORD = "danisfat123ed";
+      const auth = getAuth(app);
 
       let showEntries = [],
         trackEntries = [],
@@ -1265,13 +1087,24 @@
         bioLeftEntries = [],
         bioRightEntries = [];
 
+      // ===== COLLAPSIBLE =====
+      window.toggleSection = function (id) {
+        document.getElementById(id).classList.toggle("open");
+      };
+
       // ===== AUTH =====
-      window.login = function () {
-        if (document.getElementById("passwordInput").value === ADMIN_PASSWORD) {
+      window.login = async function () {
+        const password = document.getElementById("passwordInput").value;
+        try {
+          await signInWithEmailAndPassword(
+            auth,
+            "admin@yoursite.com",
+            password,
+          );
           document.getElementById("loginBox").style.display = "none";
           document.getElementById("dashboard").style.display = "block";
           loadDashboard();
-        } else {
+        } catch (e) {
           document.getElementById("loginError").style.display = "block";
         }
       };
@@ -1402,28 +1235,6 @@
 
       // ===== DASHBOARD =====
       function loadDashboard() {
-        // Live status
-        onValue(ref(db, "liveStatus"), (s) => {
-          const d = s.val() || {};
-          document.getElementById("tiktokToggle").checked = d.tiktok || false;
-          document.getElementById("instagramToggle").checked =
-            d.instagram || false;
-          document.getElementById("youtubeToggle").checked = d.youtube || false;
-          if (d.youtubeUrl)
-            document.getElementById("youtubeUrl").value = d.youtubeUrl;
-          const btn = document.getElementById("goLiveBtn"),
-            st = document.getElementById("liveStatusText");
-          if (d.isLive) {
-            btn.textContent = "END STREAM";
-            btn.classList.add("live");
-            st.innerHTML =
-              '<span class="live-dot"></span> You are currently LIVE';
-          } else {
-            btn.textContent = "GO LIVE";
-            btn.classList.remove("live");
-            st.textContent = "You are currently offline";
-          }
-        });
         // Visitors
         onValue(ref(db, "visitors"), (s) => {
           document.getElementById("visitorCount").textContent = Object.keys(
@@ -1566,8 +1377,6 @@
             p.classList.add("visible");
           }
         });
-
-        // Bio left carousel
         onValue(ref(db, "bioImages/left"), (s) => {
           bioLeftEntries = sortEntries(s.val() || {});
           document.getElementById("bioLeftCountBadge").textContent =
@@ -1589,8 +1398,6 @@
             },
           );
         });
-
-        // Bio right carousel
         onValue(ref(db, "bioImages/right"), (s) => {
           bioRightEntries = sortEntries(s.val() || {});
           document.getElementById("bioRightCountBadge").textContent =
@@ -2000,23 +1807,7 @@
         }
       };
 
-      // ===== LIVE =====
-      window.updatePlatform = function (p, v) {
-        set(ref(db, `liveStatus/${p}`), v);
-      };
-      window.saveYoutubeUrl = function () {
-        set(
-          ref(db, "liveStatus/youtubeUrl"),
-          document.getElementById("youtubeUrl").value,
-        );
-        flashMsg("saveSuccess");
-      };
-      window.toggleLive = function () {
-        const btn = document.getElementById("goLiveBtn");
-        set(ref(db, "liveStatus/isLive"), !btn.classList.contains("live"));
-      };
-
-      // Visitor
+      // Visitor tracking
       const visitorRef = push(ref(db, "visitors"));
       set(visitorRef, { active: true, timestamp: Date.now() });
       onDisconnect(visitorRef).remove();
